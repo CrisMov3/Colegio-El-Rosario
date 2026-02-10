@@ -504,6 +504,42 @@ header .container {
     }
 }
 
+/* Mobile-specific overrides to ensure nav links are readable on small screens */
+@media (max-width: 768px) {
+    .hamburger {
+        color: var(--white);
+    }
+
+    .nav-links {
+        background-color: var(--white);
+        color: var(--dark-text);
+    }
+
+    .nav-links a {
+        color: var(--dark-text);
+        padding: 12px 18px;
+        display: block;
+        width: 100%;
+        text-align: center;
+        border-radius: 0;
+    }
+
+    .nav-links a.pqrs-link {
+        background: var(--accent-color);
+        color: #222;
+        margin: 8px auto;
+        width: auto;
+        padding: 10px 18px;
+        border-radius: 20px;
+    }
+
+    .nav-links a:hover {
+        background: rgba(0,0,0,0.03);
+        transform: none;
+        color: var(--primary-color);
+    }
+}
+
 /* Contacto */
 .contact-wrapper {
     display: grid;
@@ -584,7 +620,7 @@ footer {
         top: 80px;
         left: 0;
         width: 100%;
-        background-color: var(--white);
+        background-color: #329037;
         flex-direction: column;
         text-align: center;
         padding: 20px 0;
