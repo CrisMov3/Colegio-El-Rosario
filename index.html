@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colegio El Rosario Itagüí</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <!-- Asumiendo que el logo se guardará aquí. Si no, se muestra el texto -->
+                <img src="img/logo.png" alt="Logo Colegio El Rosario" class="logo-img" onerror="this.style.display='none'">
+                <div class="logo-text">
+                    <h1>Colegio El Rosario</h1>
+                    <span>Itagüí</span>
+                </div>
+            </div>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#noticias">Noticias</a></li>
+                    <li><a href="#documentos">Documentos</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#pqrs" class="pqrs-link">Pqrs</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2>Colegio El Rosario Itagüí</h2>
+            <p>Educamos con amor, excelencia y compromiso social.</p>
+            <div class="hero-buttons">
+                <a href="#contacto" class="btn btn-warning">Contáctanos</a>
+                <a href="#oferta" class="btn btn-outline" style="margin-left: 10px; border: 2px solid white;">Conoce Más</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sistema institucional CTA debajo de la galería -->
+    <section id="sistema" class="section bg-light">
+        <div class="container">
+            <div class="sistema-cta">
+                <div class="sistema-text">
+                    <h3>Sistema institucional</h3>
+                    <p>Accede al sistema institucional para trámites, pagos y seguimiento académico.</p>
+                </div>
+                <div>
+                    <a href="https://sistema.institucional.example" target="_blank" rel="noopener noreferrer" class="btn btn-warning">Ingresa aquí</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección PQRS -->
+    <section id="pqrs" class="section">
+        <div class="container">
+            <h2 class="section-title">Pqrs</h2>
+            <p class="section-desc">Realiza tus Peticiones, Quejas, Reclamos y Sugerencias a través de nuestro formulario o contacto institucional.</p>
+            <div class="pqrs-grid">
+                <a href="#" id="open-pqrs-btn" class="btn btn-primary">Abrir formulario PQRS</a>
+                <a href="mailto:pqrs@elrosarioitagui.edu.co" class="btn btn-sm">Enviar por correo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva Sección: Filosofía Institucional -->
+    <section id="filosofia" class="section">
+        <div class="container">
+            <div class="philosophy-grid">
+                <div class="philo-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Misión</h3>
+                    <p>Formar seres humanos integrales, fundamentados en valores cristianos y éticos, capaces de transformar su entorno social.</p>
+                </div>
+                <div class="philo-card">
+                    <i class="fas fa-eye"></i>
+                    <h3>Visión</h3>
+                    <p>Ser reconocidos en 2030 como una institución líder en educación de calidad y formación humana en la región.</p>
+                </div>
+                <div class="philo-card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Valores</h3>
+                    <p>Respeto, Responsabilidad, Honestidad y Solidaridad son los pilares que guían nuestra comunidad educativa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva Sección: Oferta Académica -->
+    <section id="oferta" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Nuestra Oferta Académica</h2>
+            <div class="academic-grid">
+                <div class="academic-item">
+                    <div class="academic-img" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                    <div class="academic-info">
+                        <h3>Preescolar</h3>
+                        <p>Un espacio lúdico y seguro donde inicia la aventura del aprendizaje.</p>
+                    </div>
+                </div>
+                <div class="academic-item">
+                    <div class="academic-img" style="background-image: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                    <div class="academic-info">
+                        <h3>Primaria</h3>
+                        <p>Fortalecemos las bases del conocimiento y las habilidades sociales.</p>
+                    </div>
+                </div>
+                <div class="academic-item">
+                    <div class="academic-img" style="background-image: url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                    <div class="academic-info">
+                        <h3>Bachillerato</h3>
+                        <p>Preparamos jóvenes líderes competentes para los retos universitarios.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Noticias Section -->
+    <section id="noticias" class="section">
+        <div class="container">
+            <h2 class="section-title">Últimas Noticias</h2>
+            
+            <div class="news-grid" id="news-container">
+                <!-- Se llenará dinámicamente con JS o mostrará los predeterminados si no hay nuevos -->
+                <article class="news-card default-news">
+                    <div class="news-image news-placeholder-1"></div>
+                    <div class="news-content">
+                        <span class="date">10 Feb 2026</span>
+                        <h3>Inicio de Clases 2026</h3>
+                        <p>Damos la bienvenida a todos nuestros estudiantes al nuevo año escolar lleno de aprendizaje.</p>
+                        <a href="#" class="read-more">Leer más</a>
+                    </div>
+                </article>
+                
+                <!-- Artículo de ejemplo 2 -->
+                <article class="news-card">
+                    <div class="news-image news-placeholder-2"></div>
+                    <div class="news-content">
+                        <span class="date">05 Feb 2026</span>
+                        <h3>Reunión de Padres</h3>
+                        <p>Invitamos a la comunidad educativa a la primera reunión general este viernes.</p>
+                        <a href="#" class="read-more">Leer más</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentos Section -->
+    <section id="documentos" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Gestión Documental</h2>
+            <p class="section-desc">Descarga los documentos institucionales importantes.</p>
+            
+            <div class="documents-grid">
+                <div class="doc-item">
+                    <i class="fas fa-file-pdf doc-icon"></i>
+                    <div class="doc-info">
+                        <h4>Manual de Convivencia</h4>
+                        <button class="btn btn-sm">Descargar</button>
+                    </div>
+                </div>
+                <div class="doc-item">
+                    <i class="fas fa-calendar-alt doc-icon"></i>
+                    <div class="doc-info">
+                        <h4>Horario Escolar 2026</h4>
+                        <button class="btn btn-sm">Descargar</button>
+                    </div>
+                </div>
+                <div class="doc-item">
+                    <i class="fas fa-list-check doc-icon"></i>
+                    <div class="doc-info">
+                        <h4>Lista de Útiles</h4>
+                        <button class="btn btn-sm">Descargar</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria Section -->
+    <section id="galeria" class="section">
+        <div class="container">
+            <h2 class="section-title">Nuestra Institución</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item item-1"></div>
+                <div class="gallery-item item-2"></div>
+                <div class="gallery-item item-3"></div>
+                <div class="gallery-item item-4"></div>
+                <div class="gallery-item item-5"></div>
+                <div class="gallery-item item-6"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="section bg-dark">
+        <div class="container">
+            <h2 class="section-title text-white">Contáctanos</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Calle Principal #12-34, Itagüí, Antioquia</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+57 (604) 123 4567</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>contacto@elrosarioitagui.edu.co</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <form class="contact-form">
+                    <input type="text" placeholder="Tu Nombre" required>
+                    <input type="email" placeholder="Tu Correo" required>
+                    <textarea rows="5" placeholder="Tu Mensaje" required></textarea>
+                    <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 Colegio El Rosario Itagüí. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <div class="modal" id="info-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body" id="modal-body-content">
+                <!-- Content will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal PQRS (visual/propuesta) -->
+    <div class="modal" id="pqrs-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-text-content">
+                <h2 class="modal-title">Formulario PQRS</h2>
+                <h4 class="modal-subtitle">Petición • Queja • Reclamo • Sugerencia</h4>
+
+                <form id="pqrs-form" class="pqrs-form">
+                    <input type="text" id="pqrs-name" placeholder="Tu nombre" required>
+                    <input type="email" id="pqrs-email" placeholder="Tu correo" required>
+                    <select id="pqrs-type" required>
+                        <option value="">Selecciona el tipo</option>
+                        <option value="Peticion">Petición</option>
+                        <option value="Queja">Queja</option>
+                        <option value="Reclamo">Reclamo</option>
+                        <option value="Sugerencia">Sugerencia</option>
+                    </select>
+                    <input type="text" id="pqrs-subject" placeholder="Asunto" required>
+                    <textarea id="pqrs-message" rows="5" placeholder="Describe tu solicitud..." required></textarea>
+
+                    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px;">
+                        <button type="button" class="btn btn-sm" id="pqrs-cancel">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Enviar (visual)</button>
+                    </div>
+                </form>
+
+                <div class="pqrs-success" style="display:none;margin-top:20px;">
+                    <p>Gracias — la propuesta queda registrada visualmente para la presentación.</p>
+                    <button class="btn btn-primary" id="pqrs-close-after">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

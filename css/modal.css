@@ -1,0 +1,143 @@
+/* ... existing styles ... */
+
+/* Modal Styles */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); 
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; 
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%; 
+    max-width: 700px;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    animation: modalSlideIn 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes modalSlideIn {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: var(--primary-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Modal Content Layout */
+.modal-header-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    background-color: #eee;
+}
+
+.modal-text-content {
+    padding: 30px;
+}
+
+.modal-title {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.modal-subtitle {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.modal-details {
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.modal-list-title {
+    font-weight: bold;
+    color: var(--dark-text);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag {
+    background-color: #e0f7fa;
+    color: #006064;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Oferta pointer */
+.academic-item {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.academic-item:hover {
+    transform: translateY(-5px);
+}
+
+/* PQRS form inside modal */
+.pqrs-form input,
+.pqrs-form select,
+.pqrs-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #e6e6e6;
+    font-family: inherit;
+}
+
+.pqrs-form select { height: 44px; }
+
+.pqrs-success p {
+    background: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    padding: 12px;
+    border-radius: 6px;
+    color: #2e7d32;
+}
+
+.pqrs-success button { margin-top: 12px; }

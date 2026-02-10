@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrativo - Colegio El Rosario</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .admin-section { padding: 40px 0; }
+        .dashboard-header { background: var(--primary-color); color: white; padding: 20px 0; margin-top: 80px; }
+        .dashboard-card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .dashboard-card h3 { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar Same as index but simplified -->
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="img/logo.png" alt="Logo Colegio El Rosario" class="logo-img" onerror="this.style.display='none'">
+                <div class="logo-text">
+                    <h1>Colegio El Rosario</h1>
+                    <span>Panel Administrativo</span>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Ver Sitio Web</a></li>
+                    <li><a href="#" class="active">Panel</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dashboard-header">
+        <div class="container">
+            <h2>Gestión de Contenidos</h2>
+            <p>Desde aquí puedes agregar noticias y gestionar documentos.</p>
+        </div>
+    </div>
+
+    <div class="container admin-section">
+        
+        <!-- Gestión de Noticias -->
+        <div class="dashboard-card">
+            <h3><i class="fas fa-newspaper"></i> Publicar Noticia</h3>
+            <form id="admin-news-form">
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <input type="text" id="news-title" placeholder="Título de la noticia" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required>
+                    <textarea id="news-content" placeholder="Escribe el contenido de la noticia aquí..." rows="5" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required></textarea>
+                    <input type="url" id="news-image-url" placeholder="URL de la imagen (opcional)" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    <button type="submit" class="btn btn-primary">Publicar en el Sitio</button>
+                    <small style="color: #666;">Nota: Las noticias se guardarán localmente en el navegador para esta demostración.</small>
+                </div>
+            </form>
+        </div>
+
+        <!-- Gestión de Documentos -->
+        <div class="dashboard-card">
+            <h3><i class="fas fa-file-alt"></i> Subir Documentos</h3>
+            <div class="doc-upload" id="admin-doc-upload">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span>Seleccionar archivo PDF o Doc</span>
+                <input type="file" id="file-input" style="display: none;">
+            </div>
+            <div id="upload-status" style="margin-top: 15px; color: green; display: none;">¡Documento cargado exitosamente!</div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 Colegio El Rosario - Panel de Control</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Lógica específica simple para la simulación de subida de archivos en admin
+        document.getElementById('admin-doc-upload').addEventListener('click', () => {
+             // Simular click en input file real
+             // En un entorno real se subiría al servidor
+             document.getElementById('upload-status').style.display = 'block';
+             document.getElementById('upload-status').textContent = 'Simulación: Archivo "cargado" a la base de datos.';
+             setTimeout(() => { document.getElementById('upload-status').style.display = 'none'; }, 3000);
+        });
+    </script>
+</body>
+</html>

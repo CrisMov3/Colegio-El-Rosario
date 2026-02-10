@@ -1,0 +1,251 @@
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Funcionalidad Menú Móvil
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    if(hamburger) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    }
+
+    // Cerrar menú al hacer clic en un enlace
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks && navLinks.classList.remove('active');
+        });
+    });
+
+    // --- LÓGICA DE NOTICIAS ---
+    const newsContainer = document.getElementById('news-container');
+    const adminNewsForm = document.getElementById('admin-news-form');
+
+    // Función para renderizar noticias desde LocalStorage
+    function loadNews() {
+        if (!newsContainer) return;
+
+        const storedNews = JSON.parse(localStorage.getItem('colRosasNews')) || [];
+        
+        // Limpiamos y recargamos
+        const dynamicNews = document.querySelectorAll('.dynamic-news');
+        dynamicNews.forEach(el => el.remove());
+
+        storedNews.forEach(news => {
+             const article = document.createElement('article');
+             article.className = 'news-card dynamic-news';
+             article.innerHTML = `
+                <div class="news-image" style="background: url('${news.image || 'https://source.unsplash.com/random/500x300/?school'}') center/cover; background-color: #008ba3;"></div>
+                <div class="news-content">
+                    <span class="date">${news.date}</span>
+                    <h3>${news.title}</h3>
+                    <p class="news-excerpt">${news.content.substring(0, 100)}...</p>
+                    <a href="#" class="read-more" data-type="news" data-content="${encodeURIComponent(news.content)}" data-title="${encodeURIComponent(news.title)}" data-date="${news.date}" data-img="${news.image}">Leer más</a>
+                </div>
+            `;
+            newsContainer.insertBefore(article, newsContainer.firstChild);
+        });
+    }
+
+    if(newsContainer) loadNews();
+
+    // Lógica del Formulario Admin
+    if(adminNewsForm) {
+        adminNewsForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('news-title').value;
+            const content = document.getElementById('news-content').value;
+            const imageUrl = document.getElementById('news-image-url').value;
+            const date = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+
+            const newArticle = { title, content, image: imageUrl, date };
+
+            const currentNews = JSON.parse(localStorage.getItem('colRosasNews')) || [];
+            currentNews.push(newArticle);
+            localStorage.setItem('colRosasNews', JSON.stringify(currentNews));
+
+            adminNewsForm.reset();
+            alert('¡Noticia publicada correctamente! Ve a la página de Inicio para verla.');
+        });
+    }
+
+    // --- LÓGICA DEL MODAL ---
+    const modal = document.getElementById('info-modal');
+    const modalBody = document.getElementById('modal-body-content');
+    const closeModal = document.querySelector('.close-modal');
+
+    if(modal) {
+        // Cerrar modal
+        closeModal.addEventListener('click', () => modal.style.display = 'none');
+        window.addEventListener('click', (e) => {
+            if (e.target == modal) modal.style.display = 'none';
+        });
+
+        // DATOS DE OFERTA ACADÉMICA
+        const academicData = {
+            'Preescolar': {
+                subtitle: 'Iniciando el camino del saber',
+                details: 'Nuestro preescolar ofrece un ambiente seguro y estimulante donde los niños desarrollan sus dimensiones cognitiva, comunicativa y corporal a través del juego y la exploración.',
+                items: ['Grados: Transición y Jardín', 'Jornada: Mañana (7:00 AM - 12:00 PM)', 'Enfoque: Desarrollo Lúdico y Motriz'],
+                tags: ['Lúdica', 'Motricidad', 'Valores', 'Inglés Inicial'],
+                img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+            },
+            'Primaria': {
+                subtitle: 'Construyendo bases sólidas',
+                details: 'En la básica primaria enfocamos nuestros esfuerzos en fortalecer las competencias básicas de lectura, escritura y pensamiento lógico-matemático, vivenciando los valores institucionales.',
+                items: ['Grados: 1° a 5°', 'Jornada: Tarde (12:30 PM - 5:30 PM)', 'Proyectos transversales de medio ambiente'],
+                tags: ['Matemáticas', 'Español', 'Ciencias', 'Inglés', 'Ética', 'Tecnología'],
+                img: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+            },
+            'Bachillerato': {
+                subtitle: 'Hacia la excelencia académica y humana',
+                details: 'Formamos jóvenes competentes, críticos y reflexivos. Nuestro currículo profundiza en las ciencias y humanidades, preparando a los estudiantes para la educación superior y la vida ciudadana.',
+                items: ['Grados: 6° a 11°', 'Jornada: Mañana (6:30 AM - 1:00 PM)', 'Preparación ICFES intensiva en 10° y 11°'],
+                tags: ['Física', 'Química', 'Cálculo', 'Filosofía', 'Programación', 'Emprendimiento'],
+                img: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+            }
+        };
+
+        // Click en Oferta Académica
+        document.querySelectorAll('.academic-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const title = item.querySelector('h3').innerText;
+                const data = academicData[title];
+
+                if(data) {
+                    renderModal({
+                        title: title,
+                        subtitle: data.subtitle,
+                        content: data.details,
+                        image: data.img,
+                        listTitle: 'Características:',
+                        listItems: data.items,
+                        tags: data.tags
+                    });
+                }
+            });
+        });
+
+        // Click en Noticias (Delegación de eventos para ítems dinámicos y estáticos)
+        document.addEventListener('click', function(e) {
+            if(e.target && e.target.classList.contains('read-more')) {
+                e.preventDefault();
+                const btn = e.target;
+                
+                // Intentar sacar datos de atributos data (si es dinámica)
+                let title = btn.getAttribute('data-title');
+                let content = btn.getAttribute('data-content');
+                let date = btn.getAttribute('data-date');
+                let img = btn.getAttribute('data-img');
+                
+                // Si no tiene atributos (son las estáticas del HTML), sacar del DOM
+                if(!title) {
+                    const card = btn.closest('.news-card');
+                    title = card.querySelector('h3').innerText;
+                    content = card.querySelector('p').innerText + "\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+                    date = card.querySelector('.date').innerText;
+                    // Imagen placeholder
+                    img = 'https://source.unsplash.com/random/800x400/?school,news';
+                } else {
+                    content = decodeURIComponent(content);
+                    title = decodeURIComponent(title);
+                }
+
+                renderModal({
+                    title: title,
+                    subtitle: date,
+                    content: content,
+                    image: img,
+                    listTitle: '',
+                    listItems: [],
+                    tags: ['Noticia', 'Actualidad']
+                });
+            }
+        });
+
+        function renderModal(data) {
+            let tagsHtml = data.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+            let listHtml = '';
+            if(data.listItems && data.listItems.length > 0) {
+                listHtml = `<span class="modal-list-title">${data.listTitle}</span><ul>` + 
+                           data.listItems.map(item => `<li><i class="fas fa-check-circle" style="color:var(--secondary-color); margin-right:8px;"></i>${item}</li>`).join('') + 
+                           `</ul>`;
+            }
+
+            modalBody.innerHTML = `
+                <div class="modal-header-img" style="background-image: url('${data.image}')"></div>
+                <div class="modal-text-content">
+                    <h2 class="modal-title">${data.title}</h2>
+                    <h4 class="modal-subtitle">${data.subtitle}</h4>
+                    <div class="modal-details">${data.content}</div>
+                    ${listHtml}
+                    <div style="margin-top: 25px;">
+                        ${tagsHtml}
+                    </div>
+                </div>
+            `;
+            modal.style.display = 'block';
+        }
+    }
+
+    // Scroll suave
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if(target) {
+                const headerOffset = 90;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        });
+    });
+});
+
+// Estilos dinámicos extra (animación)
+const style = document.createElement('style');
+style.innerHTML = `
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+`;
+document.head.appendChild(style);
+
+// PQRS modal (visual) interactions
+document.addEventListener('DOMContentLoaded', function() {
+    const pqrsBtn = document.getElementById('open-pqrs-btn');
+    const pqrsModal = document.getElementById('pqrs-modal');
+    const pqrsForm = document.getElementById('pqrs-form');
+    const pqrsCancel = document.getElementById('pqrs-cancel');
+    const pqrsCloseAfter = document.getElementById('pqrs-close-after');
+
+    if(pqrsBtn && pqrsModal) {
+        pqrsBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            pqrsModal.style.display = 'block';
+        });
+    }
+
+    if(pqrsCancel) pqrsCancel.addEventListener('click', () => pqrsModal.style.display = 'none');
+    if(pqrsCloseAfter) pqrsCloseAfter.addEventListener('click', () => pqrsModal.style.display = 'none');
+
+    window.addEventListener('click', function(e) {
+        if (e.target == pqrsModal) pqrsModal.style.display = 'none';
+    });
+
+    if(pqrsForm) {
+        pqrsForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            pqrsForm.style.display = 'none';
+            const success = pqrsModal.querySelector('.pqrs-success');
+            if(success) success.style.display = 'block';
+        });
+    }
+});
