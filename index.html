@@ -9,74 +9,183 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+<body>
 
-    <!-- Header / Navbar -->
-    <header>
-        <div class="container">
-            <div class="logo-container">
-                <!-- Asumiendo que el logo se guardará aquí. Si no, se muestra el texto -->
-                <img src="img/logo.png" alt="Logo Colegio El Rosario" class="logo-img" onerror="this.style.display='none'">
-                <div class="logo-text">
-                    <h1>Colegio El Rosario</h1>
-                    <span>Itagüí</span>
-                </div>
-            </div>
-            
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#noticias">Noticias</a></li>
-                    <li><a href="#documentos">Documentos</a></li>
-                    <li><a href="#galeria">Galería</a></li>
-                    <li><a href="#pqrs" class="pqrs-link">Pqrs</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-                <div class="hamburger">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
+<!-- BARRA GOV.CO -->
+<div class="gov-bar">
+    <div class="gov-container">
+        <img src="https://govco-prod-webutils.s3.us-east-1.amazonaws.com/uploads/2025-08-29/f2b1a485-5e1a-4ac3-a002-067b69bed7aa-1imagen_noticia.png"
+             alt="GOV.CO"
+             class="gov-logo">
+
+        <div class="gov-right">
+            <a href="#" class="lang-btn active">ES</a>
+            <a href="#" class="lang-btn">EN</a>
         </div>
-    </header>
+    </div>
+</div>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h2>Colegio El Rosario Itagüí</h2>
-            <p>Educamos con amor, excelencia y compromiso social.</p>
-            <div class="hero-buttons">
-                <a href="#contacto" class="btn btn-warning">Contáctanos</a>
-                <a href="#oferta" class="btn btn-outline" style="margin-left: 10px; border: 2px solid white;">Conoce Más</a>
+<!-- HEADER PRINCIPAL -->
+<header class="main-header">
+    <div class="container header-content">
+
+        <!-- LOGO -->
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Logo Institucional" class="logo-img">
+            <div class="logo-text">
+                <h1>Colegio El Rosario de Itagüí</h1>
+                <span>Itagüí · Antioquia</span>
             </div>
         </div>
-    </section>
 
-    <!-- Sistema institucional CTA debajo de la galería -->
-    <section id="sistema" class="section bg-light">
-        <div class="container">
-            <div class="sistema-cta">
-                <div class="sistema-text">
-                    <h3>Sistema institucional</h3>
-                    <p>Accede al sistema institucional para trámites, pagos y seguimiento académico.</p>
-                </div>
-                <div>
-                    <a href="https://sistema.institucional.example" target="_blank" rel="noopener noreferrer" class="btn btn-warning">Ingresa aquí</a>
+        <!-- NAV -->
+        <nav class="main-nav">
+            <ul class="nav-links">
+
+                <li><a href="#inicio">Inicio</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Institucional</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Reseña histórica</a></li>
+                        <li><a href="#">Misión, visión y valores</a></li>
+                        <li><a href="#">Manual de convivencia</a></li>
+                        <li><a href="#">Gobierno escolar</a></li>
+                        <li><a href="#">Organigrama</a></li>
+                        <li><a href="#">Símbolos institucionales</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Académica</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Oferta académica</a></li>
+                        <li><a href="#">Plan de estudios</a></li>
+                        <li><a href="#">Evaluación y promoción</a></li>
+                        <li><a href="#">Proyectos pedagógicos</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Gestión Administrativa</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Talento humano</a></li>
+                        <li><a href="#">Contratación</a></li>
+                        <li><a href="#">Presupuesto</a></li>
+                        <li><a href="#">Trámites</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Gestión a la Comunidad</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Atención al ciudadano</a></li>
+                        <li><a href="#">Escuela de padres</a></li>
+                        <li><a href="#">Participación</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#pqrs" class="pqrs-link">PQRS</a>
+                </li>
+
+            </ul>
+
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Hero Carrusel -->
+<section id="inicio" class="hero-carousel">
+    <div class="slides">
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1580582932707-520aed937b7b');">
+            <div class="overlay"></div>
+            <div class="content">
+                <h2>Colegio El Rosario Itagüí</h2>
+                <p>Educamos con amor, excelencia y compromiso social.</p>
+                <div class="buttons">
+                    <a href="#contacto" class="btn btn-warning">Contáctanos</a>
+                    <a href="#oferta" class="btn btn-outline">Conoce más</a>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Sección PQRS -->
-    <section id="pqrs" class="section">
-        <div class="container">
-            <h2 class="section-title">PQRs</h2>
-            <p class="section-desc">Realiza tus Peticiones, Quejas, Reclamos y Sugerencias a través de nuestro formulario o contacto institucional.</p>
-            <div class="pqrs-grid">
-                <a href="#" id="open-pqrs-btn" class="btn btn-primary">Abrir formulario PQRS</a>
-                <a href="mailto:pqrs@elrosarioitagui.edu.co" class="btn btn-sm">Enviar por correo</a>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7');">
+            <div class="overlay"></div>
+            <div class="content">
+                <h2>Formación Integral</h2>
+                <p>Valores, conocimiento y futuro para nuestros estudiantes.</p>
+                <div class="buttons">
+                    <a href="#oferta" class="btn btn-warning">Nuestra propuesta</a>
+                </div>
             </div>
         </div>
-    </section>
+
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');">
+            <div class="overlay"></div>
+            <div class="content">
+                <h2>Educación de Calidad</h2>
+                <p>Construyendo sueños todos los días.</p>
+                <div class="buttons">
+                    <a href="#contacto" class="btn btn-warning">Inscripciones abiertas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controles -->
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+</section>
+
+
+    <!-- Tarjetas institucionales -->
+<section id="institucional" class="section bg-light">
+    <div class="container institucional-grid">
+
+        <!-- Tarjeta Sistema Institucional -->
+        <div class="institucional-card sistema-card">
+            <div class="card-content">
+                <h3>Sistema Institucional</h3>
+                <p>
+                    Accede al sistema institucional para realizar trámites académicos,
+                    pagos, consulta de notas y seguimiento estudiantil.
+                </p>
+            </div>
+            <div class="card-action">
+                <a href="https://sistema.institucional.example"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn btn-warning">
+                   Ingresar
+                </a>
+            </div>
+        </div>
+
+        <!-- Tarjeta PQRS -->
+        <div class="institucional-card pqrs-card">
+            <div class="card-content">
+                <h3>PQRS</h3>
+                <p>
+                    Envía tus Peticiones, Quejas, Reclamos o Sugerencias
+                    a través de nuestros canales institucionales.
+                </p>
+            </div>
+            <div class="card-action">
+                <a href="#" id="open-pqrs-btn" class="btn btn-primary">Formulario</a>
+                <a href="mailto:pqrs@elrosarioitagui.edu.co" class="btn btn-outline-dark">
+                    Correo
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
 
     <!-- Nueva Sección: Filosofía Institucional -->
     <section id="filosofia" class="section">
@@ -210,47 +319,6 @@
         </div>
     </section>
 
-    <!-- Contacto Section -->
-    <section id="contacto" class="section bg-dark">
-        <div class="container">
-            <h2 class="section-title text-white">Contáctanos</h2>
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p>Calle Principal #12-34, Itagüí, Antioquia</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <p>+57 (604) 123 4567</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <p>contacto@elrosarioitagui.edu.co</p>
-                    </div>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-                
-                <form class="contact-form">
-                    <input type="text" placeholder="Tu Nombre" required>
-                    <input type="email" placeholder="Tu Correo" required>
-                    <textarea rows="5" placeholder="Tu Mensaje" required></textarea>
-                    <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container footer-content">
-            <p>&copy; 2026 Colegio El Rosario Itagüí. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
     <div class="modal" id="info-modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -296,6 +364,220 @@
     </div>
 
     <script src="js/script.js"></script>
+
+<!-- Instituciones Aliadas - Carrusel de Logos -->
+<section id="instituciones-aliadas" class="section bg-light">
+    <div class="container">
+        <h2 class="section-title">Instituciones Aliadas</h2>
+        <p class="section-desc">Colaboramos con importantes instituciones educativas y organizaciones</p>
+        
+        <div class="allies-carousel">
+            <!-- Contenedor del carrusel -->
+            <div class="allies-container">
+                <div class="allies-slides">
+                    <!-- Slide 1 - 4 logos -->
+                    <div class="ally-slide">
+                        <div class="logos-row">
+                            <!-- Institución 1 -->
+                            <a href="https://www.idem.edu.co" target="_blank" class="ally-logo-card">
+                                <div class="logo-wrapper">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2173/2173475.png" 
+                                         alt="Institución Educativa Diego Echavarría Misas"
+                                         class="ally-logo">
+                                </div>
+                                <div class="logo-info">
+                                    <h4>Institución Educativa Diego Echavarría Misas</h4>
+                                    <p>Sede Principal - Medellín</p>
+                                </div>
+                            </a>
+
+                            <!-- Institución 2 -->
+                            <a href="https://wa.me/573004123724" target="_blank" class="ally-logo-card">
+                                <div class="logo-wrapper">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2721/2721264.png" 
+                                         alt="Sede Estado de Israel"
+                                         class="ally-logo">
+                                </div>
+                                <div class="logo-info">
+                                    <h4>Sede Estado de Israel</h4>
+                                    <p>WhatsApp: 300 412 3724</p>
+                                </div>
+                            </a>
+
+                            <!-- Institución 3 -->
+                            <a href="https://wa.me/573004116463" target="_blank" class="ally-logo-card">
+                                <div class="logo-wrapper">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2721/2721272.png" 
+                                         alt="Sede Eduardo Uribe"
+                                         class="ally-logo">
+                                </div>
+                                <div class="logo-info">
+                                    <h4>Sede Eduardo Uribe</h4>
+                                    <p>WhatsApp: 300 411 6463</p>
+                                </div>
+                            </a>
+
+                            <!-- Institución 4 -->
+                            <a href="https://www.mineducacion.gov.co" target="_blank" class="ally-logo-card">
+                                <div class="logo-wrapper">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" 
+                                         alt="Ministerio de Educación Nacional"
+                                         class="ally-logo">
+                                </div>
+                                <div class="logo-info">
+                                    <h4>Ministerio de Educación Nacional</h4>
+                                    <p>Portal Oficial</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 - 4 logos -->
+                    <div class="ally-slide">
+                        <div class="logos-row">
+                            <!-- Institución 5 -->
+                            <a href="https://www.medellin.gov.co/secretaria-educacion" target="_blank" class="ally-logo-card">
+                                <div class="logo-wrapper">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" 
+                                         alt="Secretaría de Educación de Medellín"
+                                         class="ally-logo">
+                                </div>
+                                <div class="logo-info">
+                                    <h4>Secretaría de Educación</h4>
+                                    <p>Medellín</p>
+                                </div>
+                            </a>
+
+                            <!-- Institución 6 -->
+                            <a href="https://www.icfes.gov.co" target="_blank" class="ally-logo-card">
+                                <div class="logo-wrapper">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2236/2236811.png" 
+                                         alt="ICFES"
+                                         class="ally-logo">
+                                </div>
+                                <div class="logo-info">
+                                    <h4>ICFES</h4>
+                                    <p>Instituto Colombiano para la Evaluación</p>
+                                </div>
+                            </a>
+
+                            <!-- Institución 7 -->
+                            <a href="https://www.colombiaaprende.edu.co" target="_blank" class="ally-logo-card">
+                                <div class="logo-wrapper">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2235/2235953.png" 
+                                         alt="Colombia Aprende"
+                                         class="ally-logo">
+                                </div>
+                                <div class="logo-info">
+                                    <h4>Colombia Aprende</h4>
+                                    <p>Portal Educativo</p>
+                                </div>
+                            </a>
+
+                            <!-- Institución 8 -->
+                            <a href="https://www.sena.edu.co" target="_blank" class="ally-logo-card">
+                                <div class="logo-wrapper">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/1995/1995515.png" 
+                                         alt="SENA"
+                                         class="ally-logo">
+                                </div>
+                                <div class="logo-info">
+                                    <h4>SENA</h4>
+                                    <p>Servicio Nacional de Aprendizaje</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controles del carrusel -->
+            <button class="ally-prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="ally-next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Indicadores -->
+            <div class="ally-indicators">
+                <span class="ally-indicator active" data-slide="0"></span>
+                <span class="ally-indicator" data-slide="1"></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer Principal Rediseñado -->
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Columna 1: Políticas -->
+            <div class="footer-column">
+                <h4>Enlaces Legales</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Política de tratamiento de datos</a></li>
+                    <li><a href="#"><i class="fas fa-sitemap"></i> Mapa del sitio</a></li>
+                    <li><a href="#"><i class="fas fa-user-shield"></i> Política de privacidad</a></li>
+                    <li><a href="#"><i class="fas fa-balance-scale"></i> Términos y condiciones</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 2: Contacto Rápido -->
+            <div class="footer-column">
+                <h4>Contacto Rápido</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@idem.edu.co"><i class="fas fa-envelope"></i> info@idem.edu.co</a></li>
+                    <li><a href="tel:+5745822222"><i class="fas fa-phone"></i> +57 (604) 582 22 22</a></li>
+                    <li><a href="https://wa.me/573054669090"><i class="fab fa-whatsapp"></i> WhatsApp: 305 466 9090</a></li>
+                    <li><a href="#contacto"><i class="fas fa-headset"></i> Centro de Atención</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Contador de Visitas -->
+            <div class="footer-column">
+                <h4>Estadísticas</h4>
+                <div class="visit-counter">
+                    <div class="counter-item">
+                        <span class="counter-number">5,971,675</span>
+                        <span class="counter-label">Visitas Totales</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">46,418</span>
+                        <span class="counter-label">Visitas este Mes</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">2,203</span>
+                        <span class="counter-label">Visitas Hoy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logos y Copyright -->
+        <div class="footer-bottom">
+            <div class="logos-container">
+                <div class="institutional-logos">
+                    <img src="img/logo.png" alt="Logo Colegio El Rosario" class="footer-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Colombia.svg/1280px-Flag_of_Colombia.svg.png" alt="Bandera Colombia" class="flag-logo">
+                    <img src="https://cdn.www.gov.co/assets/images/Vertical-Color.png" alt="GOV.CO" class="gov-logo-footer">
+                </div>
+                
+                <div class="developer-logo">
+                    <span>Desarrollado por</span>
+                    <div class="strokbig-logo">
+                        <img src="img/Strokbig-Logo-BLANCO-+-[MR].png" alt="Strokbig">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Institución Educativa El Rosario Itagüí. Todos los derechos reservados.</p>
+                <p class="footer-note">Itagüí, Antioquia - Colombia</p>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
-

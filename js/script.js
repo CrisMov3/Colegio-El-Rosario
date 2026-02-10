@@ -249,3 +249,352 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+    }
+
+    document.querySelector('.next').addEventListener('click', () => {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+    });
+
+    document.querySelector('.prev').addEventListener('click', () => {
+        current = (current - 1 + slides.length) % slides.length;
+        showSlide(current);
+    });
+
+    setInterval(() => {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+    }, 6000);
+// DOM Ready
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // ===== CARRUSEL =====
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+    
+    // Inicializar carrusel
+    function initCarousel() {
+        if (slides.length === 0) return;
+        
+        // Mostrar primer slide
+        slides[0].classList.add('active');
+        
+        // Eventos controles
+        if (prevBtn) prevBtn.addEventListener('click', showPrevSlide);
+        if (nextBtn) nextBtn.addEventListener('click', showNextSlide);
+        
+        // Auto avanzar slides cada 5 segundos
+        setInterval(showNextSlide, 5000);
+    }
+    
+    function showNextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % totalSlides;
+        slides[currentSlide].classList.add('active');
+    }
+    
+    function showPrevSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        slides[currentSlide].classList.add('active');
+    }
+    
+    // ===== MENÚ HAMBURGUESA =====
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Cerrar menú al hacer clic en un enlace (móvil)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('active');
+                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+    }
+    
+    // ===== DROPDOWNS PARA MÓVIL =====
+    if (window.innerWidth <= 768) {
+        document.querySelectorAll('.dropdown > a').forEach(dropdownBtn => {
+            dropdownBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const dropdownMenu = this.nextElementSibling;
+                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    }
+    
+    // ===== MODALES =====
+    const openPqrsBtn = document.getElementById('open-pqrs-btn');
+    const pqrsModal = document.getElementById('pqrs-modal');
+    const closeModalBtns = document.querySelectorAll('.close-modal');
+    const pqrsCancelBtn = document.getElementById('pqrs-cancel');
+    const pqrsCloseAfterBtn = document.getElementById('pqrs-close-after');
+    const pqrsForm = document.getElementById('pqrs-form');
+    const pqrsSuccess = document.querySelector('.pqrs-success');
+    
+    // Abrir modal PQRS
+    if (openPqrsBtn && pqrsModal) {
+        openPqrsBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            pqrsModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+    
+    // Cerrar modales
+    function closeModal(modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Eventos para cerrar modales
+    closeModalBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const modal = this.closest('.modal');
+            closeModal(modal);
+        });
+    });
+    
+    // Cerrar al hacer clic fuera del modal
+    window.addEventListener('click', function(e) {
+        if (e.target.classList.contains('modal')) {
+            closeModal(e.target);
+        }
+    });
+    
+    // Cancelar PQRS
+    if (pqrsCancelBtn && pqrsModal) {
+        pqrsCancelBtn.addEventListener('click', function() {
+            closeModal(pqrsModal);
+        });
+    }
+    
+    // Enviar formulario PQRS (demo)
+    if (pqrsForm && pqrsSuccess) {
+        pqrsForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Aquí iría la lógica real de envío
+            // Por ahora solo mostramos el mensaje de éxito
+            pqrsForm.style.display = 'none';
+            pqrsSuccess.style.display = 'block';
+        });
+    }
+    
+    // Cerrar después de éxito PQRS
+    if (pqrsCloseAfterBtn && pqrsModal) {
+        pqrsCloseAfterBtn.addEventListener('click', function() {
+            closeModal(pqrsModal);
+            // Resetear formulario
+            if (pqrsForm) {
+                pqrsForm.reset();
+                pqrsForm.style.display = 'flex';
+                pqrsSuccess.style.display = 'none';
+            }
+        });
+    }
+    
+    // ===== SCROLL SUAVE =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            if (href === '#') return;
+            
+            e.preventDefault();
+            const targetElement = document.querySelector(href);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // ===== INICIALIZAR TODO =====
+    initCarousel();
+    
+    // ===== RESPONSIVE DROPDOWNS =====
+    window.addEventListener('resize', function() {
+        // Resetear dropdowns en desktop
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.style.display = '';
+            });
+        }
+    });
+});
+
+// Contador animado (opcional)
+function animateCounter(element, finalValue, duration = 2000) {
+    let start = 0;
+    const increment = finalValue / (duration / 16); // 60fps
+    const counterElement = element;
+    
+    const timer = setInterval(() => {
+        start += increment;
+        if (start >= finalValue) {
+            clearInterval(timer);
+            start = finalValue;
+        }
+        
+        // Formatear número con separadores de miles
+        counterElement.textContent = Math.floor(start).toLocaleString('es-CO');
+    }, 16);
+}
+
+// Inicializar contadores cuando sean visibles
+function initCounters() {
+    const counterNumbers = document.querySelectorAll('.counter-number');
+    
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const value = parseInt(counter.textContent.replace(/,/g, ''));
+                    
+                    // Animar solo una vez
+                    if (!counter.dataset.animated) {
+                        animateCounter(counter, value);
+                        counter.dataset.animated = 'true';
+                    }
+                    
+                    observer.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        counterNumbers.forEach(counter => observer.observe(counter));
+    }
+}
+
+// Agregar esta función al DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    // ... código existente ...
+    
+    // Inicializar contadores animados
+    initCounters();
+    
+    // Actualizar contador de visitas del día (ejemplo simulado)
+    function updateDailyCounter() {
+        const dailyCounter = document.querySelector('.counter-number:last-child');
+        if (dailyCounter) {
+            let current = parseInt(dailyCounter.textContent.replace(/,/g, ''));
+            current += Math.floor(Math.random() * 10) + 1; // Incremento simulado
+            dailyCounter.textContent = current.toLocaleString('es-CO');
+        }
+    }
+    
+    // Simular actualización cada 5 minutos
+    setInterval(updateDailyCounter, 300000);
+});
+
+// Carrusel de Instituciones Aliadas
+function initAlliesCarousel() {
+    const carousel = document.querySelector('.allies-carousel');
+    if (!carousel) return;
+
+    const slides = document.querySelectorAll('.ally-slide');
+    const prevBtn = carousel.querySelector('.ally-prev');
+    const nextBtn = carousel.querySelector('.ally-next');
+    const indicators = carousel.querySelectorAll('.ally-indicator');
+    
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+    
+    // Función para mostrar slide
+    function showSlide(index) {
+        // Actualizar slides
+        slides.forEach((slide, i) => {
+            slide.style.transform = `translateX(-${index * 100}%)`;
+        });
+        
+        // Actualizar indicadores
+        indicators.forEach((indicator, i) => {
+            indicator.classList.toggle('active', i === index);
+        });
+        
+        currentSlide = index;
+    }
+    
+    // Eventos controles
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            const newIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(newIndex);
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            const newIndex = (currentSlide + 1) % totalSlides;
+            showSlide(newIndex);
+        });
+    }
+    
+    // Eventos indicadores
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            showSlide(index);
+        });
+    });
+    
+    // Auto slide cada 5 segundos
+    let autoSlide = setInterval(() => {
+        const newIndex = (currentSlide + 1) % totalSlides;
+        showSlide(newIndex);
+    }, 5000);
+    
+    // Pausar auto slide al interactuar
+    carousel.addEventListener('mouseenter', () => clearInterval(autoSlide));
+    carousel.addEventListener('mouseleave', () => {
+        autoSlide = setInterval(() => {
+            const newIndex = (currentSlide + 1) % totalSlides;
+            showSlide(newIndex);
+        }, 5000);
+    });
+    
+    // Inicializar
+    showSlide(0);
+}
+
+// Agregar al DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    // ... código existente ...
+    
+    // Inicializar carrusel de aliados
+    initAlliesCarousel();
+    
+    // Efecto de clic en logos
+    document.querySelectorAll('.ally-logo-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            // Efecto visual al hacer clic
+            this.style.transform = 'translateY(-8px) scale(0.98)';
+            setTimeout(() => {
+                this.style.transform = 'translateY(-10px)';
+            }, 150);
+        });
+    });
+});
