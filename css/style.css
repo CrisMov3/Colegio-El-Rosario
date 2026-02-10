@@ -624,11 +624,11 @@ ul {
 }
 
 .news-placeholder-1 { 
-    background: url('https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60') center/cover; 
+    background: url('https://scontent.feoh3-1.fna.fbcdn.net/v/t39.30808-6/498245975_1549371602649687_6980932980967919817_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeE4Hk9hbHD5aosuOfgB8PdeNTpf6EvN9v81Ol_oS832_6Oqwu9U4myoyBe-FDFbrkmTgt1DtBi4AgfwNIieu6cH&_nc_ohc=TV7N75Rx6akQ7kNvwEyG1Ht&_nc_oc=AdkABJXcmCn5fyG0lldoUPhq7px2zkESoOfy3Os-a3pJx8qvX4LTTASR6_dV40DEGiz-R7l6x58rNhluh7z38gU8&_nc_zt=23&_nc_ht=scontent.feoh3-1.fna&_nc_gid=VLMAGl8o5z0WBBu3X80rLw&oh=00_AfuKI0WCLslqgmQE9ajEjJTKLPHDaCZYPuiGA2mjBBjKMg&oe=69917798') center/cover; 
 }
 
 .news-placeholder-2 { 
-    background: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60') center/cover; 
+    background: url('https://scontent.fpei1-1.fna.fbcdn.net/v/t39.30808-6/481989639_1501108120809369_2455442286155361610_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFCx2s0ZB8CIwWXKQLDE4Cq6Nc6JSQkxkfo1zolJCTGR8lsFAy4b92hvW-YtJAb905jSvleH7NzffCnuYo4hO9H&_nc_ohc=VozDpEgtJIUQ7kNvwEQFMgV&_nc_oc=AdmNDB2vl5wjRCBRZrqdnnLZt4LATpSJ0mvL25JfgxPC7HRo-dsxAwgM7rlt0Fx7yRFT7H4vFi_C2zM1B3zinkp3&_nc_zt=23&_nc_ht=scontent.fpei1-1.fna&_nc_gid=7ecwhIvtW-ydscywW6-h7A&oh=00_Afuct2cu2N145w00nhXjhEoFVcxUbktV_Hd4WEJsPmRcKg&oe=6991724A') center/cover; 
 }
 
 .news-content {
@@ -1703,5 +1703,63 @@ footer {
     
     .ally-indicators {
         margin-top: 20px;
+    }
+}
+
+/* Estilos opcionales para tarjetas con íconos */
+.institucional-card {
+    position: relative;
+    padding-left: 45px;
+}
+
+.institucional-card::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--white);
+    font-size: 1.5rem;
+    z-index: 1;
+}
+
+.sistema-card::before {
+    content: '\f109'; /* Ícono de laptop */
+    background: var(--accent-color);
+}
+
+.pqrs-card::before {
+    content: '\f27a'; /* Ícono de comentarios */
+    background: var(--primary-color);
+}
+
+/* Ajuste del contenido cuando hay íconos */
+.institucional-card .card-content {
+    padding-left: 70px;
+}
+
+/* Responsive para tarjetas con íconos */
+@media (max-width: 768px) {
+    .institucional-card {
+        padding-left: 35px;
+    }
+    
+    .institucional-card::before {
+        left: 15px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+    
+    .institucional-card .card-content {
+        padding-left: 60px;
     }
 }

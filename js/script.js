@@ -89,21 +89,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 details: 'Nuestro preescolar ofrece un ambiente seguro y estimulante donde los niños desarrollan sus dimensiones cognitiva, comunicativa y corporal a través del juego y la exploración.',
                 items: ['Grados: Transición y Jardín', 'Jornada: Mañana (7:00 AM - 12:00 PM)', 'Enfoque: Desarrollo Lúdico y Motriz'],
                 tags: ['Lúdica', 'Motricidad', 'Valores', 'Inglés Inicial'],
-                img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+                img: 'https://scontent.feoh3-1.fna.fbcdn.net/v/t39.30808-6/482020495_1498761891043992_7230074861855181528_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGj89Jqe38YaZ6gttKo_hmIluYWTtVQfIeW5hZO1VB8h1VLTj0fcnZgNgGxB-peAgOz1ipOFZ4YLGkIDZ-lXobQ&_nc_ohc=mGWpz_pzmikQ7kNvwFcGVLE&_nc_oc=AdmYVo3ybqoJ4RRw2n-RfKdrZceejtYSiVgoo68iv10ny37W9JB00kxp7jcTAThoKtvGEXuLDFUMKxcOsk226T1o&_nc_zt=23&_nc_ht=scontent.feoh3-1.fna&_nc_gid=fjq9ipo5qSaLNmnDL41vTg&oh=00_AfsU2ZqO-goxPuMJ6DE_bGNCKYe_VfCqZmOEC26GftQbrQ&oe=699199E6'
             },
             'Primaria': {
                 subtitle: 'Construyendo bases sólidas',
                 details: 'En la básica primaria enfocamos nuestros esfuerzos en fortalecer las competencias básicas de lectura, escritura y pensamiento lógico-matemático, vivenciando los valores institucionales.',
                 items: ['Grados: 1° a 5°', 'Jornada: Tarde (12:30 PM - 5:30 PM)', 'Proyectos transversales de medio ambiente'],
                 tags: ['Matemáticas', 'Español', 'Ciencias', 'Inglés', 'Ética', 'Tecnología'],
-                img: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+                img: 'https://scontent.fpei1-1.fna.fbcdn.net/v/t39.30808-6/482876798_1498458674407647_4556078082087907064_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFbWM17KQz8sdS7_F_Jp37oeEXnqbqnP7Z4Reepuqc_tlOfy0wRMe0WuKfHEF0gPVBlt5_iiYrmIn2PvoVO-HA-&_nc_ohc=m1YuUxYc-0sQ7kNvwFXgYKm&_nc_oc=AdmUZwpjrKX8qbrAIbWQ1F2hMjPVH0i4aCwZnrQnhCE9-UPMK3fZppXdYknOpH5tiVDlb9xU9oBHf_0x6EWciAMz&_nc_zt=23&_nc_ht=scontent.fpei1-1.fna&_nc_gid=yPVUIunHfNQUpP23uk3mVQ&oh=00_Afs6vuD9IRxXVFQBNIxwPZ5eOscRxjiMjiMR_G8m_WZIlA&oe=6991909A'
             },
             'Bachillerato': {
                 subtitle: 'Hacia la excelencia académica y humana',
                 details: 'Formamos jóvenes competentes, críticos y reflexivos. Nuestro currículo profundiza en las ciencias y humanidades, preparando a los estudiantes para la educación superior y la vida ciudadana.',
                 items: ['Grados: 6° a 11°', 'Jornada: Mañana (6:30 AM - 1:00 PM)', 'Preparación ICFES intensiva en 10° y 11°'],
                 tags: ['Física', 'Química', 'Cálculo', 'Filosofía', 'Programación', 'Emprendimiento'],
-                img: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+                img: 'https://scontent.feoh1-1.fna.fbcdn.net/v/t39.30808-6/480278564_1482927265960788_5685815749057112333_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeELwQsUmhRV2WttXq9ZRN0mqE8kD5f7lSuoTyQPl_uVKxtu9uxK-Q-qjTfc9eKW6DWuSOGQ7waMcZqkEMO42Uj2&_nc_ohc=qyBV38tM6_0Q7kNvwG8f7Rf&_nc_oc=Admm3z1_BfmcINj-rDWy29cfQ1GYflVq3fKb2xsAfRF9_D8XLwsN3ewp6j1rzZ28wEQ&_nc_zt=23&_nc_ht=scontent.feoh1-1.fna&_nc_gid=MkZ7xijfAgE9ECaVeOutkA&oh=00_AfshZp8alTn9nqKE0dov2TdlIj2rgapNSk6Td2w6jrQ8kQ&oe=69917A76'
             }
         };
 
