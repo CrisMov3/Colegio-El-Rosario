@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gobierno Escolar | Colegio El Rosario Itagüí</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
+
+    <style>
+        .history-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .history-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .history-subtitle {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .history-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            border-left: 6px solid #007bff;
+        }
+
+        .history-card p {
+            font-size: 1.05rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .history-card h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            color: #0056b3;
+            font-weight: 800;
+        }
+
+        .history-card ul {
+            margin-top: 10px;
+            padding-left: 25px;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #333;
+        }
+
+        .history-card ul li {
+            margin-bottom: 10px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #003d80;
+        }
+
+        .hymn-box {
+            margin-top: 20px;
+            background: #f8f9fa;
+            padding: 18px;
+            border-radius: 12px;
+            border-left: 5px solid #28a745;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            color: #333;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- BARRA GOV.CO -->
+<div class="gov-bar">
+    <div class="gov-container">
+        <img src="https://govco-prod-webutils.s3.us-east-1.amazonaws.com/uploads/2025-08-29/f2b1a485-5e1a-4ac3-a002-067b69bed7aa-1imagen_noticia.png"
+             alt="GOV.CO"
+             class="gov-logo">
+
+        <div class="gov-right">
+    <a href="Símbolos institucionales.html" class="lang-btn active" id="btn-es">ES</a>
+    <a href="Símbolos institucionales-en.html" class="lang-btn" id="btn-en">EN</a>
+</div>
+    </div>
+</div>
+
+<!-- HEADER PRINCIPAL -->
+<header class="main-header">
+    <div class="container header-content">
+
+        <!-- LOGO -->
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Logo Institucional" class="logo-img">
+            <div class="logo-text">
+                <h1>Colegio El Rosario de Itagüí</h1>
+                <span>Itagüí · Antioquia</span>
+            </div>
+        </div>
+
+        <!-- NAV -->
+        <nav class="main-nav">
+            <ul class="nav-links">
+
+                <li><a href="index.html">Inicio</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Institucional</a>
+                <ul class="dropdown-menu">
+                        <li><a href="resena-historica.html">Reseña histórica</a></li>   
+                        <li><a href="mision-vision.html">Misión, visión y valores</a></li>
+                        <li><a href="PDF/MANUAL DE CONVIVENCIA COLEGIO EL ROSARIO.pdf" target="_blank">Manual de Convivencia</a></li>
+                        <li><a href="Gobierno Escolar.html">Gobierno Escolar</a></li>
+                        <li><a href="Símbolos institucionales.html">Símbolos institucionales</a></li>
+                    </ul>
+
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Académica</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="oferta-academica.html">Oferta académica</a></li>
+                        <li><a href="plan-estudio.html">Plan de estudios</a></li>
+                        <li><a href="Evaluación y promoción.html">Evaluación y promoción</a></li>
+                        <li><a href="Proyectos pedagógicos.html">Proyectos pedagógicos</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Gestión Administrativa</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Talento humano.html">Talento humano</a></li>
+                        <li><a href="contratacion.html">Contratación</a></li>
+                        <li><a href="presupuesto.html">Presupuesto</a></li>
+                        <li><a href="tramites.html">Trámites</a></li>
+                        <li><a href="docentes.html">Docentes</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Gestión a la Comunidad</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="atencion-ciudadano.html">Atención al ciudadano</a></li>
+                        <li><a href="escuela-padres.html">Escuela de padres</a></li>
+                        <li><a href="participacion.html">Participación</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#pqrs" class="pqrs-link">PQRS</a>
+                </li>
+
+            </ul>
+
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+    </div>
+</header>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="history-container">
+
+    <h2 class="history-title">Gobierno Escolar</h2>
+    <p class="history-subtitle">
+        En esta sección se presenta información importante relacionada con los símbolos institucionales del Colegio El Rosario de Itagüí.
+    </p>
+
+    <div class="history-card">
+
+        <h3>🏫 Símbolos Institucionales</h3>
+        <p>
+            Los símbolos institucionales representan la identidad del Colegio El Rosario de Itagüí, destacando sus valores, historia y principios formativos.
+        </p>
+
+        <h3> Bandera</h3>
+        <ul>
+            <li><b>El amarillo</b> simboliza la transparencia, claridad, conocimiento y la inteligencia que distingue a un estudiante Rosarista.</li>
+            <li><b>El verde</b> simboliza la serenidad, armonía, sencillez, esperanza y futuro prometedor del estudiante Rosarista.</li>
+        </ul>
+<img src="img/Bandera.png" class="img-simbolo" alt="Bandera del Colegio El Rosario">
+
+        <h3> Escudo y Logotipo</h3>
+        <ul>
+            <li>La montaña con el camino blanco representa el valor de la honestidad para alcanzar la meta propuesta.</li>
+            <li>El color azul simboliza la fuerza y la autoridad, la energía física, la inteligencia y el deporte.</li>
+            <li>El cóndor es el símbolo del trabajo constante, discreto, constructor y de hondo sentido social.</li>
+            <li><b>Excélsior</b> es un adjetivo latino (excelsus), traducido a menudo como superior, más alto o grandeza.</li>
+        </ul>
+<img src="img/Escudo.png" class="img-simbolo" alt="Bandera del Colegio El Rosario">
+
+        <h3> Himno Institucional</h3>
+        <p><b>Letra:</b> M. Marcos A. <br><b>Música:</b> H. Julia O.</p>
+
+        <div class="hymn-box">
+EXCELSIOR  
+Templo sublime  
+Crisol ardiente, forja de virtud.  
+En ti redime su libertad  
+La noble juventud.  
+
+Salve, Colegio  
+Donde el saber irradia su esplendor  
+Y al brillar el sol del ideal  
+Eleva nuestras almas hasta Dios.  
+
+Vibrante Excelsior cantemos  
+Nuevo horizonte al divisar.  
+Allá en la cumbre fulgura una estrella:  
+La reina del cielo, lucero sin par.  
+
+Excelsior, juventud  
+Excelsior, sin temor.  
+No hay sombras en la altura  
+Si ella derrama su luz, su amor.
+        </div>
+
+    </div>
+
+    <a class="back-btn" href="index.html">
+        <i class="fas fa-arrow-left"></i> Volver al Inicio
+    </a>
+
+</main>
+
+<!-- Footer Principal Rediseñado -->
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Columna 1: Políticas -->
+            <div class="footer-column">
+                <h4>Enlaces Legales</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Política de tratamiento de datos</a></li>
+                    <li><a href="#"><i class="fas fa-sitemap"></i> Mapa del sitio</a></li>
+                    <li><a href="#"><i class="fas fa-user-shield"></i> Política de privacidad</a></li>
+                    <li><a href="#"><i class="fas fa-balance-scale"></i> Términos y condiciones</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 2: Contacto Rápido -->
+            <div class="footer-column">
+                <h4>Contacto Rápido</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@idem.edu.co"><i class="fas fa-envelope"></i> info@idem.edu.co</a></li>
+                    <li><a href="tel:+5745822222"><i class="fas fa-phone"></i> +57 (604) 582 22 22</a></li>
+                    <li><a href="https://wa.me/573054669090"><i class="fab fa-whatsapp"></i> WhatsApp: 305 466 9090</a></li>
+                    <li><a href="#contacto"><i class="fas fa-headset"></i> Centro de Atención</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Contador de Visitas -->
+            <div class="footer-column">
+                <h4>Estadísticas</h4>
+                <div class="visit-counter">
+                    <div class="counter-item">
+                        <span class="counter-number">5,971,675</span>
+                        <span class="counter-label">Visitas Totales</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">46,418</span>
+                        <span class="counter-label">Visitas este Mes</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">2,203</span>
+                        <span class="counter-label">Visitas Hoy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logos y Copyright -->
+        <div class="footer-bottom">
+            <div class="logos-container">
+                <div class="institutional-logos">
+                    <img src="img/logo.png" alt="Logo Colegio El Rosario" class="footer-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Colombia.svg/1280px-Flag_of_Colombia.svg.png" alt="Bandera Colombia" class="flag-logo">
+                    <img src="https://cdn.www.gov.co/assets/images/Vertical-Color.png" alt="GOV.CO" class="gov-logo-footer">
+                </div>
+                
+                <div class="developer-logo">
+                    <span>Desarrollado por</span>
+                    <div class="strokbig-logo">
+                        <img src="img/Strokbig-Logo-BLANCO-+-[MR].png" alt="Strokbig">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Institución Educativa El Rosario Itagüí. Todos los derechos reservados.</p>
+                <p class="footer-note">Itagüí, Antioquia - Colombia</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    const dropdowns = document.querySelectorAll(".dropdown > a");
+
+    // Abrir / cerrar menú principal
+    hamburger.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+    });
+
+    // Dropdown en móvil
+    dropdowns.forEach(link => {
+        link.addEventListener("click", function (e) {
+
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                this.parentElement.classList.toggle("open");
+            }
+
+        });
+    });
+
+});
+</script>
+</body>
+</html>

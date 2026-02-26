@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission, Vision and Values | El Rosario School Itagüí</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
+
+    <style>
+        /* Extra styles for the history pages */
+        .history-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .history-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .history-subtitle {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .history-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            border-left: 6px solid #007bff;
+        }
+
+        .history-card p {
+            font-size: 1.05rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .history-section {
+            margin-top: 40px;
+        }
+
+        .timeline {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .timeline-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 18px;
+            border-left: 5px solid #28a745;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .timeline-item h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #0056b3;
+            font-weight: 800;
+        }
+
+        .timeline-item p {
+            margin-top: 8px;
+            margin-bottom: 0;
+            color: #333;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #003d80;
+        }
+
+        .note-box {
+            margin-top: 35px;
+            background: #eaf4ff;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 6px solid #007bff;
+        }
+
+        .note-box h4 {
+            margin: 0 0 10px 0;
+            color: #003366;
+            font-weight: 800;
+        }
+
+        .note-box p {
+            margin: 0;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        .valores {
+            margin-top: 15px;
+            padding-left: 20px;
+            line-height: 1.9;
+            font-size: 1.05rem;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- GOV.CO BAR -->
+<div class="gov-bar">
+    <div class="gov-container">
+        <img src="https://govco-prod-webutils.s3.us-east-1.amazonaws.com/uploads/2025-08-29/f2b1a485-5e1a-4ac3-a002-067b69bed7aa-1imagen_noticia.png"
+             alt="GOV.CO"
+             class="gov-logo">
+
+        <div class="gov-right">
+            <a href="mision-vision.html" class="lang-btn">ES</a>
+            <a href="mision-vision-en.html" class="lang-btn active">EN</a>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN HEADER -->
+<header class="main-header">
+    <div class="container header-content">
+
+        <!-- LOGO -->
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Institutional Logo" class="logo-img">
+            <div class="logo-text">
+                <h1>El Rosario School of Itagüí</h1>
+                <span>Itagüí · Antioquia</span>
+            </div>
+        </div>
+
+        <!-- NAV -->
+        <nav class="main-nav">
+            <ul class="nav-links">
+
+                <li><a href="index-en.html">Home</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Institutional</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="resena-historica-en.html">Historical Review</a></li>   
+                        <li><a href="mision-vision-en.html">Mission, Vision and Values</a></li>
+                        <li><a href="PDF/MANUAL DE CONVIVENCIA COLEGIO EL ROSARIO.pdf" target="_blank">Coexistence Manual</a></li>
+                        <li><a href="Gobierno Escolar-en.html">School Government</a></li>
+                        <li><a href="Símbolos institucionales-en.html">Institutional Symbols</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Academic</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="oferta-academica-en.html">Academic Offer</a></li>
+                        <li><a href="plan-estudio-en.html">Study Plan</a></li>
+                        <li><a href="Evaluación y promoción-en.html">Evaluation and Promotion</a></li>
+                        <li><a href="Proyectos pedagógicos-en.html">Pedagogical Projects</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Administrative Management</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Talento humano-en.html">Human Talent</a></li>
+                        <li><a href="contratacion-en.html">Hiring</a></li>
+                        <li><a href="presupuesto-en.html">Budget</a></li>
+                        <li><a href="tramites-en.html">Procedures</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Community Management</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="atencion-ciudadano-en.html">Citizen Service</a></li>
+                        <li><a href="escuela-padres-en.html">Parents School</a></li>
+                        <li><a href="participacion-en.html">Participation</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#pqrs" class="pqrs-link">PQRS</a>
+                </li>
+
+            </ul>
+
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="history-container">
+
+    <h2 class="history-title">Mission, Vision and Values</h2>
+    <p class="history-subtitle">
+        Learn about the institutional principles that guide the integral formation of El Rosario School of Itagüí.
+    </p>
+
+    <!-- MISIÓN -->
+<div class="history-card card-flex">
+    <div class="card-img">
+        <img src="img/Misión.png" alt="Misión Colegio">
+    </div>
+    <div class="card-content">
+        <h3>🎯 Misión</h3>
+        <p>
+            El Rosario School of Itagüí, a social work of the Society of Saint Vincent de Paul, is a private institution that offers high-quality integral education at the Preschool, Primary Education, Secondary Education, and High School levels. It is based on the principles of the Gospel and the teachings of Saint Vincent de Paul and Blessed Federico Ozanam, promoting the optimal growth, development, and social projection of its students and the entire academic community.
+        </p>
+    </div>
+</div>
+
+<!-- VISIÓN -->
+<div class="history-card card-flex reverse">
+    <div class="card-img">
+        <img src="img/visión.png" alt="Visión Colegio">
+    </div>
+    <div class="card-content">
+        <h3>👁️ Visión</h3>
+        <p>
+            By the year 2027, El Rosario School of Itagüí will be recognized locally and regionally as an institution that provides a meaningful educational experience, offering students the opportunity to acquire values, skills, and integral competencies to build quality of life, and making them aware of their responsibility for their own growth, their families, and their community.
+        </p>
+    </div>
+</div>
+
+<!-- VALORES -->
+<div class="history-card card-flex">
+    <div class="card-img">
+        <img src="img/valores.png" alt="Valores Colegio">
+    </div>
+    <div class="card-content">
+        <h3>🤝 Valores</h3>
+        <p>
+            The Rosarista identity is founded on Vincentian principles and values, namely:
+        </p>
+
+          <ul class="valores">
+            <li>Solidarity</li>
+            <li>Charity</li>
+            <li>Justice</li>
+            <li>Simplicity</li>
+            <li>Humility</li>
+            <li>Service to the poor</li>
+        </ul>
+    </div>
+</div>
+
+    <a class="back-btn" href="index-en.html">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+
+</main>
+
+
+<!-- Redesigned Main Footer -->
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Column 1: Policies -->
+            <div class="footer-column">
+                <h4>Legal Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Data Processing Policy</a></li>
+                    <li><a href="#"><i class="fas fa-sitemap"></i> Site Map</a></li>
+                    <li><a href="#"><i class="fas fa-user-shield"></i> Privacy Policy</a></li>
+                    <li><a href="#"><i class="fas fa-balance-scale"></i> Terms and Conditions</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 2: Quick Contact -->
+            <div class="footer-column">
+                <h4>Quick Contact</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@idem.edu.co"><i class="fas fa-envelope"></i> info@idem.edu.co</a></li>
+                    <li><a href="tel:+5745822222"><i class="fas fa-phone"></i> +57 (604) 582 22 22</a></li>
+                    <li><a href="https://wa.me/573054669090"><i class="fab fa-whatsapp"></i> WhatsApp: 305 466 9090</a></li>
+                    <li><a href="#contacto"><i class="fas fa-headset"></i> Support Center</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Visit Counter -->
+            <div class="footer-column">
+                <h4>Statistics</h4>
+                <div class="visit-counter">
+                    <div class="counter-item">
+                        <span class="counter-number">5,971,675</span>
+                        <span class="counter-label">Total Visits</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">46,418</span>
+                        <span class="counter-label">Visits This Month</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">2,203</span>
+                        <span class="counter-label">Visits Today</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logos and Copyright -->
+        <div class="footer-bottom">
+            <div class="logos-container">
+                <div class="institutional-logos">
+                    <img src="img/logo.png" alt="El Rosario School Logo" class="footer-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Colombia.svg/1280px-Flag_of_Colombia.svg.png" alt="Colombia Flag" class="flag-logo">
+                    <img src="https://cdn.www.gov.co/assets/images/Vertical-Color.png" alt="GOV.CO" class="gov-logo-footer">
+                </div>
+                
+                <div class="developer-logo">
+                    <span>Developed by</span>
+                    <div class="strokbig-logo">
+                        <img src="img/Strokbig-Logo-BLANCO-+-[MR].png" alt="Strokbig">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 El Rosario Educational Institution Itagüí. All rights reserved.</p>
+                <p class="footer-note">Itagüí, Antioquia - Colombia</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    const dropdowns = document.querySelectorAll(".dropdown > a");
+
+    // Abrir / cerrar menú principal
+    hamburger.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+    });
+
+    // Dropdown en móvil
+    dropdowns.forEach(link => {
+        link.addEventListener("click", function (e) {
+
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                this.parentElement.classList.toggle("open");
+            }
+
+        });
+    });
+
+});
+</script>
+</body>
+</html>

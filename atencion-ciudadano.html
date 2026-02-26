@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atención al Ciudadano | Colegio El Rosario Itagüí</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
+
+    <style>
+        .history-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .history-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .history-subtitle {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .history-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            border-left: 6px solid #007bff;
+            margin-bottom: 30px;
+        }
+
+        .history-card h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #0056b3;
+            margin-bottom: 15px;
+        }
+
+        .history-card p {
+            font-size: 1.05rem;
+            color: #333;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .lista-atencion {
+            margin-top: 15px;
+            padding-left: 25px;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #333;
+        }
+
+        .lista-atencion li {
+            margin-bottom: 10px;
+        }
+
+        .contacto-info {
+            font-weight: 600;
+            color: #0056b3;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #003d80;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- BARRA GOV.CO -->
+<div class="gov-bar">
+    <div class="gov-container">
+        <img src="https://govco-prod-webutils.s3.us-east-1.amazonaws.com/uploads/2025-08-29/f2b1a485-5e1a-4ac3-a002-067b69bed7aa-1imagen_noticia.png"
+             alt="GOV.CO"
+             class="gov-logo">
+
+        <div class="gov-right">
+            <a href="atencion-ciudadano.html" class="lang-btn active">ES</a>
+            <a href="atencion-ciudadano-en.html" class="lang-btn">EN</a>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="main-header">
+    <div class="container header-content">
+
+        <!-- LOGO -->
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Logo Institucional" class="logo-img">
+            <div class="logo-text">
+                <h1>Colegio El Rosario de Itagüí</h1>
+                <span>Itagüí · Antioquia</span>
+            </div>
+        </div>
+
+        <!-- NAV -->
+        <nav class="main-nav">
+            <ul class="nav-links">
+
+                <li><a href="index.html">Inicio</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Institucional</a>
+                <ul class="dropdown-menu">
+                        <li><a href="resena-historica.html">Reseña histórica</a></li>   
+                        <li><a href="mision-vision.html">Misión, visión y valores</a></li>
+                        <li><a href="PDF/MANUAL DE CONVIVENCIA COLEGIO EL ROSARIO.pdf" target="_blank">Manual de Convivencia</a></li>
+                        <li><a href="Gobierno Escolar.html">Gobierno Escolar</a></li>
+                        <li><a href="Símbolos institucionales.html">Símbolos institucionales</a></li>
+                    </ul>
+
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Académica</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="oferta-academica.html">Oferta académica</a></li>
+                        <li><a href="plan-estudio.html">Plan de estudios</a></li>
+                        <li><a href="Evaluación y promoción.html">Evaluación y promoción</a></li>
+                        <li><a href="Proyectos pedagógicos.html">Proyectos pedagógicos</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Gestión Administrativa</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Talento humano.html">Talento humano</a></li>
+                        <li><a href="contratacion.html">Contratación</a></li>
+                        <li><a href="presupuesto.html">Presupuesto</a></li>
+                        <li><a href="tramites.html">Trámites</a></li>
+                        <li><a href="docentes.html">Docentes</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Gestión a la Comunidad</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="atencion-ciudadano.html">Atención al ciudadano</a></li>
+                        <li><a href="escuela-padres.html">Escuela de padres</a></li>
+                        <li><a href="participacion.html">Participación</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#pqrs" class="pqrs-link">PQRS</a>
+                </li>
+
+            </ul>
+
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+    </div>
+</header>
+<!-- CONTENIDO -->
+<main class="history-container">
+
+    <h2 class="history-title">Atención al Ciudadano</h2>
+    <p class="history-subtitle">
+        El Colegio El Rosario de Itagüí brinda espacios de atención para garantizar una comunicación
+        efectiva, oportuna y transparente con la comunidad educativa.
+    </p>
+
+    <!-- CANALES -->
+    <div class="history-card">
+        <h3>📌 Canales de Atención</h3>
+
+        <ul class="lista-atencion">
+            <li>Atención presencial en las instalaciones del colegio.</li>
+            <li>Atención telefónica en horario institucional.</li>
+            <li>Correo electrónico institucional.</li>
+            <li>Formulario PQRS en la página web.</li>
+        </ul>
+    </div>
+
+    <!-- HORARIOS -->
+    <div class="history-card">
+        <h3>🕒 Horario de Atención</h3>
+
+        <p>
+            La atención al ciudadano se realiza en horario administrativo,
+            de lunes a viernes en jornada hábil.
+        </p>
+    </div>
+
+    <!-- COMPROMISO -->
+    <div class="history-card">
+        <h3>🤝 Compromiso Institucional</h3>
+
+        <p>
+            La institución garantiza el respeto, la confidencialidad y el trámite oportuno
+            de las solicitudes, peticiones, quejas, reclamos y sugerencias presentadas
+            por la comunidad.
+        </p>
+    </div>
+
+    <a class="back-btn" href="index.html">
+        <i class="fas fa-arrow-left"></i> Volver al Inicio
+    </a>
+
+</main>
+
+<!-- Footer Principal Rediseñado -->
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Columna 1: Políticas -->
+            <div class="footer-column">
+                <h4>Enlaces Legales</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Política de tratamiento de datos</a></li>
+                    <li><a href="#"><i class="fas fa-sitemap"></i> Mapa del sitio</a></li>
+                    <li><a href="#"><i class="fas fa-user-shield"></i> Política de privacidad</a></li>
+                    <li><a href="#"><i class="fas fa-balance-scale"></i> Términos y condiciones</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 2: Contacto Rápido -->
+            <div class="footer-column">
+                <h4>Contacto Rápido</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@idem.edu.co"><i class="fas fa-envelope"></i> info@idem.edu.co</a></li>
+                    <li><a href="tel:+5745822222"><i class="fas fa-phone"></i> +57 (604) 582 22 22</a></li>
+                    <li><a href="https://wa.me/573054669090"><i class="fab fa-whatsapp"></i> WhatsApp: 305 466 9090</a></li>
+                    <li><a href="#contacto"><i class="fas fa-headset"></i> Centro de Atención</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Contador de Visitas -->
+            <div class="footer-column">
+                <h4>Estadísticas</h4>
+                <div class="visit-counter">
+                    <div class="counter-item">
+                        <span class="counter-number">5,971,675</span>
+                        <span class="counter-label">Visitas Totales</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">46,418</span>
+                        <span class="counter-label">Visitas este Mes</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">2,203</span>
+                        <span class="counter-label">Visitas Hoy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logos y Copyright -->
+        <div class="footer-bottom">
+            <div class="logos-container">
+                <div class="institutional-logos">
+                    <img src="img/logo.png" alt="Logo Colegio El Rosario" class="footer-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Colombia.svg/1280px-Flag_of_Colombia.svg.png" alt="Bandera Colombia" class="flag-logo">
+                    <img src="https://cdn.www.gov.co/assets/images/Vertical-Color.png" alt="GOV.CO" class="gov-logo-footer">
+                </div>
+                
+                <div class="developer-logo">
+                    <span>Desarrollado por</span>
+                    <div class="strokbig-logo">
+                        <img src="img/Strokbig-Logo-BLANCO-+-[MR].png" alt="Strokbig">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Institución Educativa El Rosario Itagüí. Todos los derechos reservados.</p>
+                <p class="footer-note">Itagüí, Antioquia - Colombia</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    const dropdowns = document.querySelectorAll(".dropdown > a");
+
+    // Abrir / cerrar menú principal
+    hamburger.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+    });
+
+    // Dropdown en móvil
+    dropdowns.forEach(link => {
+        link.addEventListener("click", function (e) {
+
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                this.parentElement.classList.toggle("open");
+            }
+
+        });
+    });
+
+});
+</script>
+
+</body>
+</html>

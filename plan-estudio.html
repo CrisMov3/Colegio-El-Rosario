@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Estudios | Colegio El Rosario Itagüí</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
+
+    <style>
+        .history-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .history-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .history-subtitle {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .history-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            border-left: 6px solid #007bff;
+            margin-bottom: 30px;
+        }
+
+        /* TABLA COMO LA IMAGEN */
+        .tabla-plan {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+
+        .tabla-plan th {
+            border: 2px solid #000;
+            padding: 12px;
+            text-align: left;
+            font-weight: 800;
+            background: #f5f5f5;
+        }
+
+        .tabla-plan td {
+            border: 1.5px solid #000;
+            padding: 10px;
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        .tabla-plan .titulo-seccion {
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .preescolar-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #0056b3;
+            margin-bottom: 15px;
+        }
+
+        .preescolar-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            text-align: justify;
+            color: #333;
+        }
+
+        .lista-preescolar {
+            margin-top: 15px;
+            padding-left: 25px;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #333;
+        }
+
+        .lista-preescolar li {
+            margin-bottom: 8px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #003d80;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- BARRA GOV.CO -->
+<div class="gov-bar">
+    <div class="gov-container">
+        <img src="https://govco-prod-webutils.s3.us-east-1.amazonaws.com/uploads/2025-08-29/f2b1a485-5e1a-4ac3-a002-067b69bed7aa-1imagen_noticia.png"
+             alt="GOV.CO"
+             class="gov-logo">
+
+        <div class="gov-right">
+            <a href="plan-estudio.html" class="lang-btn active">ES</a>
+            <a href="plan-estudio-en.html" class="lang-btn">EN</a>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER PRINCIPAL -->
+<header class="main-header">
+    <div class="container header-content">
+
+        <!-- LOGO -->
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Logo Institucional" class="logo-img">
+            <div class="logo-text">
+                <h1>Colegio El Rosario de Itagüí</h1>
+                <span>Itagüí · Antioquia</span>
+            </div>
+        </div>
+
+        <!-- NAV -->
+        <nav class="main-nav">
+            <ul class="nav-links">
+
+                <li><a href="index.html">Inicio</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Institucional</a>
+                <ul class="dropdown-menu">
+                        <li><a href="resena-historica.html">Reseña histórica</a></li>   
+                        <li><a href="mision-vision.html">Misión, visión y valores</a></li>
+                        <li><a href="PDF/MANUAL DE CONVIVENCIA COLEGIO EL ROSARIO.pdf" target="_blank">Manual de Convivencia</a></li>
+                        <li><a href="Gobierno Escolar.html">Gobierno Escolar</a></li>
+                        <li><a href="Símbolos institucionales.html">Símbolos institucionales</a></li>
+                    </ul>
+
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Académica</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="oferta-academica.html">Oferta académica</a></li>
+                        <li><a href="plan-estudio.html">Plan de estudios</a></li>
+                        <li><a href="Evaluación y promoción.html">Evaluación y promoción</a></li>
+                        <li><a href="Proyectos pedagógicos.html">Proyectos pedagógicos</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Gestión Administrativa</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Talento humano.html">Talento humano</a></li>
+                        <li><a href="contratacion.html">Contratación</a></li>
+                        <li><a href="presupuesto.html">Presupuesto</a></li>
+                        <li><a href="tramites.html">Trámites</a></li>
+                        <li><a href="docentes.html">Docentes</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Gestión a la Comunidad</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="atencion-ciudadano.html">Atención al ciudadano</a></li>
+                        <li><a href="escuela-padres.html">Escuela de padres</a></li>
+                        <li><a href="participacion.html">Participación</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#pqrs" class="pqrs-link">PQRS</a>
+                </li>
+
+            </ul>
+
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+    </div>
+</header>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="history-container">
+
+    <h2 class="history-title">Plan de Estudios</h2>
+    <p class="history-subtitle">
+        Conoce las áreas obligatorias, fundamentales, asignaturas optativas y proyectos establecidos por el Colegio El Rosario de Itagüí.
+    </p>
+
+    <!-- TABLA COMO EN LA IMAGEN -->
+    <div class="history-card">
+        <table class="tabla-plan">
+            <tr>
+                <th>ÁREAS OBLIGATORIAS Y FUNDAMENTALES, ASIGNATURAS OPTATIVAS Y PROYECTOS</th>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="titulo-seccion">CIENCIAS NATURALES Y EDUCACIÓN AMBIENTAL:</span>
+                    Lidera el Proyecto: Protección del Ambiente, la Ecología y la conservación de los recursos naturales.
+                </td>
+            </tr>
+
+            <tr>
+                <td>Física - Química</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="titulo-seccion">CIENCIAS SOCIALES.</span><br>
+                    Historia, Geografía, Constitución Política, Democracia, Urbanidad y Cívica.
+                </td>
+            </tr>
+
+            <tr>
+                <td>Cátedra Para La Paz</td>
+            </tr>
+
+            <tr>
+                <td>Constitución Política de Colombia y Gobierno Escolar</td>
+            </tr>
+
+            <tr>
+                <td class="titulo-seccion">CIENCIAS ECONÓMICAS Y POLÍTICAS</td>
+            </tr>
+
+            <tr>
+                <td class="titulo-seccion">FILOSOFÍA</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="titulo-seccion">EDUCACIÓN RELIGIOSA:</span>
+                    Lidera el Proyecto de Pastoral.
+                </td>
+            </tr>
+
+            <tr>
+                <td class="titulo-seccion">CÁTEDRA VICENTINA</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="titulo-seccion">ED. ÉTICA Y VALORES HUMANOS</span><br>
+                    Lidera el Proyecto de Valores Humanos.
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="titulo-seccion">HUMANIDADES:</span>
+                    Lidera el Proyecto de plan lector
+                </td>
+            </tr>
+
+            <tr>
+                <td>Idioma extranjero: inglés</td>
+            </tr>
+
+            <tr>
+                <td><span class="titulo-seccion">MATEMÁTICA:</span> Física, Geometría, Estadística</td>
+            </tr>
+
+            <tr>
+                <td class="titulo-seccion">ED. ARTÍSTICA Y CULTURAL:</td>
+            </tr>
+
+            <tr>
+                <td>Expresión gráfico-plástica</td>
+            </tr>
+
+            <tr>
+                <td>Expresión Artística</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="titulo-seccion">ED. FÍSICA RECREACIÓN Y DEPORTES:</span>
+                    <strong>Deporte de conjunto</strong><br>
+                    Lidera el Proyecto Aprovechamiento del Tiempo Libre.
+                </td>
+            </tr>
+
+            <tr>
+                <td>Expresión Corporal</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="titulo-seccion">ÁREAS OBLIGATORIAS Y FUNDAMENTALES, ASIGNATURAS OPTATIVAS Y PROYECTOS</span><br>
+                    <strong>TECNOLOGÍA E INFORMÁTICA:</strong> Emprendimiento
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- PREESCOLAR -->
+    <div class="history-card">
+        <h3 class="preescolar-title">PREESCOLAR</h3>
+
+        <p class="preescolar-text">
+            Su fundamentación legal se encuentra en la Ley 115 de febrero 8 de 1994 Art. 11, 76, 78,
+            Decreto 2247 de septiembre 11 de 1997 y Lineamientos Curriculares del MEN donde está reglamentada
+            la formación del niño y dimensiones del desarrollo; el proceso de aprendizaje debe fundamentarse
+            en estas dimensiones:
+        </p>
+
+        <ul class="lista-preescolar">
+            <li>DIMENSIÓN SOCIO AFECTIVA.</li>
+            <li>DIMENSIÓN CORPORAL.</li>
+            <li>DIMENSIÓN COGNITIVA (Desde esta Dimensión será direccionada la Cultura del Emprendimiento).</li>
+            <li>DIMENSIÓN COMUNICATIVA.</li>
+            <li>DIMENSIÓN ESTÉTICA.</li>
+            <li>DIMENSIÓN ACTITUDINAL Y VALORATIVA.</li>
+            <li>DIMENSIÓN ÉTICA (Se direccionará la Educación Cívica y la Urbanidad).</li>
+            <li>DIMENSIÓN ESTÉTICA.</li>
+            <li>DIMENSIÓN ESPIRITUAL (TRASCENDENTE).</li>
+            <li>DIMENSIÓN ÉTICA (Se direccionará la Educación Cívica y la Urbanidad).</li>
+        </ul>
+    </div>
+
+    <a class="back-btn" href="index.html">
+        <i class="fas fa-arrow-left"></i> Volver al Inicio
+    </a>
+
+</main>
+
+<!-- Footer Principal Rediseñado -->
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Columna 1: Políticas -->
+            <div class="footer-column">
+                <h4>Enlaces Legales</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Política de tratamiento de datos</a></li>
+                    <li><a href="#"><i class="fas fa-sitemap"></i> Mapa del sitio</a></li>
+                    <li><a href="#"><i class="fas fa-user-shield"></i> Política de privacidad</a></li>
+                    <li><a href="#"><i class="fas fa-balance-scale"></i> Términos y condiciones</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 2: Contacto Rápido -->
+            <div class="footer-column">
+                <h4>Contacto Rápido</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@idem.edu.co"><i class="fas fa-envelope"></i> info@idem.edu.co</a></li>
+                    <li><a href="tel:+5745822222"><i class="fas fa-phone"></i> +57 (604) 582 22 22</a></li>
+                    <li><a href="https://wa.me/573054669090"><i class="fab fa-whatsapp"></i> WhatsApp: 305 466 9090</a></li>
+                    <li><a href="#contacto"><i class="fas fa-headset"></i> Centro de Atención</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Contador de Visitas -->
+            <div class="footer-column">
+                <h4>Estadísticas</h4>
+                <div class="visit-counter">
+                    <div class="counter-item">
+                        <span class="counter-number">5,971,675</span>
+                        <span class="counter-label">Visitas Totales</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">46,418</span>
+                        <span class="counter-label">Visitas este Mes</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">2,203</span>
+                        <span class="counter-label">Visitas Hoy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logos y Copyright -->
+        <div class="footer-bottom">
+            <div class="logos-container">
+                <div class="institutional-logos">
+                    <img src="img/logo.png" alt="Logo Colegio El Rosario" class="footer-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Colombia.svg/1280px-Flag_of_Colombia.svg.png" alt="Bandera Colombia" class="flag-logo">
+                    <img src="https://cdn.www.gov.co/assets/images/Vertical-Color.png" alt="GOV.CO" class="gov-logo-footer">
+                </div>
+                
+                <div class="developer-logo">
+                    <span>Desarrollado por</span>
+                    <div class="strokbig-logo">
+                        <img src="img/Strokbig-Logo-BLANCO-+-[MR].png" alt="Strokbig">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Institución Educativa El Rosario Itagüí. Todos los derechos reservados.</p>
+                <p class="footer-note">Itagüí, Antioquia - Colombia</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    const dropdowns = document.querySelectorAll(".dropdown > a");
+
+    // Abrir / cerrar menú principal
+    hamburger.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+    });
+
+    // Dropdown en móvil
+    dropdowns.forEach(link => {
+        link.addEventListener("click", function (e) {
+
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                this.parentElement.classList.toggle("open");
+            }
+
+        });
+    });
+
+});
+</script>
+</body>
+</html>

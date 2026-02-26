@@ -7,84 +7,2528 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .admin-section { padding: 40px 0; }
-        .dashboard-header { background: var(--primary-color); color: white; padding: 20px 0; margin-top: 80px; }
-        .dashboard-card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .dashboard-card h3 { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 20px; }
+        /* ===== ESTILOS PANEL ADMINISTRATIVO ===== */
+        :root {
+            --sidebar-width: 250px;
+            --header-height: 70px;
+            --primary-color: #008ba3;
+            --secondary-color: #2e7d32;
+            --accent-color: #fbc02d;
+            --sidebar-bg: #2c3e50;
+            --sidebar-hover: #34495e;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            margin: 0;
+            padding-top: 0 !important;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ===== HEADER SUPERIOR ===== */
+        .admin-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .admin-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .header-title h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .header-title span {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* ===== MENÚ LATERAL ===== */
+        .admin-sidebar {
+            position: fixed;
+            left: 0;
+            top: var(--header-height);
+            width: var(--sidebar-width);
+            height: calc(100vh - var(--header-height));
+            background: var(--sidebar-bg);
+            color: white;
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+            z-index: 999;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-item {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .menu-link:hover {
+            background: var(--sidebar-hover);
+            padding-left: 25px;
+        }
+
+        .menu-link.active {
+            background: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .menu-icon {
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .submenu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background: rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        .submenu.show {
+            display: block;
+        }
+
+        .submenu-item {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .submenu-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 20px 12px 50px;
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .submenu-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .has-submenu > .menu-link::after {
+            content: '▸';
+            margin-left: auto;
+            transition: transform 0.3s;
+        }
+
+        .has-submenu.active > .menu-link::after {
+            transform: rotate(90deg);
+        }
+
+        /* ===== CONTENIDO PRINCIPAL ===== */
+        .admin-main {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            margin-top: var(--header-height);
+            padding: 30px;
+            min-height: calc(100vh - var(--header-height));
+            transition: margin-left 0.3s;
+        }
+
+        .content-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .content-header h2 {
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+            font-size: 1.8rem;
+        }
+
+        .content-header p {
+            color: #666;
+            margin: 0;
+        }
+
+        /* ===== TARJETAS DE CONTENIDO ===== */
+        .content-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+
+        .content-card h3 {
+            color: var(--primary-color);
+            margin: 0 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        /* ===== CONTENIDO OCULTO POR DEFECTO ===== */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== FORMULARIOS ===== */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 139, 163, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* ===== BOTONES ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #006064;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 139, 163, 0.3);
+        }
+
+        .btn-success {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            background: var(--accent-color);
+            color: #333;
+        }
+
+        .btn-warning:hover {
+            background: #f9a825;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+
+        /* ===== LISTA DE NOTICIAS ===== */
+        .news-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .news-item {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid var(--primary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .news-item-content {
+            flex: 1;
+        }
+
+        .news-item-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .news-item-date {
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .news-item-preview {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .news-item-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* ===== LISTA DE DOCUMENTOS ===== */
+        .docs-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .doc-item-admin {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #eee;
+        }
+
+        .doc-item-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .doc-icon-admin {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .doc-details h4 {
+            margin: 0 0 5px 0;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .doc-details small {
+            color: #777;
+            font-size: 0.85rem;
+        }
+
+        /* ===== VISTAS PREVIAS ===== */
+        .preview-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .preview-container {
+            background: white;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 25px;
+            min-height: 200px;
+            overflow-x: auto;
+        }
+
+        /* ===== TOGGLE MENÚ PARA MÓVIL ===== */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .admin-sidebar {
+                transform: translateX(-100%);
+            }
+
+            .admin-sidebar.active {
+                transform: translateX(0);
+            }
+
+            .admin-main {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .news-item {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .news-item-actions {
+                align-self: flex-end;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .admin-header {
+                padding: 0 15px;
+            }
+
+            .header-title h1 {
+                font-size: 1.2rem;
+            }
+
+            .admin-main {
+                padding: 20px 15px;
+            }
+
+            .content-card {
+                padding: 20px;
+            }
+
+            .btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ===== PANTALLA DE LOGIN ===== */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 40%, #008ba3 100%);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .login-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 16px;
+            padding: 45px 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: loginSlideUp 0.6s ease;
+        }
+
+        @keyframes loginSlideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #008ba3, #2e7d32);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .login-card h2 {
+            color: #333;
+            font-size: 1.6rem;
+            margin: 0 0 5px 0;
+        }
+
+        .login-card .login-subtitle {
+            color: #777;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .login-form .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .login-form .input-wrapper {
+            position: relative;
+        }
+
+        .login-form .input-wrapper i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+            font-size: 1rem;
+        }
+
+        .login-form .input-wrapper input {
+            width: 100%;
+            padding: 12px 15px 12px 42px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            box-sizing: border-box;
+        }
+
+        .login-form .input-wrapper input:focus {
+            outline: none;
+            border-color: #008ba3;
+            box-shadow: 0 0 0 3px rgba(0, 139, 163, 0.15);
+        }
+
+        .login-form .toggle-password {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0;
+        }
+
+        .login-form .toggle-password:hover {
+            color: #008ba3;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #008ba3, #006e82);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            margin-top: 5px;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(135deg, #006e82, #00545f);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 139, 163, 0.3);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-error {
+            background: #fdecea;
+            color: #c62828;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: none;
+            border: 1px solid #f5c6cb;
+        }
+
+        .login-error.show {
+            display: block;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .login-footer {
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .login-footer a {
+            color: #008ba3;
+            text-decoration: none;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                margin: 15px;
+                padding: 30px 25px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- ===== PANTALLA DE LOGIN ===== -->
+    <div class="login-overlay" id="login-overlay">
+        <div class="login-card">
+            <div class="login-logo">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h2>Panel Administrativo</h2>
+            <p class="login-subtitle">Colegio El Rosario de Itagüí</p>
 
-    <!-- Header / Navbar Same as index but simplified -->
-    <header>
-        <div class="container">
-            <div class="logo-container">
-                <img src="img/logo.png" alt="Logo Colegio El Rosario" class="logo-img" onerror="this.style.display='none'">
-                <div class="logo-text">
-                    <h1>Colegio El Rosario</h1>
-                    <span>Panel Administrativo</span>
+            <div class="login-error" id="login-error">
+                <i class="fas fa-exclamation-circle"></i> 
+                <span id="login-error-msg">Credenciales incorrectas</span>
+            </div>
+
+            <form class="login-form" id="login-form">
+                <div class="form-group">
+                    <label class="form-label">Correo electrónico</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="login-email" placeholder="admin@elrosario.edu.co" required autocomplete="username">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Contraseña</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+                        <button type="button" class="toggle-password" id="toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="login-btn" id="login-btn">
+                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Volver al sitio web</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Superior -->
+    <header class="admin-header">
+        <div class="header-left">
+            <button class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-title">
+                <h1>Colegio El Rosario</h1>
+                <span>Panel Administrativo</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div>
+                    <div style="font-weight: 600;">Administrador</div>
+                    <div style="font-size: 0.85rem; opacity: 0.9;">admin@elrosario.edu.co</div>
                 </div>
             </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="index.html">Ver Sitio Web</a></li>
-                    <li><a href="#" class="active">Panel</a></li>
-                </ul>
-            </nav>
+            <a href="index.html" class="btn btn-warning">
+                <i class="fas fa-external-link-alt"></i> Ver Sitio Web
+            </a>
+            <button class="logout-btn" id="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </button>
         </div>
     </header>
 
-    <div class="dashboard-header">
-        <div class="container">
-            <h2>Gestión de Contenidos</h2>
-            <p>Desde aquí puedes agregar noticias y gestionar documentos.</p>
-        </div>
-    </div>
+    <!-- Menú Lateral -->
+    <aside class="admin-sidebar" id="sidebar">
+        <ul class="sidebar-menu">
+            <li class="menu-item">
+                <a href="#inicio" class="menu-link active" data-content="inicio">
+                    <i class="fas fa-home menu-icon"></i>
+                    <span>Inicio</span>
+                </a>
+            </li>
+            
+            <li class="menu-item has-submenu">
+                <a href="#noticias" class="menu-link" data-content="noticias">
+                    <i class="fas fa-newspaper menu-icon"></i>
+                    <span>Noticias</span>
+                </a>
+                <ul class="submenu">
+                    <li class="submenu-item">
+                        <a href="#publicar-noticia" class="submenu-link" data-content="publicar-noticia">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Publicar Nueva</span>
+                        </a>
+                    </li>
+                    <li class="submenu-item">
+                        <a href="#gestionar-noticias" class="submenu-link" data-content="gestionar-noticias">
+                            <i class="fas fa-list"></i>
+                            <span>Gestionar Noticias</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li class="menu-item has-submenu">
+                <a href="#documentos" class="menu-link" data-content="documentos">
+                    <i class="fas fa-folder menu-icon"></i>
+                    <span>Documentos</span>
+                </a>
+                <ul class="submenu">
+                    <li class="submenu-item">
+                        <a href="#subir-documentos" class="submenu-link" data-content="subir-documentos">
+                            <i class="fas fa-upload"></i>
+                            <span>Subir Documentos</span>
+                        </a>
+                    </li>
+                    <li class="submenu-item">
+                        <a href="#gestionar-documentos" class="submenu-link" data-content="gestionar-documentos">
+                            <i class="fas fa-cog"></i>
+                            <span>Gestionar Documentos</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li class="menu-item has-submenu">
+                <a href="#academica" class="menu-link" data-content="academica">
+                    <i class="fas fa-graduation-cap menu-icon"></i>
+                    <span>Académica</span>
+                </a>
+                <ul class="submenu">
+                    <li class="submenu-item">
+                        <a href="#oferta-academica" class="submenu-link" data-content="oferta-academica">
+                            <i class="fas fa-book-open"></i>
+                            <span>Oferta Académica</span>
+                        </a>
+                    </li>
+                    <li class="submenu-item">
+                        <a href="#plan-estudios" class="submenu-link" data-content="plan-estudios">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Plan de Estudios</span>
+                        </a>
+                    </li>
+                    <li class="submenu-item">
+                        <a href="#evaluacion" class="submenu-link" data-content="evaluacion">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Evaluación y Promoción</span>
+                        </a>
+                    </li>
+                    <li class="submenu-item">
+                        <a href="#proyectos" class="submenu-link" data-content="proyectos">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>Proyectos Pedagógicos</span>
+                        </a>
+                    </li>
+                    <li class="submenu-item">
+                        <a href="#actualidad-academica" class="submenu-link" data-content="actualidad-academica">
+                            <i class="fas fa-bullhorn"></i>
+                            <span>Actualidad Académica</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li class="menu-item">
+                <a href="#configuracion" class="menu-link" data-content="configuracion">
+                    <i class="fas fa-cog menu-icon"></i>
+                    <span>Configuración</span>
+                </a>
+            </li>
 
-    <div class="container admin-section">
-        
-        <!-- Gestión de Noticias -->
-        <div class="dashboard-card">
-            <h3><i class="fas fa-newspaper"></i> Publicar Noticia</h3>
-            <form id="admin-news-form">
-                <div style="display: flex; flex-direction: column; gap: 15px;">
-                    <input type="text" id="news-title" placeholder="Título de la noticia" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required>
-                    <textarea id="news-content" placeholder="Escribe el contenido de la noticia aquí..." rows="5" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;" required></textarea>
-                    <input type="url" id="news-image-url" placeholder="URL de la imagen (opcional)" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-                    <button type="submit" class="btn btn-primary">Publicar en el Sitio</button>
-                    <small style="color: #666;">Nota: Las noticias se guardarán localmente en el navegador para esta demostración.</small>
-                </div>
-            </form>
-        </div>
+            <li class="menu-item has-submenu">
+                <a href="#gestion-admin" class="menu-link" data-content="gestion-admin">
+                    <i class="fas fa-users-cog menu-icon"></i>
+                    <span>Gestión Administrativa</span>
+                </a>
+                <ul class="submenu">
+                    <li class="submenu-item">
+                        <a href="#docentes" class="submenu-link" data-content="docentes">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Docentes</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </aside>
 
-        <!-- Gestión de Documentos -->
-        <div class="dashboard-card">
-            <h3><i class="fas fa-file-alt"></i> Subir Documentos</h3>
-            <div class="doc-upload" id="admin-doc-upload">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <span>Seleccionar archivo PDF o Doc</span>
-                <input type="file" id="file-input" style="display: none;">
+    <!-- Contenido Principal (SOLO UNA SECCIÓN VISIBLE A LA VEZ) -->
+    <main class="admin-main" id="main-content">
+        <!-- Vista: Inicio -->
+        <section class="content-section active" id="inicio-content">
+            <div class="content-header">
+                <h2>Panel de Control</h2>
+                <p>Bienvenido al panel administrativo del Colegio El Rosario</p>
             </div>
-            <div id="upload-status" style="margin-top: 15px; color: green; display: none;">¡Documento cargado exitosamente!</div>
-        </div>
+            
+            <div class="content-card">
+                <h3><i class="fas fa-chart-line"></i> Estadísticas</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    <div style="text-align: center; padding: 20px; background: #e8f5e9; border-radius: 8px;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--secondary-color);">15</div>
+                        <div>Noticias Publicadas</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: #e3f2fd; border-radius: 8px;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">8</div>
+                        <div>Documentos Subidos</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: #fff3e0; border-radius: 8px;">
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--accent-color);">127</div>
+                        <div>Visitas Hoy</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-card">
+                <h3><i class="fas fa-history"></i> Actividad Reciente</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 10px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-newspaper" style="color: var(--primary-color);"></i>
+                        <span>Publicaste "Inicio de Clases 2026" - Hoy 10:30 AM</span>
+                    </li>
+                    <li style="padding: 10px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-file-pdf" style="color: #e74c3c;"></i>
+                        <span>Subiste "Manual de Convivencia.pdf" - Ayer 3:45 PM</span>
+                    </li>
+                    <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-user-edit" style="color: var(--secondary-color);"></i>
+                        <span>Actualizaste la Oferta Académica - 8 Feb</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
 
-    </div>
+        <!-- Vista: Publicar Noticia -->
+        <section class="content-section" id="publicar-noticia-content">
+            <div class="content-header">
+                <h2><i class="fas fa-plus-circle"></i> Publicar Nueva Noticia</h2>
+                <p>Crea y publica noticias para mostrar en el sitio web</p>
+            </div>
+            
+            <div class="content-card">
+                <form id="news-form">
+                    <div class="form-group">
+                        <label class="form-label">Título de la Noticia *</label>
+                        <input type="text" class="form-control" id="news-title" placeholder="Ej: Inicio de Clases 2026" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Contenido *</label>
+                        <textarea class="form-control" id="news-content" rows="8" placeholder="Escribe el contenido completo de la noticia aquí..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">URL de la Imagen (opcional)</label>
+                        <input type="url" class="form-control" id="news-image" placeholder="https://ejemplo.com/imagen.jpg">
+                        <small style="color: #777;">Puedes usar un enlace a una imagen o subir una más adelante</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Categoría</label>
+                        <select class="form-control" id="news-category">
+                            <option value="general">General</option>
+                            <option value="academico">Académico</option>
+                            <option value="eventos">Eventos</option>
+                            <option value="anuncios">Anuncios</option>
+                        </select>
+                    </div>
+                    
+                    <div class="preview-section">
+                        <div class="preview-header">
+                            <h4><i class="fas fa-eye"></i> Vista Previa</h4>
+                            <button type="button" class="btn btn-sm btn-primary" id="update-preview">
+                                <i class="fas fa-sync-alt"></i> Actualizar Vista Previa
+                            </button>
+                        </div>
+                        <div class="preview-container" id="news-preview">
+                            <h4 style="color: var(--primary-color); margin-bottom: 10px;">[Título de la Noticia]</h4>
+                            <div style="color: #777; font-size: 0.9rem; margin-bottom: 15px;">Fecha: <span id="preview-date">Hoy</span></div>
+                            <div id="preview-content">El contenido de la noticia aparecerá aquí...</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px; margin-top: 25px;">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-paper-plane"></i> Publicar Noticia
+                        </button>
+                        <button type="button" class="btn btn-warning" id="save-draft">
+                            <i class="fas fa-save"></i> Guardar Borrador
+                        </button>
+                        <button type="reset" class="btn btn-outline">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
 
-    <footer>
-        <div class="container footer-content">
-            <p>&copy; 2026 Colegio El Rosario - Panel de Control</p>
-        </div>
-    </footer>
+        <!-- Vista: Gestionar Noticias -->
+        <section class="content-section" id="gestionar-noticias-content">
+            <div class="content-header">
+                <h2><i class="fas fa-list"></i> Gestionar Noticias</h2>
+                <p>Administra las noticias publicadas en el sitio web</p>
+            </div>
+            
+            <div class="content-card">
+                <h3>Noticias Publicadas</h3>
+                <div class="news-list" id="news-list">
+                    <!-- Las noticias se cargarán dinámicamente aquí -->
+                    <div class="news-item">
+                        <div class="news-item-content">
+                            <div class="news-item-title">Inicio de Clases 2026</div>
+                            <div class="news-item-date">Publicado: 10 Feb 2026 | Categoría: General</div>
+                            <div class="news-item-preview">Damos la bienvenida a todos nuestros estudiantes al nuevo año escolar lleno de aprendizaje...</div>
+                        </div>
+                        <div class="news-item-actions">
+                            <button class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i> Editar
+                            </button>
+                            <button class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i> Eliminar
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="news-item">
+                        <div class="news-item-content">
+                            <div class="news-item-title">Reunión de Padres</div>
+                            <div class="news-item-date">Publicado: 05 Feb 2026 | Categoría: Eventos</div>
+                            <div class="news-item-preview">Invitamos a la comunidad educativa a la primera reunión general este viernes...</div>
+                        </div>
+                        <div class="news-item-actions">
+                            <button class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i> Editar
+                            </button>
+                            <button class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i> Eliminar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; text-align: center;">
+                    <button class="btn btn-primary" id="load-more-news">
+                        <i class="fas fa-plus"></i> Cargar Más Noticias
+                    </button>
+                </div>
+            </div>
+        </section>
 
-    <script src="js/script.js"></script>
+        <!-- Vista: Subir Documentos -->
+        <section class="content-section" id="subir-documentos-content">
+            <div class="content-header">
+                <h2><i class="fas fa-upload"></i> Subir Documentos</h2>
+                <p>Carga documentos PDF, Word o Excel para compartir en el sitio web</p>
+            </div>
+            
+            <div class="content-card">
+                <form id="upload-form">
+                    <div class="form-group">
+                        <label class="form-label">Seleccionar Archivo *</label>
+                        <div style="border: 2px dashed #ccc; border-radius: 8px; padding: 40px; text-align: center; cursor: pointer;" id="drop-zone">
+                            <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: #ccc; margin-bottom: 15px;"></i>
+                            <div style="font-size: 1.1rem; margin-bottom: 10px;">Arrastra y suelta archivos aquí</div>
+                            <div style="color: #777; margin-bottom: 20px;">o haz clic para seleccionar</div>
+                            <button type="button" class="btn btn-primary" id="browse-btn">
+                                <i class="fas fa-folder-open"></i> Buscar Archivos
+                            </button>
+                            <input type="file" id="file-input" accept=".pdf,.doc,.docx,.xls,.xlsx" style="display: none;">
+                        </div>
+                    </div>
+                    
+                    <div id="file-info" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label">Información del Archivo</label>
+                            <div style="background: #f5f5f5; padding: 15px; border-radius: 6px;">
+                                <div><strong>Nombre:</strong> <span id="file-name"></span></div>
+                                <div><strong>Tamaño:</strong> <span id="file-size"></span></div>
+                                <div><strong>Tipo:</strong> <span id="file-type"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Título del Documento *</label>
+                        <input type="text" class="form-control" id="doc-title" placeholder="Ej: Manual de Convivencia 2026" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Descripción (opcional)</label>
+                        <textarea class="form-control" id="doc-desc" rows="3" placeholder="Breve descripción del documento..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Categoría</label>
+                        <select class="form-control" id="doc-category">
+                            <option value="academico">Académico</option>
+                            <option value="administrativo">Administrativo</option>
+                            <option value="normativo">Normativo</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px; margin-top: 25px;">
+                        <button type="submit" class="btn btn-success" id="upload-btn" disabled>
+                            <i class="fas fa-upload"></i> Subir Documento
+                        </button>
+                        <button type="reset" class="btn btn-outline">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Vista: Gestionar Documentos -->
+        <section class="content-section" id="gestionar-documentos-content">
+            <div class="content-header">
+                <h2><i class="fas fa-cog"></i> Gestionar Documentos</h2>
+                <p>Administra los documentos disponibles en el sitio web</p>
+            </div>
+            
+            <div class="content-card">
+                <h3>Documentos Disponibles</h3>
+                <div class="docs-list" id="docs-list">
+                    <!-- Los documentos se cargarán dinámicamente aquí -->
+                    <div class="doc-item-admin">
+                        <div class="doc-item-info">
+                            <i class="fas fa-file-pdf doc-icon-admin"></i>
+                            <div class="doc-details">
+                                <h4>Manual de Convivencia 2026</h4>
+                                <small>Categoría: Normativo | Subido: 15 Ene 2026 | Tamaño: 2.5 MB</small>
+                            </div>
+                        </div>
+                        <div class="news-item-actions">
+                            <button class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i> Editar
+                            </button>
+                            <button class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i> Eliminar
+                            </button>
+                            <button class="btn btn-sm btn-success">
+                                <i class="fas fa-download"></i> Descargar
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="doc-item-admin">
+                        <div class="doc-item-info">
+                            <i class="fas fa-file-alt doc-icon-admin"></i>
+                            <div class="doc-details">
+                                <h4>Horario Escolar 2026</h4>
+                                <small>Categoría: Académico | Subido: 10 Ene 2026 | Tamaño: 1.2 MB</small>
+                            </div>
+                        </div>
+                        <div class="news-item-actions">
+                            <button class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i> Editar
+                            </button>
+                            <button class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i> Eliminar
+                            </button>
+                            <button class="btn btn-sm btn-success">
+                                <i class="fas fa-download"></i> Descargar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; text-align: center;">
+                    <button class="btn btn-primary" id="load-more-docs">
+                        <i class="fas fa-plus"></i> Cargar Más Documentos
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vista: Oferta Académica -->
+        <section class="content-section" id="oferta-academica-content">
+            <div class="content-header">
+                <h2><i class="fas fa-book-open"></i> Oferta Académica</h2>
+                <p>Gestiona la oferta académica del colegio</p>
+            </div>
+            
+            <div class="content-card">
+                <h3>Configurar Oferta Académica</h3>
+                <p>Edita el contenido que se mostrará en la sección de Oferta Académica del sitio web.</p>
+                
+                <div class="form-group">
+                    <label class="form-label">Título Principal</label>
+                    <input type="text" class="form-control" value="Oferta Académica 2026">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Descripción</label>
+                    <textarea class="form-control" rows="3">Conoce los niveles educativos que ofrecemos en el Colegio El Rosario, diseñados para formar estudiantes íntegros y competitivos.</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Niveles Educativos</label>
+                    <div style="display: grid; gap: 15px; margin-top: 10px;">
+                        <div style="background: #f5f5f5; padding: 15px; border-radius: 6px; display: flex; align-items: center; justify-content: space-between;">
+                            <div>
+                                <strong>Preescolar</strong>
+                                <div style="color: #777; font-size: 0.9rem;">Transición y grado 0</div>
+                            </div>
+                            <button class="btn btn-sm btn-primary">Editar</button>
+                        </div>
+                        <div style="background: #f5f5f5; padding: 15px; border-radius: 6px; display: flex; align-items: center; justify-content: space-between;">
+                            <div>
+                                <strong>Básica Primaria</strong>
+                                <div style="color: #777; font-size: 0.9rem;">Grados 1° a 5°</div>
+                            </div>
+                            <button class="btn btn-sm btn-primary">Editar</button>
+                        </div>
+                        <div style="background: #f5f5f5; padding: 15px; border-radius: 6px; display: flex; align-items: center; justify-content: space-between;">
+                            <div>
+                                <strong>Básica Secundaria</strong>
+                                <div style="color: #777; font-size: 0.9rem;">Grados 6° a 9°</div>
+                            </div>
+                            <button class="btn btn-sm btn-primary">Editar</button>
+                        </div>
+                        <div style="background: #f5f5f5; padding: 15px; border-radius: 6px; display: flex; align-items: center; justify-content: space-between;">
+                            <div>
+                                <strong>Educación Media</strong>
+                                <div style="color: #777; font-size: 0.9rem;">Grados 10° y 11°</div>
+                            </div>
+                            <button class="btn btn-sm btn-primary">Editar</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-success" style="margin-top: 20px;">
+                    <i class="fas fa-save"></i> Guardar Cambios
+                </button>
+            </div>
+        </section>
+
+        <!-- Vista: Plan de Estudios -->
+        <section class="content-section" id="plan-estudios-content">
+            <div class="content-header">
+                <h2><i class="fas fa-calendar-alt"></i> Plan de Estudios</h2>
+                <p>Administra el plan de estudios y áreas académicas</p>
+            </div>
+            
+            <div class="content-card">
+                <h3>Áreas Académicas</h3>
+                
+                <div style="display: grid; gap: 15px;">
+                    <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid var(--primary-color);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <h4 style="margin: 0; color: var(--primary-color);">Ciencias Naturales</h4>
+                            <span class="btn btn-sm btn-warning">Configurar</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                            <div>• Biología</div>
+                            <div>• Química</div>
+                            <div>• Física</div>
+                            <div>• Educación Ambiental</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid var(--secondary-color);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <h4 style="margin: 0; color: var(--secondary-color);">Matemáticas</h4>
+                            <span class="btn btn-sm btn-warning">Configurar</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                            <div>• Aritmética</div>
+                            <div>• Álgebra</div>
+                            <div>• Geometría</div>
+                            <div>• Estadística</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid var(--accent-color);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <h4 style="margin: 0; color: #8e44ad;">Humanidades</h4>
+                            <span class="btn btn-sm btn-warning">Configurar</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                            <div>• Lengua Castellana</div>
+                            <div>• Inglés</div>
+                            <div>• Filosofía</div>
+                            <div>• Literatura</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" style="margin-top: 20px;">
+                    <i class="fas fa-plus-circle"></i> Agregar Nueva Área
+                </button>
+            </div>
+        </section>
+
+        <!-- Vista: Evaluación y Promoción -->
+        <section class="content-section" id="evaluacion-content">
+            <div class="content-header">
+                <h2><i class="fas fa-chart-bar"></i> Evaluación y Promoción</h2>
+                <p>Configura los criterios de evaluación y promoción escolar</p>
+            </div>
+            
+            <div class="content-card">
+                <h3>Criterios de Evaluación</h3>
+                
+                <div style="display: grid; gap: 25px;">
+                    <div>
+                        <h4 style="margin-bottom: 15px;">Escala de Valoración</h4>
+                        <div style="background: #f5f5f5; padding: 15px; border-radius: 6px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                                <span>Superior (4.6 - 5.0)</span>
+                                <span style="color: green;">✓ Activo</span>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                                <span>Alto (4.0 - 4.5)</span>
+                                <span style="color: green;">✓ Activo</span>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                                <span>Básico (3.0 - 3.9)</span>
+                                <span style="color: green;">✓ Activo</span>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span>Bajo (0.0 - 2.9)</span>
+                                <span style="color: green;">✓ Activo</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="margin-bottom: 15px;">Porcentajes por Período</h4>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
+                            <div style="background: #f5f5f5; padding: 15px; text-align: center; border-radius: 6px;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">Período 1</div>
+                                <div style="font-size: 1.2rem; color: var(--primary-color);">25%</div>
+                                <button class="btn btn-sm btn-primary" style="margin-top: 10px;">Editar</button>
+                            </div>
+                            <div style="background: #f5f5f5; padding: 15px; text-align: center; border-radius: 6px;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">Período 2</div>
+                                <div style="font-size: 1.2rem; color: var(--primary-color);">25%</div>
+                                <button class="btn btn-sm btn-primary" style="margin-top: 10px;">Editar</button>
+                            </div>
+                            <div style="background: #f5f5f5; padding: 15px; text-align: center; border-radius: 6px;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">Período 3</div>
+                                <div style="font-size: 1.2rem; color: var(--primary-color);">25%</div>
+                                <button class="btn btn-sm btn-primary" style="margin-top: 10px;">Editar</button>
+                            </div>
+                            <div style="background: #f5f5f5; padding: 15px; text-align: center; border-radius: 6px;">
+                                <div style="font-weight: bold; margin-bottom: 5px;">Período 4</div>
+                                <div style="font-size: 1.2rem; color: var(--primary-color);">25%</div>
+                                <button class="btn btn-sm btn-primary" style="margin-top: 10px;">Editar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-success" style="margin-top: 25px;">
+                    <i class="fas fa-save"></i> Guardar Cambios
+                </button>
+            </div>
+        </section>
+
+        <!-- Vista: Proyectos Pedagógicos -->
+        <section class="content-section" id="proyectos-content">
+            <div class="content-header">
+                <h2><i class="fas fa-project-diagram"></i> Proyectos Pedagógicos</h2>
+                <p>Gestiona los proyectos transversales y pedagógicos</p>
+            </div>
+            
+            <div class="content-card">
+                <h3>Proyectos Activos</h3>
+                
+                <div style="display: grid; gap: 15px;">
+                    <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h4 style="margin: 0 0 5px 0; color: var(--primary-color);">Proyecto Ambiental Escolar - PRAE</h4>
+                            <div style="color: #777;">Responsable: Comité Ambiental | Inicio: Feb 2026</div>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary">Editar</button>
+                            <button class="btn btn-sm btn-danger">Eliminar</button>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h4 style="margin: 0 0 5px 0; color: var(--primary-color);">Proyecto de Educación Sexual</h4>
+                            <div style="color: #777;">Responsable: Psicología | Inicio: Mar 2026</div>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary">Editar</button>
+                            <button class="btn btn-sm btn-danger">Eliminar</button>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h4 style="margin: 0 0 5px 0; color: var(--primary-color);">Proyecto de Democracia y Paz</h4>
+                            <div style="color: #777;">Responsable: Área de Sociales | Inicio: Mar 2026</div>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary">Editar</button>
+                            <button class="btn btn-sm btn-danger">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" style="margin-top: 20px;">
+                    <i class="fas fa-plus-circle"></i> Crear Nuevo Proyecto
+                </button>
+            </div>
+        </section>
+
+        <!-- Vista: Actualidad Académica -->
+        <section class="content-section" id="actualidad-academica-content">
+            <div class="content-header">
+                <h2><i class="fas fa-bullhorn"></i> Actualidad Académica</h2>
+                <p>Comparte información relevante sobre eventos y novedades académicas</p>
+            </div>
+            
+            <div class="content-card">
+                <h3>Anuncios Académicos</h3>
+                
+                <div style="display: grid; gap: 20px;">
+                    <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; border-bottom: 3px solid var(--accent-color);">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                            <div>
+                                <span style="background: var(--accent-color); color: #333; padding: 3px 10px; border-radius: 20px; font-size: 0.85rem;">PRÓXIMAMENTE</span>
+                                <h4 style="margin: 10px 0 5px 0;">Semana de la Ciencia 2026</h4>
+                                <div style="color: #777;">Del 15 al 19 de junio</div>
+                            </div>
+                            <div>
+                                <button class="btn btn-sm btn-primary">Editar</button>
+                            </div>
+                        </div>
+                        <p style="margin: 0;">Participa en la feria de proyectos científicos y talleres interactivos para todos los niveles.</p>
+                    </div>
+                    
+                    <div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                            <div>
+                                <span style="background: var(--primary-color); color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.85rem;">INSCRIPCIONES</span>
+                                <h4 style="margin: 10px 0 5px 0;">Pruebas Saber 11°</h4>
+                                <div style="color: #777;">Cierre: 30 de abril</div>
+                            </div>
+                            <div>
+                                <button class="btn btn-sm btn-primary">Editar</button>
+                            </div>
+                        </div>
+                        <p style="margin: 0;">Última semana para inscribirte a las pruebas Saber 11° con acompañamiento institucional.</p>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" style="margin-top: 20px;">
+                    <i class="fas fa-plus-circle"></i> Agregar Anuncio
+                </button>
+            </div>
+        </section>
+
+        <!-- Vista: Configuración -->
+        <section class="content-section" id="configuracion-content">
+            <div class="content-header">
+                <h2><i class="fas fa-cog"></i> Configuración del Sistema</h2>
+                <p>Ajusta las configuraciones generales del sitio web</p>
+            </div>
+            
+            <div class="content-card">
+                <h3>Configuración General</h3>
+                <form id="settings-form">
+                    <div class="form-group">
+                        <label class="form-label">Nombre del Colegio</label>
+                        <input type="text" class="form-control" value="Colegio El Rosario">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Correo de Contacto</label>
+                        <input type="email" class="form-control" value="contacto@elrosario.edu.co">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Teléfono Principal</label>
+                        <input type="tel" class="form-control" value="+57 (4) 123 4567">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Máximo de Noticias en Portada</label>
+                        <select class="form-control">
+                            <option>3</option>
+                            <option selected>5</option>
+                            <option>10</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> Guardar Configuración
+                    </button>
+                </form>
+            </div>
+            
+            <div class="content-card">
+                <h3><i class="fas fa-users-cog"></i> Usuarios Administradores</h3>
+                
+                <!-- Formulario crear/editar usuario -->
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #e0e0e0;">
+                    <h4 id="usuario-form-title" style="margin: 0 0 15px 0; color: var(--primary-color);"><i class="fas fa-user-plus"></i> Agregar Nuevo Usuario</h4>
+                    <form id="usuario-form">
+                        <input type="hidden" id="usuario-edit-id" value="">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label">Nombre completo</label>
+                                <input type="text" class="form-control" id="usuario-nombre" placeholder="Ej: Juan Pérez" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="usuario-email" placeholder="correo@ejemplo.com" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label">Contraseña <small id="password-hint" style="color:#777;">(obligatoria)</small></label>
+                                <input type="text" class="form-control" id="usuario-password" placeholder="Contraseña del usuario">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label">Rol</label>
+                                <select class="form-control" id="usuario-rol">
+                                    <option value="admin">Administrador (acceso total)</option>
+                                    <option value="editor" selected>Editor (acceso limitado)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 6px; border: 1px solid #e0e0e0;">
+                            <label class="form-label" style="margin-bottom: 10px; display: block;"><i class="fas fa-shield-alt"></i> Permisos de acceso a secciones</label>
+                            <div id="permisos-checkboxes" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                                <label style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #f5f5f5; border-radius: 6px; cursor: pointer; transition: background 0.2s;">
+                                    <input type="checkbox" name="permisos" value="noticias" checked> 
+                                    <i class="fas fa-newspaper" style="color: var(--primary-color);"></i> Noticias
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #f5f5f5; border-radius: 6px; cursor: pointer; transition: background 0.2s;">
+                                    <input type="checkbox" name="permisos" value="documentos" checked> 
+                                    <i class="fas fa-folder" style="color: var(--secondary-color);"></i> Documentos
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #f5f5f5; border-radius: 6px; cursor: pointer; transition: background 0.2s;">
+                                    <input type="checkbox" name="permisos" value="academica" checked> 
+                                    <i class="fas fa-graduation-cap" style="color: #e67e22;"></i> Académica
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #f5f5f5; border-radius: 6px; cursor: pointer; transition: background 0.2s;">
+                                    <input type="checkbox" name="permisos" value="configuracion"> 
+                                    <i class="fas fa-cog" style="color: #8e44ad;"></i> Configuración
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #f5f5f5; border-radius: 6px; cursor: pointer; transition: background 0.2s;">
+                                    <input type="checkbox" name="permisos" value="docentes"> 
+                                    <i class="fas fa-chalkboard-teacher" style="color: #2c3e50;"></i> Docentes
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #f5f5f5; border-radius: 6px; cursor: pointer; transition: background 0.2s;">
+                                    <input type="checkbox" name="permisos" value="usuarios"> 
+                                    <i class="fas fa-users-cog" style="color: #c0392b;"></i> Gestión Usuarios
+                                </label>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 15px; display: flex; gap: 10px;">
+                            <button type="submit" class="btn btn-success" id="usuario-submit-btn">
+                                <i class="fas fa-save"></i> Crear Usuario
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="usuario-cancel-edit" style="display: none; background: #95a5a6; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                                <i class="fas fa-times"></i> Cancelar Edición
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Lista de usuarios -->
+                <h4 style="color: var(--primary-color); margin-bottom: 15px;"><i class="fas fa-list"></i> Usuarios Registrados</h4>
+                <div id="usuarios-list" style="display: grid; gap: 12px;">
+                    <p style="text-align: center; color: #777; padding: 20px;">Cargando usuarios...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vista: Docentes -->
+        <section class="content-section" id="docentes-content">
+            <div class="content-header">
+                <h2><i class="fas fa-chalkboard-teacher"></i> Gestión de Docentes</h2>
+                <p>Administra el directorio de docentes de la institución</p>
+            </div>
+            
+            <!-- Formulario para agregar docente -->
+            <div class="content-card">
+                <h3><i class="fas fa-user-plus"></i> Agregar Nuevo Docente</h3>
+                <form id="docente-form">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label class="form-label">Nombre Completo *</label>
+                            <input type="text" class="form-control" id="docente-nombre" placeholder="Ej: María García López" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Asignatura *</label>
+                            <input type="text" class="form-control" id="docente-asignatura" placeholder="Ej: Matemáticas" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Correo Electrónico *</label>
+                        <input type="email" class="form-control" id="docente-correo" placeholder="Ej: maria.garcia@elrosario.edu.co" required>
+                    </div>
+                    
+                    <input type="hidden" id="docente-edit-id" value="">
+                    
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <button type="submit" class="btn btn-success" id="docente-submit-btn">
+                            <i class="fas fa-save"></i> Guardar Docente
+                        </button>
+                        <button type="button" class="btn btn-outline" id="docente-cancel-edit" style="display:none;">
+                            <i class="fas fa-times"></i> Cancelar Edición
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Lista de docentes -->
+            <div class="content-card">
+                <h3><i class="fas fa-list"></i> Docentes Registrados</h3>
+                <div id="docentes-admin-list" class="docs-list">
+                    <div style="text-align: center; padding: 30px; color: #777;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                        <p>Cargando docentes...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <script>
-        // Lógica específica simple para la simulación de subida de archivos en admin
-        document.getElementById('admin-doc-upload').addEventListener('click', () => {
-             // Simular click en input file real
-             // En un entorno real se subiría al servidor
-             document.getElementById('upload-status').style.display = 'block';
-             document.getElementById('upload-status').textContent = 'Simulación: Archivo "cargado" a la base de datos.';
-             setTimeout(() => { document.getElementById('upload-status').style.display = 'none'; }, 3000);
+        // ===== SISTEMA DE LOGIN =====
+        (function() {
+            const loginOverlay = document.getElementById('login-overlay');
+            const loginForm = document.getElementById('login-form');
+            const loginBtn = document.getElementById('login-btn');
+            const loginError = document.getElementById('login-error');
+            const loginErrorMsg = document.getElementById('login-error-msg');
+            const togglePwd = document.getElementById('toggle-password');
+            const pwdInput = document.getElementById('login-password');
+
+            // Verificar si ya está logueado
+            if (sessionStorage.getItem('admin_logged_in') === 'true') {
+                loginOverlay.classList.add('hidden');
+                const userData = JSON.parse(sessionStorage.getItem('admin_user') || '{}');
+                updateUserDisplay(userData);
+            }
+
+            // Toggle mostrar/ocultar contraseña
+            if (togglePwd && pwdInput) {
+                togglePwd.addEventListener('click', function() {
+                    const type = pwdInput.type === 'password' ? 'text' : 'password';
+                    pwdInput.type = type;
+                    this.querySelector('i').className = type === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash';
+                });
+            }
+
+            // Enviar login
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = document.getElementById('login-email').value.trim();
+                    const password = document.getElementById('login-password').value;
+
+                    loginBtn.disabled = true;
+                    loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verificando...';
+                    loginError.classList.remove('show');
+
+                    fetch('api/login.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email, password: password })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            sessionStorage.setItem('admin_logged_in', 'true');
+                            sessionStorage.setItem('admin_user', JSON.stringify(data.user));
+                            updateUserDisplay(data.user);
+                            loginOverlay.classList.add('hidden');
+                            // Aplicar permisos después de login
+                            if (typeof applyPermissions === 'function') applyPermissions();
+                        } else {
+                            loginErrorMsg.textContent = data.error || 'Credenciales incorrectas';
+                            loginError.classList.add('show');
+                        }
+                    })
+                    .catch(() => {
+                        loginErrorMsg.textContent = 'Error de conexión con el servidor';
+                        loginError.classList.add('show');
+                    })
+                    .finally(() => {
+                        loginBtn.disabled = false;
+                        loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Iniciar Sesión';
+                    });
+                });
+            }
+
+            function updateUserDisplay(user) {
+                if (!user) return;
+                const nameEl = document.querySelector('.user-info div div[style*="font-weight"]');
+                const emailEl = document.querySelector('.user-info div div[style*="font-size"]');
+                if (nameEl && user.nombre) nameEl.textContent = user.nombre;
+                if (emailEl && user.email) emailEl.textContent = user.email;
+            }
+        })();
+
+        // ===== FUNCIONALIDAD DEL PANEL ADMINISTRATIVO =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuLinks = document.querySelectorAll('.menu-link');
+            const submenuLinks = document.querySelectorAll('.submenu-link');
+            const contentSections = document.querySelectorAll('.content-section');
+            
+            // Toggle del menú en móvil
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('active');
+                });
+            }
+            
+            // Cerrar menú al hacer clic fuera en móvil
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 992 && 
+                    !sidebar.contains(event.target) && 
+                    !menuToggle.contains(event.target)) {
+                    sidebar.classList.remove('active');
+                }
+            });
+            
+            // Función para cambiar el contenido visible
+            window.showContent = function(contentId) {
+                console.log('Mostrando contenido:', contentId);
+                
+                // Ocultar todas las secciones
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Mostrar la sección seleccionada
+                const targetSection = document.getElementById(`${contentId}-content`);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                } else {
+                    console.error('No se encontró la sección:', contentId + '-content');
+                }
+                
+                // Actualizar menú activo
+                menuLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                submenuLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Activar enlace correspondiente
+                const activeLink = document.querySelector(`[data-content="${contentId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            };
+            
+            // Manejar clics en enlaces del menú principal
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Verificar si tiene submenú
+                    if (this.parentElement.classList.contains('has-submenu')) {
+                        // Toggle del submenú
+                        const submenu = this.parentElement.querySelector('.submenu');
+                        if (submenu) {
+                            submenu.classList.toggle('show');
+                            this.parentElement.classList.toggle('active');
+                        }
+                        return;
+                    }
+                    
+                    const contentId = this.getAttribute('data-content');
+                    if (contentId) {
+                        showContent(contentId);
+                    }
+                    
+                    // Cerrar menú en móvil
+                    if (window.innerWidth <= 992) {
+                        sidebar.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Manejar clics en submenús
+            submenuLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const contentId = this.getAttribute('data-content');
+                    
+                    if (contentId) {
+                        showContent(contentId);
+                        
+                        // Activar el padre en el menú
+                        const parentMenu = this.closest('.has-submenu');
+                        if (parentMenu) {
+                            menuLinks.forEach(l => l.classList.remove('active'));
+                            const parentLink = parentMenu.querySelector('.menu-link');
+                            if (parentLink) {
+                                parentLink.classList.add('active');
+                            }
+                        }
+                    }
+                    
+                    // Cerrar menú en móvil
+                    if (window.innerWidth <= 992) {
+                        sidebar.classList.remove('active');
+                    }
+                });
+            });
+            
+            // ===== GESTIÓN DE NOTICIAS =====
+            const newsForm = document.getElementById('news-form');
+            const newsTitle = document.getElementById('news-title');
+            const newsContent = document.getElementById('news-content');
+            const updatePreviewBtn = document.getElementById('update-preview');
+            const previewTitle = document.querySelector('#news-preview h4');
+            const previewDate = document.getElementById('preview-date');
+            const previewContent = document.getElementById('preview-content');
+            
+            // Actualizar vista previa
+            if (updatePreviewBtn) {
+                updatePreviewBtn.addEventListener('click', function() {
+                    if (newsTitle) previewTitle.textContent = newsTitle.value || '[Título de la Noticia]';
+                    if (newsContent) previewContent.textContent = newsContent.value || 'El contenido de la noticia aparecerá aquí...';
+                    
+                    const now = new Date();
+                    if (previewDate) {
+                        previewDate.textContent = now.toLocaleDateString('es-ES', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        });
+                    }
+                });
+            }
+            
+            // Guardar noticia - manejado por la sección de conexión BD más abajo
+            
+            // ===== GESTIÓN DE DOCUMENTOS =====
+            const fileInput = document.getElementById('file-input');
+            const dropZone = document.getElementById('drop-zone');
+            const browseBtn = document.getElementById('browse-btn');
+            const fileInfo = document.getElementById('file-info');
+            const uploadBtn = document.getElementById('upload-btn');
+            const uploadForm = document.getElementById('upload-form');
+            
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+            
+            function getFileType(mimeType) {
+                const types = {
+                    'application/pdf': 'PDF',
+                    'application/msword': 'Word',
+                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'Word',
+                    'application/vnd.ms-excel': 'Excel',
+                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'Excel'
+                };
+                return types[mimeType] || mimeType;
+            }
+            
+            function handleFileSelect(file) {
+                if (!file) return;
+                
+                // Validar tipo de archivo
+                const validTypes = ['application/pdf', 
+                                  'application/msword',
+                                  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                  'application/vnd.ms-excel',
+                                  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+                
+                if (!validTypes.includes(file.type)) {
+                    alert('Por favor, selecciona un archivo PDF, Word o Excel.');
+                    return;
+                }
+                
+                // Mostrar información del archivo
+                document.getElementById('file-name').textContent = file.name;
+                document.getElementById('file-size').textContent = formatFileSize(file.size);
+                document.getElementById('file-type').textContent = getFileType(file.type);
+                if (fileInfo) fileInfo.style.display = 'block';
+                if (uploadBtn) uploadBtn.disabled = false;
+            }
+            
+            if (dropZone) {
+                dropZone.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.style.borderColor = 'var(--primary-color)';
+                    this.style.backgroundColor = '#f0f9ff';
+                });
+                
+                dropZone.addEventListener('dragleave', function() {
+                    this.style.borderColor = '#ccc';
+                    this.style.backgroundColor = 'transparent';
+                });
+                
+                dropZone.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.style.borderColor = '#ccc';
+                    this.style.backgroundColor = 'transparent';
+                    
+                    if (e.dataTransfer.files.length) {
+                        handleFileSelect(e.dataTransfer.files[0]);
+                    }
+                });
+            }
+            
+            if (browseBtn && fileInput) {
+                browseBtn.addEventListener('click', function() {
+                    fileInput.click();
+                });
+                
+                fileInput.addEventListener('change', function() {
+                    if (this.files.length) {
+                        handleFileSelect(this.files[0]);
+                    }
+                });
+            }
+            
+            // Upload de documentos - manejado por la sección de conexión BD más abajo
+            
+            // ===== BOTÓN DE SALIR =====
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    if (confirm('¿Estás seguro de que quieres salir del panel administrativo?')) {
+                        sessionStorage.removeItem('admin_logged_in');
+                        sessionStorage.removeItem('admin_user');
+                        window.location.reload();
+                    }
+                });
+            }
+            
+            // Inicializar: mostrar inicio por defecto
+            showContent('inicio');
+
+            // ===================================================
+            // ===== CONEXIÓN CON BASE DE DATOS (API PHP) =====
+            // ===================================================
+
+            // ===== DOCENTES CRUD =====
+            const docenteForm = document.getElementById('docente-form');
+            const docentesList = document.getElementById('docentes-admin-list');
+            const docenteEditId = document.getElementById('docente-edit-id');
+            const docenteCancelEdit = document.getElementById('docente-cancel-edit');
+            const docenteSubmitBtn = document.getElementById('docente-submit-btn');
+
+            function loadDocentes() {
+                if (!docentesList) return;
+                fetch('api/docentes.php?todos=1')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (!Array.isArray(data) || data.length === 0) {
+                            docentesList.innerHTML = '<p style="text-align:center;color:#777;padding:20px;">No hay docentes registrados.</p>';
+                            return;
+                        }
+                        docentesList.innerHTML = data.map(d => `
+                            <div class="doc-item-admin" data-id="${d.id}">
+                                <div class="doc-item-info">
+                                    <i class="fas fa-chalkboard-teacher doc-icon-admin" style="color: ${d.estado == 1 ? 'var(--secondary-color)' : '#aaa'};"></i>
+                                    <div class="doc-details">
+                                        <h4>${d.nombre} ${d.estado == 0 ? '<span style="color:#e74c3c;font-size:0.8rem;">(Inactivo)</span>' : ''}</h4>
+                                        <small><strong>Asignatura:</strong> ${d.asignatura} | <strong>Correo:</strong> ${d.correo}</small>
+                                    </div>
+                                </div>
+                                <div class="news-item-actions">
+                                    <button class="btn btn-sm btn-primary" onclick="editDocente(${d.id}, '${d.nombre.replace(/'/g,"\\'")}', '${d.asignatura.replace(/'/g,"\\'")}', '${d.correo}')">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteDocente(${d.id}, '${d.nombre.replace(/'/g,"\\'")}')">
+                                        <i class="fas fa-trash"></i> Eliminar
+                                    </button>
+                                </div>
+                            </div>
+                        `).join('');
+                    })
+                    .catch(() => {
+                        docentesList.innerHTML = '<p style="text-align:center;color:#e74c3c;padding:20px;">Error al cargar docentes. Verifica la conexión a la base de datos.</p>';
+                    });
+            }
+
+            window.editDocente = function(id, nombre, asignatura, correo) {
+                document.getElementById('docente-nombre').value = nombre;
+                document.getElementById('docente-asignatura').value = asignatura;
+                document.getElementById('docente-correo').value = correo;
+                docenteEditId.value = id;
+                docenteSubmitBtn.innerHTML = '<i class="fas fa-save"></i> Actualizar Docente';
+                docenteCancelEdit.style.display = 'inline-flex';
+                // Scroll al formulario
+                document.getElementById('docente-form').scrollIntoView({ behavior: 'smooth' });
+            };
+
+            window.deleteDocente = function(id, nombre) {
+                if (!confirm('¿Estás seguro de eliminar al docente "' + nombre + '"?')) return;
+                fetch('api/docentes.php', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: id })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Docente eliminado correctamente');
+                        loadDocentes();
+                    } else {
+                        alert('Error: ' + (data.error || 'No se pudo eliminar'));
+                    }
+                })
+                .catch(() => alert('Error de conexión'));
+            };
+
+            if (docenteCancelEdit) {
+                docenteCancelEdit.addEventListener('click', function() {
+                    docenteForm.reset();
+                    docenteEditId.value = '';
+                    docenteSubmitBtn.innerHTML = '<i class="fas fa-save"></i> Guardar Docente';
+                    docenteCancelEdit.style.display = 'none';
+                });
+            }
+
+            if (docenteForm) {
+                docenteForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const nombre = document.getElementById('docente-nombre').value.trim();
+                    const asignatura = document.getElementById('docente-asignatura').value.trim();
+                    const correo = document.getElementById('docente-correo').value.trim();
+                    const editId = docenteEditId.value;
+
+                    if (!nombre || !asignatura || !correo) {
+                        alert('Todos los campos son obligatorios');
+                        return;
+                    }
+
+                    const isEdit = editId !== '';
+                    const method = isEdit ? 'PUT' : 'POST';
+                    const body = { nombre, asignatura, correo };
+                    if (isEdit) body.id = parseInt(editId);
+
+                    fetch('api/docentes.php', {
+                        method: method,
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(body)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(isEdit ? 'Docente actualizado correctamente' : 'Docente agregado correctamente');
+                            docenteForm.reset();
+                            docenteEditId.value = '';
+                            docenteSubmitBtn.innerHTML = '<i class="fas fa-save"></i> Guardar Docente';
+                            docenteCancelEdit.style.display = 'none';
+                            loadDocentes();
+                        } else {
+                            alert('Error: ' + (data.error || 'No se pudo guardar'));
+                        }
+                    })
+                    .catch(() => alert('Error de conexión con el servidor'));
+                });
+            }
+
+            // Cargar docentes al entrar a la sección
+            loadDocentes();
+
+            // ===== NOTICIAS - CONECTAR CON BD =====
+            function loadNoticiasAdmin() {
+                const newsList = document.getElementById('news-list');
+                if (!newsList) return;
+                fetch('api/noticias.php?limit=50')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (!Array.isArray(data) || data.length === 0) {
+                            newsList.innerHTML = '<p style="text-align:center;color:#777;padding:20px;">No hay noticias publicadas.</p>';
+                            return;
+                        }
+                        newsList.innerHTML = data.map(n => {
+                            const fecha = new Date(n.fecha_publicacion).toLocaleDateString('es-ES', {day:'numeric', month:'long', year:'numeric'});
+                            return `
+                            <div class="news-item" data-id="${n.id}">
+                                <div class="news-item-content">
+                                    <div class="news-item-title">${n.titulo}</div>
+                                    <div class="news-item-date">Publicado: ${fecha} | Categoría: ${n.categoria} | Estado: ${n.estado}</div>
+                                    <div class="news-item-preview">${n.contenido.substring(0, 150)}...</div>
+                                </div>
+                                <div class="news-item-actions">
+                                    <button class="btn btn-sm btn-danger" onclick="deleteNoticia(${n.id}, '${n.titulo.replace(/'/g,"\\'")}')">
+                                        <i class="fas fa-trash"></i> Eliminar
+                                    </button>
+                                </div>
+                            </div>`;
+                        }).join('');
+                    })
+                    .catch(() => {});
+            }
+
+            window.deleteNoticia = function(id, titulo) {
+                if (!confirm('¿Eliminar la noticia "' + titulo + '"?')) return;
+                fetch('api/noticias.php', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: id })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Noticia eliminada');
+                        loadNoticiasAdmin();
+                    }
+                });
+            };
+
+            // Sobreescribir envío de noticias para usar BD
+            if (newsForm) {
+                newsForm.removeEventListener('submit', function(){});
+                newsForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const titulo = document.getElementById('news-title').value.trim();
+                    const contenido = document.getElementById('news-content').value.trim();
+                    const imagen_url = document.getElementById('news-image').value.trim();
+                    const categoria = document.getElementById('news-category').value;
+
+                    if (!titulo || !contenido) {
+                        alert('Título y contenido son obligatorios');
+                        return;
+                    }
+
+                    fetch('api/noticias.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ titulo, contenido, imagen_url, categoria, estado: 'publicado' })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('¡Noticia publicada exitosamente!');
+                            newsForm.reset();
+                            showContent('gestionar-noticias');
+                            loadNoticiasAdmin();
+                        } else {
+                            alert('Error: ' + (data.error || 'No se pudo publicar'));
+                        }
+                    })
+                    .catch(() => alert('Error de conexión'));
+                }, true);
+            }
+
+            loadNoticiasAdmin();
+
+            // ===== DOCUMENTOS - CONECTAR CON BD =====
+            function loadDocumentosAdmin() {
+                const docsList = document.getElementById('docs-list');
+                if (!docsList) return;
+                fetch('api/documentos.php')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (!Array.isArray(data) || data.length === 0) {
+                            docsList.innerHTML = '<p style="text-align:center;color:#777;padding:20px;">No hay documentos subidos.</p>';
+                            return;
+                        }
+                        docsList.innerHTML = data.map(d => `
+                            <div class="doc-item-admin" data-id="${d.id}">
+                                <div class="doc-item-info">
+                                    <i class="fas fa-file-pdf doc-icon-admin"></i>
+                                    <div class="doc-details">
+                                        <h4>${d.titulo}</h4>
+                                        <small>Categoría: ${d.categoria} | Tamaño: ${d.archivo_tamano || 'N/A'}</small>
+                                    </div>
+                                </div>
+                                <div class="news-item-actions">
+                                    <button class="btn btn-sm btn-danger" onclick="deleteDocumento(${d.id}, '${d.titulo.replace(/'/g,"\\'")}')">
+                                        <i class="fas fa-trash"></i> Eliminar
+                                    </button>
+                                    ${d.archivo_ruta ? '<a class="btn btn-sm btn-success" href="' + d.archivo_ruta + '" target="_blank"><i class="fas fa-download"></i> Descargar</a>' : ''}
+                                </div>
+                            </div>
+                        `).join('');
+                    })
+                    .catch(() => {});
+            }
+
+            window.deleteDocumento = function(id, titulo) {
+                if (!confirm('¿Eliminar el documento "' + titulo + '"?')) return;
+                fetch('api/documentos.php', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: id })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Documento eliminado');
+                        loadDocumentosAdmin();
+                    }
+                });
+            };
+
+            // Sobreescribir upload de documentos para usar BD
+            if (uploadForm) {
+                uploadForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const titulo = document.getElementById('doc-title').value.trim();
+                    const descripcion = document.getElementById('doc-desc').value.trim();
+                    const categoria = document.getElementById('doc-category').value;
+                    const archivo = fileInput.files[0];
+
+                    if (!titulo) {
+                        alert('El título es obligatorio');
+                        return;
+                    }
+
+                    const formData = new FormData();
+                    formData.append('titulo', titulo);
+                    formData.append('descripcion', descripcion);
+                    formData.append('categoria', categoria);
+                    if (archivo) formData.append('archivo', archivo);
+
+                    if (uploadBtn) {
+                        uploadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subiendo...';
+                        uploadBtn.disabled = true;
+                    }
+
+                    fetch('api/documentos.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('¡Documento subido exitosamente!');
+                            uploadForm.reset();
+                            if (fileInfo) fileInfo.style.display = 'none';
+                            if (uploadBtn) {
+                                uploadBtn.innerHTML = '<i class="fas fa-upload"></i> Subir Documento';
+                                uploadBtn.disabled = true;
+                            }
+                            showContent('gestionar-documentos');
+                            loadDocumentosAdmin();
+                        } else {
+                            alert('Error: ' + (data.error || 'No se pudo subir'));
+                            if (uploadBtn) {
+                                uploadBtn.innerHTML = '<i class="fas fa-upload"></i> Subir Documento';
+                                uploadBtn.disabled = false;
+                            }
+                        }
+                    })
+                    .catch(() => {
+                        alert('Error de conexión');
+                        if (uploadBtn) {
+                            uploadBtn.innerHTML = '<i class="fas fa-upload"></i> Subir Documento';
+                            uploadBtn.disabled = false;
+                        }
+                    });
+                }, true);
+            }
+
+            loadDocumentosAdmin();
+
+            // ===== USUARIOS CRUD =====
+            const usuarioForm = document.getElementById('usuario-form');
+            const usuariosList = document.getElementById('usuarios-list');
+            const usuarioEditId = document.getElementById('usuario-edit-id');
+            const usuarioCancelEdit = document.getElementById('usuario-cancel-edit');
+            const usuarioSubmitBtn = document.getElementById('usuario-submit-btn');
+            const usuarioFormTitle = document.getElementById('usuario-form-title');
+            const passwordHint = document.getElementById('password-hint');
+
+            function loadUsuarios() {
+                if (!usuariosList) return;
+                fetch('api/usuarios.php')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (!Array.isArray(data) || data.length === 0) {
+                            usuariosList.innerHTML = '<p style="text-align:center;color:#777;padding:20px;">No hay usuarios registrados.</p>';
+                            return;
+                        }
+                        usuariosList.innerHTML = data.map(u => {
+                            const permisosLabels = {
+                                'noticias': '<i class="fas fa-newspaper"></i> Noticias',
+                                'documentos': '<i class="fas fa-folder"></i> Documentos',
+                                'academica': '<i class="fas fa-graduation-cap"></i> Académica',
+                                'configuracion': '<i class="fas fa-cog"></i> Configuración',
+                                'docentes': '<i class="fas fa-chalkboard-teacher"></i> Docentes',
+                                'usuarios': '<i class="fas fa-users-cog"></i> Usuarios'
+                            };
+                            const permisosHTML = (u.permisos || []).map(p => 
+                                `<span style="display:inline-flex;align-items:center;gap:4px;background:#e8f5e9;color:#2e7d32;padding:2px 8px;border-radius:12px;font-size:0.75rem;">${permisosLabels[p] || p}</span>`
+                            ).join(' ');
+                            const estadoColor = u.activo == 1 ? 'var(--primary-color)' : '#e74c3c';
+                            const estadoTexto = u.activo == 1 ? 'Activo' : 'Inactivo';
+                            const rolBadge = u.rol === 'admin' 
+                                ? '<span style="background:#e74c3c;color:white;padding:2px 8px;border-radius:12px;font-size:0.75rem;">Admin</span>'
+                                : '<span style="background:#3498db;color:white;padding:2px 8px;border-radius:12px;font-size:0.75rem;">Editor</span>';
+                            
+                            return `
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid ${estadoColor};">
+                                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                                    <div style="flex: 1; min-width: 200px;">
+                                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+                                            <i class="fas fa-user-circle" style="font-size: 1.8rem; color: ${estadoColor};"></i>
+                                            <div>
+                                                <strong style="font-size: 1rem;">${u.nombre}</strong> ${rolBadge}
+                                                <span style="background:${estadoColor};color:white;padding:2px 8px;border-radius:12px;font-size:0.75rem;margin-left:5px;">${estadoTexto}</span>
+                                                <div style="color: #777; font-size: 0.85rem;">${u.email}</div>
+                                            </div>
+                                        </div>
+                                        <div style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 5px;">
+                                            ${permisosHTML || '<span style="color:#999;font-size:0.8rem;">Sin permisos asignados</span>'}
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button class="btn btn-sm btn-primary" onclick="editUsuario(${u.id})" style="padding: 6px 12px;">
+                                            <i class="fas fa-edit"></i> Editar
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" onclick="deleteUsuario(${u.id}, '${u.nombre.replace(/'/g,"\\'")}')" style="padding: 6px 12px;">
+                                            <i class="fas fa-trash"></i> Eliminar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>`;
+                        }).join('');
+                    })
+                    .catch(() => {
+                        usuariosList.innerHTML = '<p style="text-align:center;color:#e74c3c;padding:20px;">Error al cargar usuarios.</p>';
+                    });
+            }
+
+            window.editUsuario = function(id) {
+                fetch('api/usuarios.php?id=' + id)
+                    .then(res => res.json())
+                    .then(u => {
+                        if (u.error) { alert(u.error); return; }
+                        document.getElementById('usuario-nombre').value = u.nombre;
+                        document.getElementById('usuario-email').value = u.email;
+                        document.getElementById('usuario-password').value = '';
+                        document.getElementById('usuario-rol').value = u.rol;
+                        usuarioEditId.value = u.id;
+
+                        // Marcar checkboxes de permisos
+                        document.querySelectorAll('input[name="permisos"]').forEach(cb => {
+                            cb.checked = (u.permisos || []).includes(cb.value);
+                        });
+
+                        usuarioFormTitle.innerHTML = '<i class="fas fa-user-edit"></i> Editando Usuario: ' + u.nombre;
+                        usuarioSubmitBtn.innerHTML = '<i class="fas fa-save"></i> Actualizar Usuario';
+                        passwordHint.textContent = '(dejar vacío para no cambiar)';
+                        usuarioCancelEdit.style.display = 'inline-flex';
+                        
+                        document.getElementById('usuario-form').scrollIntoView({ behavior: 'smooth' });
+                    })
+                    .catch(() => alert('Error cargando datos del usuario'));
+            };
+
+            window.deleteUsuario = function(id, nombre) {
+                if (!confirm('¿Estás seguro de eliminar al usuario "' + nombre + '"?\n\nEsta acción no se puede deshacer.')) return;
+                fetch('api/usuarios.php', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: id })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Usuario eliminado correctamente');
+                        loadUsuarios();
+                    } else {
+                        alert('Error: ' + (data.error || 'No se pudo eliminar'));
+                    }
+                })
+                .catch(() => alert('Error de conexión'));
+            };
+
+            if (usuarioCancelEdit) {
+                usuarioCancelEdit.addEventListener('click', function() {
+                    usuarioForm.reset();
+                    usuarioEditId.value = '';
+                    usuarioFormTitle.innerHTML = '<i class="fas fa-user-plus"></i> Agregar Nuevo Usuario';
+                    usuarioSubmitBtn.innerHTML = '<i class="fas fa-save"></i> Crear Usuario';
+                    passwordHint.textContent = '(obligatoria)';
+                    usuarioCancelEdit.style.display = 'none';
+                    // Restaurar checkboxes por defecto
+                    document.querySelectorAll('input[name="permisos"]').forEach(cb => {
+                        cb.checked = ['noticias', 'documentos', 'academica'].includes(cb.value);
+                    });
+                });
+            }
+
+            if (usuarioForm) {
+                usuarioForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const nombre = document.getElementById('usuario-nombre').value.trim();
+                    const email = document.getElementById('usuario-email').value.trim();
+                    const password = document.getElementById('usuario-password').value;
+                    const rol = document.getElementById('usuario-rol').value;
+                    const editId = usuarioEditId.value;
+                    const isEdit = editId !== '';
+
+                    // Obtener permisos seleccionados
+                    const permisos = [];
+                    document.querySelectorAll('input[name="permisos"]:checked').forEach(cb => {
+                        permisos.push(cb.value);
+                    });
+
+                    if (!nombre || !email) {
+                        alert('Nombre y correo son obligatorios');
+                        return;
+                    }
+
+                    if (!isEdit && !password) {
+                        alert('La contraseña es obligatoria para nuevos usuarios');
+                        return;
+                    }
+
+                    const body = { nombre, email, rol, permisos, activo: 1 };
+                    if (password) body.password = password;
+                    if (isEdit) body.id = parseInt(editId);
+
+                    fetch('api/usuarios.php', {
+                        method: isEdit ? 'PUT' : 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(body)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(isEdit ? 'Usuario actualizado correctamente' : 'Usuario creado correctamente');
+                            usuarioForm.reset();
+                            usuarioEditId.value = '';
+                            usuarioFormTitle.innerHTML = '<i class="fas fa-user-plus"></i> Agregar Nuevo Usuario';
+                            usuarioSubmitBtn.innerHTML = '<i class="fas fa-save"></i> Crear Usuario';
+                            passwordHint.textContent = '(obligatoria)';
+                            usuarioCancelEdit.style.display = 'none';
+                            document.querySelectorAll('input[name="permisos"]').forEach(cb => {
+                                cb.checked = ['noticias', 'documentos', 'academica'].includes(cb.value);
+                            });
+                            loadUsuarios();
+                        } else {
+                            alert('Error: ' + (data.error || 'No se pudo guardar'));
+                        }
+                    })
+                    .catch(() => alert('Error de conexión con el servidor'));
+                });
+            }
+
+            loadUsuarios();
+
+            // ===== SISTEMA DE PERMISOS: Ocultar secciones según permisos del usuario =====
+            window.applyPermissions = function() {
+                const userData = sessionStorage.getItem('admin_user');
+                if (!userData) return;
+                
+                const user = JSON.parse(userData);
+                const permisos = user.permisos || [];
+                
+                // Si es admin con todos los permisos, no hacer nada
+                if (user.rol === 'admin' && permisos.length === 0) return;
+                
+                // Mapeo de permisos a los data-content del sidebar
+                const permissionMap = {
+                    'noticias': ['noticias', 'publicar-noticia', 'gestionar-noticias'],
+                    'documentos': ['documentos', 'subir-documentos', 'gestionar-documentos'],
+                    'academica': ['academica', 'oferta-academica', 'plan-estudios', 'evaluacion', 'proyectos', 'actualidad-academica'],
+                    'configuracion': ['configuracion'],
+                    'docentes': ['gestion-admin', 'docentes'],
+                    'usuarios': ['configuracion']
+                };
+
+                // Recopilar todos los data-content permitidos
+                const allowedContents = new Set(['inicio']); // Inicio siempre visible
+                permisos.forEach(perm => {
+                    const contents = permissionMap[perm] || [];
+                    contents.forEach(c => allowedContents.add(c));
+                });
+
+                // Ocultar menús no permitidos
+                document.querySelectorAll('.menu-item').forEach(item => {
+                    const link = item.querySelector('.menu-link');
+                    if (!link) return;
+                    const contentId = link.getAttribute('data-content');
+                    if (!contentId) return;
+                    
+                    if (!allowedContents.has(contentId)) {
+                        item.style.display = 'none';
+                    } else {
+                        item.style.display = '';
+                    }
+                });
+            }
+
+            applyPermissions();
         });
     </script>
 </body>

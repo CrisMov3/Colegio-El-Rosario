@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docentes | Colegio El Rosario Itagüí</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
+
+    <style>
+        .history-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .history-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .history-subtitle {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #003d80;
+        }
+
+        /* === Estilos Docentes === */
+        .docentes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 10px;
+        }
+
+        .docente-card {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .docente-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.13);
+        }
+
+        .docente-avatar {
+            width: 68px;
+            height: 68px;
+            min-width: 68px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #008ba3, #2e7d32);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.6rem;
+        }
+
+        .docente-info h4 {
+            margin: 0 0 8px 0;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .docente-asignatura {
+            color: #008ba3;
+            font-weight: 600;
+            margin: 0 0 5px 0;
+            font-size: 0.95rem;
+        }
+
+        .docente-asignatura i {
+            margin-right: 6px;
+        }
+
+        .docente-correo {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .docente-correo a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .docente-correo a:hover {
+            color: #008ba3;
+        }
+
+        .docente-correo i {
+            margin-right: 6px;
+        }
+
+        .loading-msg {
+            text-align: center;
+            padding: 40px;
+            color: #777;
+        }
+
+        .loading-msg i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+            color: #008ba3;
+        }
+
+        @media (max-width: 768px) {
+            .docentes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- BARRA GOV.CO -->
+<div class="gov-bar">
+    <div class="gov-container">
+        <img src="https://govco-prod-webutils.s3.us-east-1.amazonaws.com/uploads/2025-08-29/f2b1a485-5e1a-4ac3-a002-067b69bed7aa-1imagen_noticia.png"
+             alt="GOV.CO"
+             class="gov-logo">
+
+        <div class="gov-right">
+            <a href="docentes.html" class="lang-btn active">ES</a>
+            <a href="docentes-en.html" class="lang-btn">EN</a>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER PRINCIPAL -->
+<header class="main-header">
+    <div class="container header-content">
+
+        <!-- LOGO -->
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Logo Institucional" class="logo-img">
+            <div class="logo-text">
+                <h1>Colegio El Rosario de Itagüí</h1>
+                <span>Itagüí · Antioquia</span>
+            </div>
+        </div>
+
+        <!-- NAV -->
+        <nav class="main-nav">
+            <ul class="nav-links">
+
+                <li><a href="index.html">Inicio</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Institucional</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="resena-historica.html">Reseña histórica</a></li>   
+                        <li><a href="mision-vision.html">Misión, visión y valores</a></li>
+                        <li><a href="PDF/MANUAL DE CONVIVENCIA COLEGIO EL ROSARIO.pdf" target="_blank">Manual de Convivencia</a></li>
+                        <li><a href="Gobierno Escolar.html">Gobierno Escolar</a></li>
+                        <li><a href="Símbolos institucionales.html">Símbolos institucionales</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Académica</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="oferta-academica.html">Oferta académica</a></li>
+                        <li><a href="plan-estudio.html">Plan de estudios</a></li>
+                        <li><a href="Evaluación y promoción.html">Evaluación y promoción</a></li>
+                        <li><a href="Proyectos pedagógicos.html">Proyectos pedagógicos</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Gestión Administrativa</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Talento humano.html">Talento humano</a></li>
+                        <li><a href="contratacion.html">Contratación</a></li>
+                        <li><a href="presupuesto.html">Presupuesto</a></li>
+                        <li><a href="tramites.html">Trámites</a></li>
+                        <li><a href="docentes.html">Docentes</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Gestión a la Comunidad</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="atencion-ciudadano.html">Atención al ciudadano</a></li>
+                        <li><a href="escuela-padres.html">Escuela de padres</a></li>
+                        <li><a href="participacion.html">Participación</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="index.html#pqrs" class="pqrs-link">PQRS</a>
+                </li>
+
+            </ul>
+
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+    </div>
+</header>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="history-container">
+
+    <h2 class="history-title"><i class="fas fa-chalkboard-teacher"></i> Nuestros Docentes</h2>
+    <p class="history-subtitle">
+        Conoce al equipo de profesionales que guían la formación integral de nuestros estudiantes 
+        en el Colegio El Rosario de Itagüí.
+    </p>
+
+    <div class="docentes-grid" id="docentes-container">
+        <div class="loading-msg">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Cargando docentes...</p>
+        </div>
+    </div>
+
+    <a class="back-btn" href="index.html">
+        <i class="fas fa-arrow-left"></i> Volver al Inicio
+    </a>
+
+</main>
+
+<!-- Footer Principal -->
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h4>Enlaces Legales</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Política de tratamiento de datos</a></li>
+                    <li><a href="https://www.google.com/maps/place/COLEGIO+EL+ROSARIO+ITAGU%C3%AD/" target="_blank"><i class="fas fa-sitemap"></i> Mapa del sitio</a></li>
+                    <li><a href="#"><i class="fas fa-user-shield"></i> Política de privacidad</a></li>
+                    <li><a href="#"><i class="fas fa-balance-scale"></i> Términos y condiciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Contacto Rápido</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:colegioelrosario.rectoria@gmail.com"><i class="fas fa-envelope"></i> colegioelrosario.rectoria@gmail.com</a></li>
+                    <li><a href="tel:+573006076615"><i class="fas fa-phone"></i> +57 (604) 300 6076615</a></li>
+                    <li><a href="https://wa.me/573006076615" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp: 305 466 9090</a></li>
+                    <li><a href="index.html#contacto"><i class="fas fa-headset"></i> Centro de Atención</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Estadísticas</h4>
+                <div class="visit-counter">
+                    <div class="counter-item">
+                        <span class="counter-number">5,971,675</span>
+                        <span class="counter-label">Visitas Totales</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">46,418</span>
+                        <span class="counter-label">Visitas este Mes</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">2,203</span>
+                        <span class="counter-label">Visitas Hoy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="logos-container">
+                <div class="institutional-logos">
+                    <img src="img/logo.png" alt="Logo Colegio El Rosario" class="footer-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Colombia.svg/1280px-Flag_of_Colombia.svg.png" alt="Bandera Colombia" class="flag-logo">
+                    <img src="https://cdn.www.gov.co/assets/images/Vertical-Color.png" alt="GOV.CO" class="gov-logo-footer">
+                </div>
+                
+                <div class="developer-logo">
+                    <span>Desarrollado por</span>
+                    <div class="strokbig-logo">
+                        <img src="img/Strokbig-Logo-BLANCO-+-[MR].png" alt="Strokbig">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Institución Educativa El Rosario Itagüí. Todos los derechos reservados.</p>
+                <p class="footer-note">Itagüí, Antioquia - Colombia</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    const dropdowns = document.querySelectorAll(".dropdown > a");
+
+    hamburger.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+    });
+
+    dropdowns.forEach(link => {
+        link.addEventListener("click", function (e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                this.parentElement.classList.toggle("open");
+            }
+        });
+    });
+
+    // Cargar docentes desde la base de datos
+    const container = document.getElementById('docentes-container');
+    if (container) {
+        fetch('api/docentes.php')
+            .then(res => res.json())
+            .then(docentes => {
+                if (!Array.isArray(docentes) || docentes.length === 0) {
+                    container.innerHTML = '<p style="text-align:center;color:#777;padding:30px;">No hay docentes registrados actualmente.</p>';
+                    return;
+                }
+                container.innerHTML = docentes.map(d => `
+                    <div class="docente-card">
+                        <div class="docente-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="docente-info">
+                            <h4>${d.nombre}</h4>
+                            <p class="docente-asignatura"><i class="fas fa-book"></i> ${d.asignatura}</p>
+                            <p class="docente-correo"><a href="mailto:${d.correo}"><i class="fas fa-envelope"></i> ${d.correo}</a></p>
+                        </div>
+                    </div>
+                `).join('');
+            })
+            .catch(() => {
+                container.innerHTML = '<p style="text-align:center;color:#e74c3c;padding:30px;">No se pudieron cargar los docentes. Intente más tarde.</p>';
+            });
+    }
+});
+</script>
+</body>
+</html>

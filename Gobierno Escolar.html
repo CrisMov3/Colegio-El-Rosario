@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gobierno Escolar | Colegio El Rosario Itagüí</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
+
+    <style>
+        .history-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .history-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .history-subtitle {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .history-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            border-left: 6px solid #007bff;
+        }
+
+        .history-card p {
+            font-size: 1.05rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .history-card h3 {
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            color: #0056b3;
+            font-weight: 800;
+        }
+
+        .history-card h4 {
+            margin-top: 18px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: #003366;
+            font-weight: 800;
+        }
+
+        ul.lista {
+            margin-top: 10px;
+            padding-left: 25px;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #333;
+        }
+
+        ul.lista li {
+            margin-bottom: 8px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #003d80;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- BARRA GOV.CO -->
+<div class="gov-bar">
+    <div class="gov-container">
+        <img src="https://govco-prod-webutils.s3.us-east-1.amazonaws.com/uploads/2025-08-29/f2b1a485-5e1a-4ac3-a002-067b69bed7aa-1imagen_noticia.png"
+             alt="GOV.CO"
+             class="gov-logo">
+
+        <div class="gov-right">
+            <a href="Gobierno Escolar.html" class="lang-btn active">ES</a>
+            <a href="Gobierno Escolar-en.html" class="lang-btn">EN</a>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER PRINCIPAL -->
+<header class="main-header">
+    <div class="container header-content">
+
+        <!-- LOGO -->
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Logo Institucional" class="logo-img">
+            <div class="logo-text">
+                <h1>Colegio El Rosario de Itagüí</h1>
+                <span>Itagüí · Antioquia</span>
+            </div>
+        </div>
+
+        <!-- NAV -->
+        <nav class="main-nav">
+            <ul class="nav-links">
+
+                <li><a href="index.html">Inicio</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Institucional</a>
+                <ul class="dropdown-menu">
+                        <li><a href="resena-historica.html">Reseña histórica</a></li>   
+                        <li><a href="mision-vision.html">Misión, visión y valores</a></li>
+                        <li><a href="PDF/MANUAL DE CONVIVENCIA COLEGIO EL ROSARIO.pdf" target="_blank">Manual de Convivencia</a></li>
+                        <li><a href="Gobierno Escolar.html">Gobierno Escolar</a></li>
+                        <li><a href="Símbolos institucionales.html">Símbolos institucionales</a></li>
+                    </ul>
+
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Académica</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="oferta-academica.html">Oferta académica</a></li>
+                        <li><a href="plan-estudio.html">Plan de estudios</a></li>
+                        <li><a href="Evaluación y promoción.html">Evaluación y promoción</a></li>
+                        <li><a href="Proyectos pedagógicos.html">Proyectos pedagógicos</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Gestión Administrativa</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Talento humano.html">Talento humano</a></li>
+                        <li><a href="contratacion.html">Contratación</a></li>
+                        <li><a href="presupuesto.html">Presupuesto</a></li>
+                        <li><a href="tramites.html">Trámites</a></li>
+                        <li><a href="docentes.html">Docentes</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Gestión a la Comunidad</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="atencion-ciudadano.html">Atención al ciudadano</a></li>
+                        <li><a href="escuela-padres.html">Escuela de padres</a></li>
+                        <li><a href="participacion.html">Participación</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#pqrs" class="pqrs-link">PQRS</a>
+                </li>
+
+            </ul>
+
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+    </div>
+</header>
+<!-- CONTENIDO PRINCIPAL -->
+<main class="history-container">
+
+    <h2 class="history-title">Gobierno Escolar</h2>
+    <p class="history-subtitle">
+        Conoce la estructura organizativa, los organismos directivos y las instancias de participación
+        que garantizan el cumplimiento del Proyecto Educativo Institucional del Colegio El Rosario de Itagüí.
+    </p>
+
+    <div class="history-card">
+
+        <h3>🏛️ Estructura y Gobierno Escolar</h3>
+        <p>
+            La estructura académica y administrativa del Colegio El Rosario de Itagüí, así como su sistema
+            de gobierno y participación escolar, se basan en la filosofía institucional y en los lineamientos
+            trazados por la Ley General de la Educación. Todas las instancias de dirección y de participación
+            tienen funciones y responsabilidades orientadas a garantizar el logro de los propósitos del
+            proyecto educativo.
+        </p>
+
+        <h3> 3.1. Organigrama</h3>
+        <ul class="lista">
+            <li>Presidente y representante legal de la Sociedad.</li>
+            <li>Consejo directivo.</li>
+            <li>Rectoría.</li>
+            <li>Consejo académico.</li>
+            <li>Comité de convivencia.</li>
+            <li>Coordinación general del Colegio (con funciones académicas y de convivencia).</li>
+            <li>Coordinadores o directores de grupo.</li>
+            <li>Coordinadores de área.</li>
+            <li>Docentes de área.</li>
+            <li>Consejo de padres.</li>
+            <li>Consejo estudiantil.</li>
+            <li>Personería escolar.</li>
+        </ul>
+
+        <h3> 3.2. Organismos Directivos</h3>
+
+        <h4>3.2.1. Consejo Directivo</h4>
+        <p>
+            Es la máxima instancia gubernativa escolar. Tiene carácter participativo y decisorio, con el
+            criterio primordial de apoyar, orientar y evaluar en forma permanente el Proyecto Educativo
+            Institucional del Colegio El Rosario de Itagüí.
+        </p>
+
+        <h4>3.2.1.1. Composición</h4>
+        <ul class="lista">
+            <li>El titular de la Rectoría, quien lo presidirá.</li>
+            <li>Un representante del personal docente, elegido por mayoría.</li>
+            <li>Un representante de los estudiantes (de grado 11°).</li>
+            <li>Un representante de los padres de familia, elegido por el Consejo de Padres.</li>
+            <li>Un representante de los exalumnos.</li>
+            <li>Un representante de los trabajadores administrativos.</li>
+            <li>Un representante de los sectores productivos organizados en el área de influencia.</li>
+        </ul>
+
+        <p>
+            Asisten además como invitados permanentes, con derecho a voz, pero sin voto:
+        </p>
+
+        <ul class="lista">
+            <li>El titular de la Secretaría Académica (Secretaría Técnica del Consejo Directivo).</li>
+        </ul>
+
+        <p>
+            De manera ocasional, podrá ser invitado cualquier miembro de la comunidad educativa,
+            si su presencia es pertinente y necesaria para el desarrollo del orden del día.
+        </p>
+
+        <h4>3.2.1.2. Funciones</h4>
+
+        <h4> En relación con el funcionamiento de la Institución:</h4>
+        <ul class="lista">
+            <li>Tomar decisiones que beneficien o solucionen problemas institucionales.</li>
+            <li>Dirigir y fijar pautas para la elaboración, adopción y evaluación del PEI, Manual de Convivencia, Sistema de Evaluación, currículo y plan de estudios.</li>
+            <li>Fijar criterios para la asignación de cupos escolares disponibles.</li>
+            <li>Participar en la evaluación del personal y hacer recomendaciones a la Junta Directiva.</li>
+            <li>Darse su propio reglamento.</li>
+        </ul>
+
+        <h4> En relación con la Comunidad Educativa:</h4>
+        <ul class="lista">
+            <li>Servir de última instancia para dirimir conflictos entre miembros del Colegio.</li>
+            <li>Defender los derechos de la comunidad educativa.</li>
+            <li>Diseñar programas de estímulos para estudiantes y la institución.</li>
+            <li>Fijar criterios para integración cultural, deportiva, recreativa y estudiantil.</li>
+        </ul>
+
+        <h4>3.2.2. Rectoría</h4>
+        <p>
+            Es la máxima instancia ejecutiva del Colegio. Ejerce su representación ante la Secretaría de
+            Educación y dirige el plantel de acuerdo con las políticas establecidas en el PEI. La Rectoría
+            es responsable de ejecutar las decisiones del Consejo Directivo.
+        </p>
+
+        <p><strong>Funciones:</strong></p>
+        <ul class="lista">
+            <li>Orientar la ejecución del proyecto institucional y aplicar decisiones del gobierno escolar.</li>
+            <li>Presidir el Consejo Directivo, Comité de Convivencia, Consejo Académico y Consejo Estudiantil.</li>
+            <li>Convocar y apoyar el Consejo de Padres de Familia.</li>
+            <li>Promover el mejoramiento continuo de la calidad educativa.</li>
+            <li>Articular la evaluación institucional y estrategias de mejoramiento.</li>
+            <li>Representar al Colegio ante autoridades educativas y aliados institucionales.</li>
+            <li>Facilitar canales de comunicación entre los estamentos.</li>
+            <li>Ejercer funciones de convivencia atribuidas por la ley.</li>
+            <li>Aplicar disposiciones del Estado sobre el servicio educativo.</li>
+            <li>Validar documentos y certificados expedidos por Secretaría Académica.</li>
+            <li>Rendir cuentas a la Junta Directiva de la Sociedad San Vicente de Paúl.</li>
+            <li>Otras funciones complementarias asignadas por el PEI.</li>
+        </ul>
+
+        <h4>3.2.3. Consejo Académico</h4>
+        <p>
+            Orienta y lidera el trabajo en equipo y pone en práctica la política pedagógica institucional.
+            Planea, dirige, ejecuta y controla la gestión administrativo-pedagógica con los docentes.
+        </p>
+
+        <h4>3.2.3.1. Composición</h4>
+        <ul class="lista">
+            <li>El/la titular de la Rectoría.</li>
+            <li>El/la titular de la Coordinación Pedagógica.</li>
+            <li>Coordinadores de áreas básicas y complementarias.</li>
+            <li>El/la titular de Orientación Escolar.</li>
+        </ul>
+
+        <h4>3.2.3.2. Funciones</h4>
+        <ul class="lista">
+            <li>Orientar la construcción y desarrollo del currículo y plan de estudios.</li>
+            <li>Definir y socializar el calendario escolar.</li>
+            <li>Hacer seguimiento y ajustes académicos según logros establecidos.</li>
+            <li>Coordinar actividades internas y salidas pedagógicas.</li>
+            <li>Decidir sobre promociones escolares.</li>
+            <li>Atender reclamos de estudiantes sobre evaluación educativa.</li>
+            <li>Articular estrategias pedagógicas con el Comité de Convivencia.</li>
+            <li>Aportar análisis sobre continuidad de estudiantes en la institución.</li>
+            <li>Participar en evaluación del desempeño docente.</li>
+            <li>Participar en evaluación institucional.</li>
+            <li>Sistematizar su actuación mediante actas.</li>
+        </ul>
+
+        <h4>3.2.3.3. Operación</h4>
+        <p>
+            El Consejo Académico sesionará una vez por mes, con intensidad horaria definida por el mismo
+            Comité según las necesidades institucionales.
+        </p>
+
+        <h3> 3.3. Instancias Administrativo – Pedagógicas</h3>
+
+        <h4>3.3.1. Coordinación Pedagógica</h4>
+        <p>
+            Orienta el desempeño del cuerpo docente y lidera proyectos que aportan a la permanente
+            cualificación del proceso enseñanza-aprendizaje.
+        </p>
+
+        <p><strong>Funciones:</strong></p>
+        <ul class="lista">
+            <li>Supervisar el plan de estudios y calendario escolar.</li>
+            <li>Velar por el cumplimiento de funciones docentes y provisión de recursos.</li>
+            <li>Gestionar la convivencia escolar según el Manual de Convivencia.</li>
+            <li>Coordinar talleres extracurriculares.</li>
+            <li>Articular sesiones del Consejo Académico.</li>
+            <li>Coordinar evaluación y ajustes del currículo.</li>
+            <li>Dirigir reuniones plenarias de maestros.</li>
+            <li>Asistir al Comité de Convivencia Escolar.</li>
+            <li>Diseñar planes de formación docente.</li>
+            <li>Sistematizar la experiencia educativa.</li>
+            <li>Producir y difundir la Agenda Semanal.</li>
+            <li>Participar en selección e inducción de docentes.</li>
+        </ul>
+
+        <h4>3.3.2. Coordinación de Áreas Académicas</h4>
+        <p>
+            Facilita la secuenciación del aprendizaje en los diferentes grados y realiza seguimiento a los
+            logros de competencias por niveles.
+        </p>
+
+        <p><strong>Funciones:</strong></p>
+        <ul class="lista">
+            <li>Monitorear el cumplimiento del plan de estudios del área.</li>
+            <li>Liderar la cualificación de procesos pedagógicos en su disciplina.</li>
+            <li>Reportar necesidades de ajustes curriculares.</li>
+            <li>Recomendar temas para formación docente.</li>
+        </ul>
+
+        <h4>3.3.3. Coordinación de Grupos</h4>
+        <p>
+            Es realizada por un docente que orienta y dirige el grupo en aspectos académicos y convivenciales.
+        </p>
+
+        <p><strong>Funciones:</strong></p>
+        <ul class="lista">
+            <li>Acompañar permanentemente a los estudiantes en lo académico y convivencial.</li>
+            <li>Socializar necesidades del grupo ante Coordinación Pedagógica.</li>
+            <li>Orientar en criterios del Manual de Convivencia.</li>
+            <li>Mantener comunicación fluida con padres de familia.</li>
+            <li>Diseñar estrategias con Orientación Escolar para casos específicos.</li>
+            <li>Reportar necesidades educativas especiales.</li>
+            <li>Articular estrategias con maestros del grupo.</li>
+            <li>Organizar expedientes de estudiantes.</li>
+            <li>Liderar reuniones y actividades con padres representantes.</li>
+            <li>Coordinar salidas pedagógicas y actividades colectivas.</li>
+        </ul>
+
+        <h3> 3.4. Órganos de Representación y Participación</h3>
+
+        <h4>3.4.1. Personería Escolar</h4>
+        <p>
+            Representa la vocería y participación del estudiantado en la toma de decisiones relacionadas con
+            la vida escolar. El personero escolar es un alumno de 11° grado, elegido democráticamente.
+        </p>
+
+        <p><strong>Funciones:</strong></p>
+        <ul class="lista">
+            <li>Liderar acciones en pro del bienestar de la comunidad educativa.</li>
+            <li>Intervenir como mediador en conflictos escolares.</li>
+            <li>Tramitar quejas y reclamos por vulneración de derechos.</li>
+            <li>Presentar solicitudes necesarias para proteger derechos estudiantiles.</li>
+        </ul>
+
+        <h4>3.4.2. Consejo Estudiantil</h4>
+        <p>
+            Organismo de participación que se reúne por convocatoria de Rectoría para analizar aspectos
+            de la vida institucional.
+        </p>
+
+        <h4>3.4.2.1. Composición</h4>
+        <ul class="lista">
+            <li>El titular de Rectoría (lo preside).</li>
+            <li>Dos docentes representantes (preescolar/primaria y secundaria/media).</li>
+            <li>Un estudiante por cada grupo de 3° a 11°.</li>
+        </ul>
+
+        <h4>3.4.2.2. Funciones</h4>
+        <ul class="lista">
+            <li>Proponer alternativas para mejorar el aprendizaje y ambiente escolar.</li>
+            <li>Articular proyectos institucionales.</li>
+            <li>Participar en evaluación de procesos escolares.</li>
+            <li>Socializar novedades institucionales con los grupos.</li>
+        </ul>
+
+        <h4>3.4.3. Consejo de Padres de Familia</h4>
+        <p>
+            Está conformado por representantes de cada grupo elegidos en la primera reunión de padres.
+        </p>
+
+        <p><strong>Funciones:</strong></p>
+        <ul class="lista">
+            <li>Contribuir a relaciones cordiales entre padres, estudiantes y docentes.</li>
+            <li>Facilitar comunicación entre padres y órganos del gobierno escolar.</li>
+            <li>Promover la Escuela de Padres.</li>
+            <li>Desarrollar actividades culturales, recreativas y de capacitación.</li>
+            <li>Apoyar actividades para consecución de recursos.</li>
+            <li>Participar en construcción del PEI y Manual de Convivencia.</li>
+            <li>Elegir representante en el Consejo Directivo.</li>
+            <li>Servir de grupo consultivo para proyectos institucionales.</li>
+            <li>Participar en evaluación institucional.</li>
+        </ul>
+
+        <h4>3.4.4. Reuniones de Grupo</h4>
+        <p>
+            Se realizan en el primer mes del calendario escolar y al final de cada periodo académico,
+            con el fin de fortalecer la relación familia-colegio e informar sobre el estado del grupo.
+        </p>
+
+        <h4>3.4.5. Reuniones de Profesores</h4>
+        <p>
+            Espacio para analizar aspectos generales de la vida escolar o situaciones específicas. Es un
+            escenario participativo y de apoyo en el sistema gubernativo del Colegio, en cumplimiento de
+            los objetivos de formación y el Plan Operativo Anual Rosarista (POAR).
+        </p>
+
+    </div>
+
+    <a class="back-btn" href="index.html">
+        <i class="fas fa-arrow-left"></i> Volver al Inicio
+    </a>
+
+</main>
+
+<!-- Footer Principal Rediseñado -->
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Columna 1: Políticas -->
+            <div class="footer-column">
+                <h4>Enlaces Legales</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Política de tratamiento de datos</a></li>
+                    <li><a href="#"><i class="fas fa-sitemap"></i> Mapa del sitio</a></li>
+                    <li><a href="#"><i class="fas fa-user-shield"></i> Política de privacidad</a></li>
+                    <li><a href="#"><i class="fas fa-balance-scale"></i> Términos y condiciones</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 2: Contacto Rápido -->
+            <div class="footer-column">
+                <h4>Contacto Rápido</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@idem.edu.co"><i class="fas fa-envelope"></i> info@idem.edu.co</a></li>
+                    <li><a href="tel:+5745822222"><i class="fas fa-phone"></i> +57 (604) 582 22 22</a></li>
+                    <li><a href="https://wa.me/573054669090"><i class="fab fa-whatsapp"></i> WhatsApp: 305 466 9090</a></li>
+                    <li><a href="#contacto"><i class="fas fa-headset"></i> Centro de Atención</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Contador de Visitas -->
+            <div class="footer-column">
+                <h4>Estadísticas</h4>
+                <div class="visit-counter">
+                    <div class="counter-item">
+                        <span class="counter-number">5,971,675</span>
+                        <span class="counter-label">Visitas Totales</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">46,418</span>
+                        <span class="counter-label">Visitas este Mes</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">2,203</span>
+                        <span class="counter-label">Visitas Hoy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logos y Copyright -->
+        <div class="footer-bottom">
+            <div class="logos-container">
+                <div class="institutional-logos">
+                    <img src="img/logo.png" alt="Logo Colegio El Rosario" class="footer-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Colombia.svg/1280px-Flag_of_Colombia.svg.png" alt="Bandera Colombia" class="flag-logo">
+                    <img src="https://cdn.www.gov.co/assets/images/Vertical-Color.png" alt="GOV.CO" class="gov-logo-footer">
+                </div>
+                
+                <div class="developer-logo">
+                    <span>Desarrollado por</span>
+                    <div class="strokbig-logo">
+                        <img src="img/Strokbig-Logo-BLANCO-+-[MR].png" alt="Strokbig">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Institución Educativa El Rosario Itagüí. Todos los derechos reservados.</p>
+                <p class="footer-note">Itagüí, Antioquia - Colombia</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    const dropdowns = document.querySelectorAll(".dropdown > a");
+
+    // Abrir / cerrar menú principal
+    hamburger.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+    });
+
+    // Dropdown en móvil
+    dropdowns.forEach(link => {
+        link.addEventListener("click", function (e) {
+
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                this.parentElement.classList.toggle("open");
+            }
+
+        });
+    });
+
+});
+</script>
+</body>
+</html>

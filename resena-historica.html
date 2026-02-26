@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reseña Histórica | Colegio El Rosario Itagüí</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
+
+    <style>
+        /* Estilos extra para la página de reseña */
+        .history-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .history-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .history-subtitle {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .history-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            border-left: 6px solid #007bff;
+        }
+
+        .history-card p {
+            font-size: 1.05rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .history-section {
+            margin-top: 40px;
+        }
+
+        .timeline {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .timeline-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 18px;
+            border-left: 5px solid #28a745;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .timeline-item h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #0056b3;
+            font-weight: 800;
+        }
+
+        .timeline-item p {
+            margin-top: 8px;
+            margin-bottom: 0;
+            color: #333;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #003d80;
+        }
+
+        .note-box {
+            margin-top: 35px;
+            background: #eaf4ff;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 6px solid #007bff;
+        }
+
+        .note-box h4 {
+            margin: 0 0 10px 0;
+            color: #003366;
+            font-weight: 800;
+        }
+
+        .note-box p {
+            margin: 0;
+            color: #333;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- BARRA GOV.CO -->
+<div class="gov-bar">
+    <div class="gov-container">
+        <img src="https://govco-prod-webutils.s3.us-east-1.amazonaws.com/uploads/2025-08-29/f2b1a485-5e1a-4ac3-a002-067b69bed7aa-1imagen_noticia.png"
+             alt="GOV.CO"
+             class="gov-logo">
+
+        <div class="gov-right">
+             <a href="resena-historica.html" class="lang-btn active" id="btn-es">ES</a>
+    <a href="resena-historica-en.html" class="lang-btn" id="btn-en">EN</a>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER PRINCIPAL -->
+<header class="main-header">
+    <div class="container header-content">
+
+        <!-- LOGO -->
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Logo Institucional" class="logo-img">
+            <div class="logo-text">
+                <h1>Colegio El Rosario de Itagüí</h1>
+                <span>Itagüí · Antioquia</span>
+            </div>
+        </div>
+
+        <!-- NAV -->
+        <nav class="main-nav">
+            <ul class="nav-links">
+
+                <li><a href="index.html">Inicio</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Institucional</a>
+                <ul class="dropdown-menu">
+                        <li><a href="resena-historica.html">Reseña histórica</a></li>   
+                        <li><a href="mision-vision.html">Misión, visión y valores</a></li>
+                        <li><a href="PDF/MANUAL DE CONVIVENCIA COLEGIO EL ROSARIO.pdf" target="_blank">Manual de Convivencia</a></li>
+                        <li><a href="Gobierno Escolar.html">Gobierno Escolar</a></li>
+                        <li><a href="Símbolos institucionales.html">Símbolos institucionales</a></li>
+                    </ul>
+
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Académica</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="oferta-academica.html">Oferta académica</a></li>
+                        <li><a href="plan-estudio.html">Plan de estudios</a></li>
+                        <li><a href="Evaluación y promoción.html">Evaluación y promoción</a></li>
+                        <li><a href="Proyectos pedagógicos.html">Proyectos pedagógicos</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Gestión Administrativa</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Talento humano.html">Talento humano</a></li>
+                        <li><a href="contratacion.html">Contratación</a></li>
+                        <li><a href="presupuesto.html">Presupuesto</a></li>
+                        <li><a href="tramites.html">Trámites</a></li>
+                        <li><a href="docentes.html">Docentes</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Gestión a la Comunidad</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="atencion-ciudadano.html">Atención al ciudadano</a></li>
+                        <li><a href="escuela-padres.html">Escuela de padres</a></li>
+                        <li><a href="participacion.html">Participación</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#pqrs" class="pqrs-link">PQRS</a>
+                </li>
+
+            </ul>
+
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+    </div>
+</header>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="history-container">
+
+    <h2 class="history-title">Reseña Histórica</h2>
+    <p class="history-subtitle">
+        Conoce la historia, evolución y crecimiento institucional que ha marcado el camino de nuestra comunidad educativa.
+    </p>
+
+    <div class="history-card">
+    <p>
+        <strong>Historia del Colegio El Rosario de Itagüí</strong>
+    </p>
+
+    <p>
+        El Colegio El Rosario de Itagüí es una obra social y educativa de la Sociedad San Vicente de Paúl,
+        conferencia El Rosario, fundada el 1º de marzo de 1942, “Obra Máxima”. Su primer presidente fue
+        don Félix Montoya, y el primer secretario, Rubén Vélez.
+    </p>
+
+    <p>
+        A la primera reunión de la conferencia asistió don Pedro Estrada González, el donante de los terrenos
+        y de la construcción donde funciona el Colegio El Rosario. El nombre del plantel fue voluntad del mismo
+        donante, quien además ayudó con pequeñas cuotas mensuales para el pago de los primeros profesores.
+    </p>
+<img src="img/reseña.png" alt="Responsabilidad Social">
+                <ul class="sublista">
+    <p>
+        El Colegio inició con 47 alumnos en los diferentes cursos. El primer rector fue Jesús Correa. En 1943
+        recibió la rectoría Ernesto Saldarriaga, quien recibió la primera visita de inspectores nacionales.
+        A esta primera visita de inspectores asistieron por el Ministerio de Educación los conocidos pedagogos
+        Federico Arbeláez Lema y Salomón Rengifo Reina.
+    </p>
+
+    <p>
+        En 1952 la conferencia entregó el Colegio a la comunidad de los reverendos Hermanos Maristas. En esta
+        etapa iniciaron como rector el hermano Ildefonso José y como secretario el hermano Tomas Antonio.
+    </p>
+<img src="img/reseña historica.png" alt="Responsabilidad Social">
+                <ul class="sublista">
+    <p>
+        En diciembre de 1961 el Colegio El Rosario de Itagüí entrega a la sociedad colombiana su primera promoción
+        de bachilleres, compuesta por 25 alumnos.
+    </p>
+
+    <p>
+        En diciembre de 1968 el manejo del Colegio fue devuelto por los Hermanos Maristas a la Sociedad San Vicente
+        de Paúl, conferencia El Rosario.
+    </p>
+    
+</div>
+
+
+    <!-- TIMELINE RESUMIDA -->
+    <section class="history-section">
+        <h2 class="history-title" style="font-size:1.8rem;">Línea de Tiempo Institucional</h2>
+
+        <div class="timeline">
+
+    <div class="timeline-item">
+        <h3>1942 - Fundación del Colegio</h3>
+        <p>
+            Se funda el Colegio El Rosario de Itagüí como una obra social y educativa de la Sociedad San Vicente de Paúl,
+            conferencia El Rosario, el 1º de marzo de 1942, considerada “Obra Máxima”.
+        </p>
+    </div>
+
+    <div class="timeline-item">
+        <h3>1942 - Donación de terrenos</h3>
+        <p>
+            Don Pedro Estrada González asiste a la primera reunión de la conferencia y realiza la donación de los terrenos
+            y la construcción donde funciona actualmente el Colegio El Rosario.
+        </p>
+    </div>
+
+    <div class="timeline-item">
+        <h3>1942 - Inicio de actividades</h3>
+        <p>
+            El Colegio inicia labores con 47 alumnos en diferentes cursos. Su primer rector fue Jesús Correa.
+        </p>
+    </div>
+
+    <div class="timeline-item">
+        <h3>1943 - Nueva rectoría e inspección nacional</h3>
+        <p>
+            Ernesto Saldarriaga asume la rectoría y se recibe la primera visita de inspectores nacionales del Ministerio
+            de Educación, incluyendo a Federico Arbeláez Lema y Salomón Rengifo Reina.
+        </p>
+    </div>
+
+    <div class="timeline-item">
+        <h3>1952 - Administración Hermanos Maristas</h3>
+        <p>
+            La conferencia entrega el Colegio a los Hermanos Maristas. Inician como rector el hermano Ildefonso José
+            y como secretario el hermano Tomas Antonio.
+        </p>
+    </div>
+
+    <div class="timeline-item">
+        <h3>1961 - Primera promoción de bachilleres</h3>
+        <p>
+            En diciembre de 1961 el Colegio entrega su primera promoción de bachilleres a la sociedad colombiana,
+            compuesta por 25 alumnos.
+        </p>
+    </div>
+
+    <div class="timeline-item">
+        <h3>1968 - Retorno a la Sociedad San Vicente de Paúl</h3>
+        <p>
+            En diciembre de 1968, los Hermanos Maristas devuelven la administración del Colegio a la Sociedad San Vicente
+            de Paúl, conferencia El Rosario.
+        </p>
+    </div>
+
+</div>
+
+    </section>
+
+    <div class="note-box">
+        <h4>Compromiso Institucional</h4>
+        <p>
+            Esta historia refleja el crecimiento constante de la institución, su compromiso con la comunidad y el esfuerzo continuo
+            por brindar educación de calidad, inclusión y oportunidades para todos.
+        </p>
+    </div>
+
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Volver al Inicio
+    </a>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+
+            <div class="footer-column">
+                <h4>Enlaces Legales</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Política de tratamiento de datos</a></li>
+                    <li><a href="#"><i class="fas fa-sitemap"></i> Mapa del sitio</a></li>
+                    <li><a href="#"><i class="fas fa-user-shield"></i> Política de privacidad</a></li>
+                    <li><a href="#"><i class="fas fa-balance-scale"></i> Términos y condiciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Contacto Rápido</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@idem.edu.co"><i class="fas fa-envelope"></i> info@idem.edu.co</a></li>
+                    <li><a href="tel:+5745822222"><i class="fas fa-phone"></i> +57 (604) 582 22 22</a></li>
+                    <li><a href="https://wa.me/573054669090"><i class="fab fa-whatsapp"></i> WhatsApp: 305 466 9090</a></li>
+                    <li><a href="#contacto"><i class="fas fa-headset"></i> Centro de Atención</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Estadísticas</h4>
+                <div class="visit-counter">
+                    <div class="counter-item">
+                        <span class="counter-number">5,971,675</span>
+                        <span class="counter-label">Visitas Totales</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">46,418</span>
+                        <span class="counter-label">Visitas este Mes</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">2,203</span>
+                        <span class="counter-label">Visitas Hoy</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="logos-container">
+                <div class="institutional-logos">
+                    <img src="img/logo.png" alt="Logo Colegio El Rosario" class="footer-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Colombia.svg/1280px-Flag_of_Colombia.svg.png" alt="Bandera Colombia" class="flag-logo">
+                    <img src="https://cdn.www.gov.co/assets/images/Vertical-Color.png" alt="GOV.CO" class="gov-logo-footer">
+                </div>
+
+                <div class="developer-logo">
+                    <span>Desarrollado por</span>
+                    <div class="strokbig-logo">
+                        <img src="img/Strokbig-Logo-BLANCO-+-[MR].png" alt="Strokbig">
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2026 Institución Educativa El Rosario Itagüí. Todos los derechos reservados.</p>
+                <p class="footer-note">Itagüí, Antioquia - Colombia</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+    const dropdowns = document.querySelectorAll(".dropdown > a");
+
+    // Abrir / cerrar menú principal
+    hamburger.addEventListener("click", function () {
+        navLinks.classList.toggle("active");
+    });
+
+    // Dropdown en móvil
+    dropdowns.forEach(link => {
+        link.addEventListener("click", function (e) {
+
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                this.parentElement.classList.toggle("open");
+            }
+
+        });
+    });
+
+});
+</script>
+</body>
+</html>

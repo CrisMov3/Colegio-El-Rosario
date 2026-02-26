@@ -250,10 +250,30 @@ ul {
 
 /* ===== NAVEGACIÓN PRINCIPAL ===== */
 .main-nav {
-    display: flex;
-    align-items: center;
-    position: relative;
+    background: transparent;
 }
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #111;
+    font-weight: 500;
+    padding: 10px 12px;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #0056b3;
+}
+
 
 .nav-links {
     display: flex;
@@ -278,6 +298,14 @@ ul {
 /* ===== DROPDOWN MENUS ===== */
 .dropdown {
     position: relative;
+}
+/* ===== DROPDOWN EN PC ===== */
+@media (min-width: 769px) {
+    .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
 }
 
 .dropdown > a {
@@ -307,13 +335,12 @@ ul {
     z-index: 1000;
     padding: 10px 0;
 }
-
-.dropdown:hover .dropdown-menu {
+/* Se muestra cuando tiene la clase open */
+.dropdown.open .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
-
 .dropdown-menu li {
     padding: 0;
 }
@@ -925,22 +952,25 @@ footer {
     }
     
     /* Dropdown en móvil */
-    .dropdown-menu {
-        position: static;
-        box-shadow: none;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        display: none;
-        background: rgba(0, 139, 163, 0.05);
-        border-radius: 0 0 8px 8px;
-        margin-top: -10px;
-        padding-top: 0;
-    }
+.dropdown-menu {
+    position: static;
+    box-shadow: none;
+    transform: none;
+    display: none;
+    background: rgba(0, 139, 163, 0.05);
+    border-radius: 0 0 8px 8px;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* Se abre cuando JS agrega la clase open */
+.dropdown.open .dropdown-menu {
+    display: block;
+}
     
-    .dropdown:hover .dropdown-menu {
-        display: block;
-    }
+    .dropdown.open .dropdown-menu {
+    display: block;
+}
     
     .dropdown-menu a {
         padding-left: 35px;
@@ -1761,5 +1791,411 @@ footer {
     
     .institucional-card .card-content {
         padding-left: 60px;
+    }
+}
+.contenido {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+.contenido-box {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
+    line-height: 1.7;
+}
+
+.contenido-box h2 {
+    color: #004aad;
+    margin-top: 25px;
+}
+
+.contenido-box h3 {
+    margin-top: 18px;
+    color: #222;
+}
+
+.contenido-box ul, 
+.contenido-box ol {
+    margin-left: 25px;
+}
+.gov-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+.main-header {
+  position: fixed;
+  top: 40px; 
+  left: 0;
+  width: 100%;
+  z-index: 9998;
+}
+
+body {
+  padding-top: 140px; 
+}
+.gov-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #3366cc;
+    z-index: 9999;
+}
+
+/* HEADER PRINCIPAL */
+.main-header {
+    position: fixed;
+    top: 40px; /* altura gov-bar */
+    left: 0;
+    width: 100%;
+    background: white;
+    z-index: 9998;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+body {
+    padding-top: 140px;
+}
+.page-header{
+  background: #003366;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.page-header h1{
+  margin: 0;
+  font-size: 28px;
+}
+
+.page-header p{
+  margin: 5px 0 0;
+  font-size: 16px;
+  opacity: 0.9;
+}
+.gov-bar{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+.main-header{
+  position: fixed;
+  top: 40px; 
+  width: 100%;
+  z-index: 9998;
+  background: white;
+}
+
+
+main{
+  margin-top: 180px;
+}
+.valores {
+  margin-top: 15px;
+  padding-left: 20px;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: #333;
+}
+ul {
+  list-style-type: "• ";
+  padding-left: 25px;
+}
+
+ul ul {
+  list-style-type: "▪ ";
+  padding-left: 30px;
+}
+
+ul ul ul {
+  list-style-type: "▪ ";
+  padding-left: 35px;
+}
+.img-simbolo{
+    width: 100%;
+    max-width: 450px;
+    display: block;
+    margin: 15px auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+.card-flex {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.card-flex.reverse {
+    flex-direction: row-reverse;
+}
+
+.card-img img {
+    width: 380px;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.card-content {
+    flex: 1;
+}   
+@media (max-width: 768px) {
+    .card-flex,
+    .card-flex.reverse {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .card-img img {
+        width: 100%;
+        max-width: 450px;
+    }
+}
+.history-card img {
+    width: 100%;
+    max-width: 600px;   
+    display: block;
+    margin: 20px auto;  
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+     
+}
+.evaluacion-top {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start; 
+}
+
+.evaluacion-top img {
+    width: 380px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.evaluacion-texto {
+    flex: 1;
+}
+
+.lista-evaluacion {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+@media (max-width: 768px) {
+    .evaluacion-top {
+        flex-direction: column;
+    }
+
+    .evaluacion-top img {
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 15px;
+    }
+}
+.history-card {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border-left: 6px solid #007bff;
+    margin-bottom: 40px; 
+}
+.promo-card {
+    border-left: none !important;
+}
+.evaluacion-texto {
+    margin-top: 15px;
+}
+.proyecto-contenido {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.proyecto-contenido img {
+    width: 500px;
+    border-radius: 15px;
+}
+
+.proyecto-contenido ul {
+    margin: 0;
+}
+.objetivo-contenido {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.objetivo-texto {
+    flex: 1;
+}
+
+.objetivo-contenido img {
+    width: 360px;
+    border-radius: 15px;
+}
+.objetivo-texto {
+    margin-top: 20px;
+}
+.objetivo-texto {
+    max-width: 450px;
+}
+.contenedor {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.caja {
+  flex: 1 1 300px;
+}
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+/* ===== IMÁGENES RESPONSIVE ===== */
+
+.proyecto-contenido,
+.objetivo-contenido {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.proyecto-contenido img,
+.objetivo-contenido img {
+    width: 350px;
+    max-width: 100%;
+    border-radius: 12px;
+}
+
+/* ===== MODO CELULAR ===== */
+
+@media (max-width: 768px) {
+
+    .proyecto-contenido,
+    .objetivo-contenido {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .proyecto-contenido img,
+    .objetivo-contenido img {
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 15px;
+    }
+
+    .lista-proyectos {
+        padding-left: 18px;
+        text-align: left;
+    }
+
+    .history-card p {
+        text-align: left;
+    }
+}
+
+/* ===== SECCIÓN DOCENTES ===== */
+.docentes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.docente-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.docente-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.docente-avatar {
+    width: 65px;
+    height: 65px;
+    min-width: 65px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #008ba3, #2e7d32);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.docente-info h4 {
+    margin: 0 0 8px 0;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.docente-asignatura {
+    color: #008ba3;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+    font-size: 0.95rem;
+}
+
+.docente-asignatura i {
+    margin-right: 6px;
+}
+
+.docente-correo {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.docente-correo a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.docente-correo a:hover {
+    color: #008ba3;
+}
+
+.docente-correo i {
+    margin-right: 6px;
+}
+
+@media (max-width: 768px) {
+    .docentes-grid {
+        grid-template-columns: 1fr;
     }
 }

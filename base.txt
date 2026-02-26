@@ -1,0 +1,120 @@
+-- ============================================
+-- BASE DE DATOS: Colegio El Rosario Itagüí
+-- ============================================
+
+CREATE DATABASE IF NOT EXISTS colegio_rosario
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
+
+USE colegio_rosario;
+
+-- ============================================
+-- TABLA: usuarios (administradores del panel)
+-- ============================================
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    rol ENUM('admin', 'editor') DEFAULT 'editor',
+    permisos TEXT DEFAULT NULL COMMENT 'JSON array de secciones permitidas: noticias,documentos,academica,configuracion,docentes,usuarios',
+    activo TINYINT(1) DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- Insertar usuario administrador por defecto
+INSERT INTO usuarios (nombre, email, password, rol, permisos) VALUES
+('Administrador', 'admin@elrosario.edu.co', 'admin123', 'admin', '["noticias","documentos","academica","configuracion","docentes","usuarios"]');
+
+-- ============================================
+-- TABLA: noticias
+-- ============================================
+CREATE TABLE IF NOT EXISTS noticias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    contenido TEXT NOT NULL,
+    imagen_url VARCHAR(500) DEFAULT NULL,
+    categoria ENUM('general', 'academico', 'eventos', 'anuncios') DEFAULT 'general',
+    estado ENUM('publicado', 'borrador') DEFAULT 'publicado',
+    fecha_publicacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- Datos de ejemplo
+INSERT INTO noticias (titulo, contenido, imagen_url, categoria) VALUES
+('Inicio de Clases 2026', 'Damos la bienvenida a todos nuestros estudiantes al nuevo año escolar lleno de aprendizaje.', 'https://scontent.feoh4-3.fna.fbcdn.net/v/t39.30808-6/498245975_1549371602649687_6980932980967919817_n.jpg', 'general'),
+('Reunión de Padres', 'Invitamos a la comunidad educativa a la primera reunión general este viernes.', 'https://scontent.feoh4-3.fna.fbcdn.net/v/t39.30808-6/483490390_1498458917740956_9153481557685542182_n.jpg', 'eventos');
+
+-- ============================================
+-- TABLA: documentos
+-- ============================================
+CREATE TABLE IF NOT EXISTS documentos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    descripcion TEXT DEFAULT NULL,
+    archivo_nombre VARCHAR(255) NOT NULL,
+    archivo_ruta VARCHAR(500) NOT NULL,
+    archivo_tamano VARCHAR(50) DEFAULT NULL,
+    categoria ENUM('academico', 'administrativo', 'normativo', 'otros') DEFAULT 'academico',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- Datos de ejemplo
+INSERT INTO documentos (titulo, descripcion, archivo_nombre, archivo_ruta, categoria) VALUES
+('Manual de Convivencia', 'Documento PEI del Colegio El Rosario 2026', 'PEI Colegio El Rosario 2026.pdf', 'PDF/PEI Colegio El Rosario 2026.pdf', 'normativo'),
+('Horario Escolar', 'Horario escolar vigente', 'horario escolar.png', 'img/horario escolar.png', 'academico'),
+('Lista de Útiles', 'Lista de útiles escolares año 2026', 'mper_205238_LISTA DE UTILES ESCOLARES ANO 2026.pdf', 'PDF/mper_205238_LISTA DE UTILES ESCOLARES ANO 2026.pdf', 'academico');
+
+-- ============================================
+-- TABLA: docentes
+-- ============================================
+CREATE TABLE IF NOT EXISTS docentes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(150) NOT NULL,
+    asignatura VARCHAR(150) NOT NULL,
+    correo VARCHAR(200) NOT NULL,
+    estado TINYINT(1) DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- Datos de ejemplo
+INSERT INTO docentes (nombre, asignatura, correo) VALUES
+('María García López', 'Matemáticas', 'maria.garcia@elrosario.edu.co'),
+('Carlos Pérez Rodríguez', 'Ciencias Naturales', 'carlos.perez@elrosario.edu.co'),
+('Ana Martínez Gómez', 'Lengua Castellana', 'ana.martinez@elrosario.edu.co'),
+('Jorge Ramírez Díaz', 'Educación Física', 'jorge.ramirez@elrosario.edu.co'),
+('Laura Sánchez Muñoz', 'Inglés', 'laura.sanchez@elrosario.edu.co');
+
+-- ============================================
+-- TABLA: configuracion (ajustes generales del sitio)
+-- ============================================
+CREATE TABLE IF NOT EXISTS configuracion (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    clave VARCHAR(100) NOT NULL UNIQUE,
+    valor TEXT NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+INSERT INTO configuracion (clave, valor) VALUES
+('nombre_colegio', 'Colegio El Rosario'),
+('correo_contacto', 'colegioelrosario.rectoria@gmail.com'),
+('telefono_principal', '+57 (604) 300 6076615'),
+('max_noticias_portada', '5');
+
+-- ============================================
+-- TABLA: pqrs
+-- ============================================
+CREATE TABLE IF NOT EXISTS pqrs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(150) NOT NULL,
+    correo VARCHAR(200) NOT NULL,
+    tipo ENUM('Peticion', 'Queja', 'Reclamo', 'Sugerencia') NOT NULL,
+    asunto VARCHAR(255) NOT NULL,
+    mensaje TEXT NOT NULL,
+    estado ENUM('pendiente', 'en_proceso', 'resuelto') DEFAULT 'pendiente',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
