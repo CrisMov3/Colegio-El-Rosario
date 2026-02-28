@@ -900,6 +900,13 @@
                 </a>
             </li>
 
+            <li class="menu-item" data-permission="pqrs">
+                <a href="#pqrs" class="menu-link" data-content="pqrs">
+                    <i class="fas fa-headset menu-icon"></i>
+                    <span>PQRS</span>
+                </a>
+            </li>
+
             <li class="menu-item has-submenu">
                 <a href="#gestion-admin" class="menu-link" data-content="gestion-admin">
                     <i class="fas fa-users-cog menu-icon"></i>
@@ -930,38 +937,49 @@
                 <h3><i class="fas fa-chart-line"></i> Estadísticas</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
                     <div style="text-align: center; padding: 20px; background: #e8f5e9; border-radius: 8px;">
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--secondary-color);">15</div>
+                        <div id="stat-noticias" style="font-size: 2rem; font-weight: bold; color: var(--secondary-color);">-</div>
                         <div>Noticias Publicadas</div>
                     </div>
                     <div style="text-align: center; padding: 20px; background: #e3f2fd; border-radius: 8px;">
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">8</div>
+                        <div id="stat-documentos" style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">-</div>
                         <div>Documentos Subidos</div>
                     </div>
                     <div style="text-align: center; padding: 20px; background: #fff3e0; border-radius: 8px;">
-                        <div style="font-size: 2rem; font-weight: bold; color: var(--accent-color);">127</div>
-                        <div>Visitas Hoy</div>
+                        <div id="stat-docentes" style="font-size: 2rem; font-weight: bold; color: var(--accent-color);">-</div>
+                        <div>Docentes Activos</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: #fce4ec; border-radius: 8px;">
+                        <div id="stat-usuarios" style="font-size: 2rem; font-weight: bold; color: #c0392b;">-</div>
+                        <div>Usuarios Activos</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: #fef9e7; border-radius: 8px; cursor:pointer;" onclick="showContent('pqrs')">
+                        <div id="stat-pqrs" style="font-size: 2rem; font-weight: bold; color: #e67e22;">-</div>
+                        <div>PQRS Pendientes</div>
                     </div>
                 </div>
             </div>
             
             <div class="content-card">
                 <h3><i class="fas fa-history"></i> Actividad Reciente</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="padding: 10px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-newspaper" style="color: var(--primary-color);"></i>
-                        <span>Publicaste "Inicio de Clases 2026" - Hoy 10:30 AM</span>
-                    </li>
-                    <li style="padding: 10px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-file-pdf" style="color: #e74c3c;"></i>
-                        <span>Subiste "Manual de Convivencia.pdf" - Ayer 3:45 PM</span>
-                    </li>
-                    <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-user-edit" style="color: var(--secondary-color);"></i>
-                        <span>Actualizaste la Oferta Académica - 8 Feb</span>
-                    </li>
-                </ul>
+                <div id="actividad-list" style="max-height: 400px; overflow-y: auto;">
+                    <div style="text-align: center; padding: 20px; color: #777;">
+                        <i class="fas fa-spinner fa-spin"></i> Cargando actividad...
+                    </div>
+                </div>
             </div>
         </section>
+
+        <!-- Modal de Detalles de Actividad -->
+        <div id="actividad-modal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); z-index:9999; justify-content:center; align-items:center;">
+            <div style="background:white; border-radius:12px; max-width:500px; width:90%; max-height:80vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+                <div style="padding:20px 25px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
+                    <h3 style="margin:0; color:var(--primary-color); font-size:1.1rem;"><i class="fas fa-info-circle"></i> Detalles de Actividad</h3>
+                    <button onclick="closeActividadModal()" style="background:none; border:none; font-size:1.5rem; cursor:pointer; color:#999; line-height:1;">&times;</button>
+                </div>
+                <div id="actividad-modal-body" style="padding:25px;">
+                </div>
+            </div>
+        </div>
 
         <!-- Vista: Publicar Noticia -->
         <section class="content-section" id="publicar-noticia-content">
@@ -983,9 +1001,32 @@
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label">URL de la Imagen (opcional)</label>
-                        <input type="url" class="form-control" id="news-image" placeholder="https://ejemplo.com/imagen.jpg">
-                        <small style="color: #777;">Puedes usar un enlace a una imagen o subir una más adelante</small>
+                        <label class="form-label"><i class="fas fa-image"></i> Imagen de la Noticia (opcional)</label>
+                        <div id="news-image-drop" style="border: 2px dashed #ccc; border-radius: 8px; padding: 25px; text-align: center; cursor: pointer; transition: all 0.3s; background: #fafafa;">
+                            <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: #aaa; display: block; margin-bottom: 8px;"></i>
+                            <span style="color: #777;">Arrastra una imagen aquí o <strong style="color: var(--primary-color);">haz clic para seleccionar</strong></span>
+                            <br><small style="color: #999;">Formatos: JPG, PNG, GIF, WEBP</small>
+                            <input type="file" id="news-image" accept="image/jpeg,image/png,image/gif,image/webp" style="display: none;">
+                        </div>
+                        <div id="news-image-preview" style="display: none; margin-top: 10px; position: relative;">
+                            <img id="news-image-thumb" src="" style="max-height: 150px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <button type="button" id="news-image-remove" style="position: absolute; top: -8px; right: -8px; background: #e74c3c; color: white; border: none; border-radius: 50%; width: 24px; height: 24px; cursor: pointer; font-size: 0.8rem; line-height: 24px;"><i class="fas fa-times"></i></button>
+                        </div>
+                        <small style="color: #777;">Si no subes imagen, se mostrará una imagen predeterminada del colegio</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-paperclip"></i> Archivo Adjunto (opcional)</label>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <label style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; transition: background 0.2s;">
+                                <i class="fas fa-file-upload" style="color: var(--primary-color);"></i>
+                                <span>Seleccionar archivo</span>
+                                <input type="file" id="news-attachment" accept=".pdf,.doc,.docx,.xls,.xlsx" style="display: none;">
+                            </label>
+                            <span id="news-attachment-name" style="color: #777; font-size: 0.9rem;">Ningún archivo seleccionado</span>
+                            <button type="button" id="news-attachment-remove" style="display: none; background: none; border: none; color: #e74c3c; cursor: pointer; font-size: 1.1rem;"><i class="fas fa-times-circle"></i></button>
+                        </div>
+                        <small style="color: #777;">Formatos: PDF, Word, Excel</small>
                     </div>
                     
                     <div class="form-group">
@@ -1581,6 +1622,10 @@
                                     <i class="fas fa-chalkboard-teacher" style="color: #2c3e50;"></i> Docentes
                                 </label>
                                 <label style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #f5f5f5; border-radius: 6px; cursor: pointer; transition: background 0.2s;">
+                                    <input type="checkbox" name="permisos" value="pqrs" checked> 
+                                    <i class="fas fa-headset" style="color: #16a085;"></i> PQRS
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #f5f5f5; border-radius: 6px; cursor: pointer; transition: background 0.2s;">
                                     <input type="checkbox" name="permisos" value="usuarios"> 
                                     <i class="fas fa-users-cog" style="color: #c0392b;"></i> Gestión Usuarios
                                 </label>
@@ -1656,6 +1701,104 @@
                 </div>
             </div>
         </section>
+
+        <!-- Vista: PQRS -->
+        <section class="content-section" id="pqrs-content">
+            <div class="content-header">
+                <h2><i class="fas fa-headset"></i> Gestión de PQRS</h2>
+                <p>Administra las Peticiones, Quejas, Reclamos y Sugerencias recibidas</p>
+            </div>
+
+            <!-- Resumen de estados -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 25px;">
+                <div class="content-card" style="text-align:center; padding: 20px; margin:0; cursor:pointer; transition: transform 0.2s;" onclick="filterPQRS('todos')" id="pqrs-stat-todos">
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--primary-color);" id="pqrs-count-todos">0</div>
+                    <div style="font-size: 0.85rem; color: #777; margin-top: 5px;">Total</div>
+                </div>
+                <div class="content-card" style="text-align:center; padding: 20px; margin:0; cursor:pointer; transition: transform 0.2s;" onclick="filterPQRS('pendiente')" id="pqrs-stat-pendiente">
+                    <div style="font-size: 2rem; font-weight: 700; color: #e67e22;" id="pqrs-count-pendiente">0</div>
+                    <div style="font-size: 0.85rem; color: #777; margin-top: 5px;">Pendientes</div>
+                </div>
+                <div class="content-card" style="text-align:center; padding: 20px; margin:0; cursor:pointer; transition: transform 0.2s;" onclick="filterPQRS('en_proceso')" id="pqrs-stat-en_proceso">
+                    <div style="font-size: 2rem; font-weight: 700; color: #3498db;" id="pqrs-count-en_proceso">0</div>
+                    <div style="font-size: 0.85rem; color: #777; margin-top: 5px;">En Proceso</div>
+                </div>
+                <div class="content-card" style="text-align:center; padding: 20px; margin:0; cursor:pointer; transition: transform 0.2s;" onclick="filterPQRS('resuelto')" id="pqrs-stat-resuelto">
+                    <div style="font-size: 2rem; font-weight: 700; color: #27ae60;" id="pqrs-count-resuelto">0</div>
+                    <div style="font-size: 0.85rem; color: #777; margin-top: 5px;">Resueltos</div>
+                </div>
+                <div class="content-card" style="text-align:center; padding: 20px; margin:0; cursor:pointer; transition: transform 0.2s;" onclick="filterPQRS('anulado')" id="pqrs-stat-anulado">
+                    <div style="font-size: 2rem; font-weight: 700; color: #95a5a6;" id="pqrs-count-anulado">0</div>
+                    <div style="font-size: 0.85rem; color: #777; margin-top: 5px;">Anulados</div>
+                </div>
+            </div>
+
+            <!-- Filtro activo -->
+            <div class="content-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                    <h3 style="margin:0;"><i class="fas fa-list"></i> Solicitudes <span id="pqrs-filter-label" style="font-size: 0.85rem; color: #777; font-weight: 400;">— Mostrando: Todos</span></h3>
+                    <button class="btn btn-sm btn-outline" onclick="filterPQRS('todos')" id="pqrs-btn-reset" style="display:none;">
+                        <i class="fas fa-times"></i> Quitar filtro
+                    </button>
+                </div>
+
+                <div id="pqrs-list">
+                    <div style="text-align: center; padding: 30px; color: #777;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                        <p>Cargando PQRS...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal detalle PQRS -->
+        <div id="pqrs-detail-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:3000; backdrop-filter:blur(3px);">
+            <div style="background:white; max-width:650px; margin:5% auto; border-radius:12px; overflow:hidden; box-shadow:0 10px 40px rgba(0,0,0,0.2); animation: modalSlideIn 0.3s ease;">
+                <div id="pqrs-detail-header" style="padding:20px 25px; color:white;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h3 style="margin:0; font-size:1.1rem;" id="pqrs-detail-tipo"></h3>
+                        <span style="cursor:pointer; font-size:1.5rem; line-height:1;" onclick="closePQRSDetail()">&times;</span>
+                    </div>
+                </div>
+                <div style="padding:25px;">
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-bottom:20px;">
+                        <div>
+                            <label style="font-size:0.8rem; color:#999; text-transform:uppercase; letter-spacing:0.5px;">Nombre</label>
+                            <p style="margin:4px 0 0; font-weight:600;" id="pqrs-detail-nombre"></p>
+                        </div>
+                        <div>
+                            <label style="font-size:0.8rem; color:#999; text-transform:uppercase; letter-spacing:0.5px;">Correo</label>
+                            <p style="margin:4px 0 0;" id="pqrs-detail-correo"></p>
+                        </div>
+                        <div>
+                            <label style="font-size:0.8rem; color:#999; text-transform:uppercase; letter-spacing:0.5px;">Fecha</label>
+                            <p style="margin:4px 0 0;" id="pqrs-detail-fecha"></p>
+                        </div>
+                        <div>
+                            <label style="font-size:0.8rem; color:#999; text-transform:uppercase; letter-spacing:0.5px;">Estado actual</label>
+                            <p style="margin:4px 0 0;" id="pqrs-detail-estado"></p>
+                        </div>
+                    </div>
+                    <div style="margin-bottom:20px;">
+                        <label style="font-size:0.8rem; color:#999; text-transform:uppercase; letter-spacing:0.5px;">Asunto</label>
+                        <p style="margin:4px 0 0; font-weight:600; font-size:1.1rem;" id="pqrs-detail-asunto"></p>
+                    </div>
+                    <div style="margin-bottom:25px;">
+                        <label style="font-size:0.8rem; color:#999; text-transform:uppercase; letter-spacing:0.5px;">Mensaje</label>
+                        <div id="pqrs-detail-mensaje" style="margin-top:8px; padding:15px; background:#f8f9fa; border-radius:8px; border:1px solid #eee; line-height:1.6; white-space:pre-wrap;"></div>
+                    </div>
+                    <div style="border-top:1px solid #eee; padding-top:20px;">
+                        <label style="font-size:0.8rem; color:#999; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; display:block;">Cambiar estado</label>
+                        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                            <button class="btn btn-sm" style="background:#e67e22; color:white; border:none;" onclick="updatePQRSEstado(currentPQRSId, 'pendiente')"><i class="fas fa-clock"></i> Pendiente</button>
+                            <button class="btn btn-sm" style="background:#3498db; color:white; border:none;" onclick="updatePQRSEstado(currentPQRSId, 'en_proceso')"><i class="fas fa-spinner"></i> En Proceso</button>
+                            <button class="btn btn-sm" style="background:#27ae60; color:white; border:none;" onclick="updatePQRSEstado(currentPQRSId, 'resuelto')"><i class="fas fa-check-circle"></i> Resuelto</button>
+                            <button class="btn btn-sm" style="background:#95a5a6; color:white; border:none;" onclick="updatePQRSEstado(currentPQRSId, 'anulado')"><i class="fas fa-ban"></i> Anulado</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script>
@@ -1962,6 +2105,101 @@
             
             // Upload de documentos - manejado por la sección de conexión BD más abajo
             
+            // ===== IMAGEN DE NOTICIA - DRAG & DROP =====
+            const newsImgDrop = document.getElementById('news-image-drop');
+            const newsImgInput = document.getElementById('news-image');
+            const newsImgPreview = document.getElementById('news-image-preview');
+            const newsImgThumb = document.getElementById('news-image-thumb');
+            const newsImgRemove = document.getElementById('news-image-remove');
+
+            if (newsImgDrop && newsImgInput) {
+                newsImgDrop.addEventListener('click', () => newsImgInput.click());
+                
+                newsImgDrop.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.style.borderColor = 'var(--primary-color)';
+                    this.style.background = '#f0f9ff';
+                });
+                newsImgDrop.addEventListener('dragleave', function() {
+                    this.style.borderColor = '#ccc';
+                    this.style.background = '#fafafa';
+                });
+                newsImgDrop.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.style.borderColor = '#ccc';
+                    this.style.background = '#fafafa';
+                    if (e.dataTransfer.files.length) {
+                        const file = e.dataTransfer.files[0];
+                        if (file.type.startsWith('image/')) {
+                            // Transferir archivo al input
+                            const dt = new DataTransfer();
+                            dt.items.add(file);
+                            newsImgInput.files = dt.files;
+                            showNewsImagePreview(file);
+                        } else {
+                            alert('Solo se permiten archivos de imagen');
+                        }
+                    }
+                });
+
+                newsImgInput.addEventListener('change', function() {
+                    if (this.files.length) showNewsImagePreview(this.files[0]);
+                });
+
+                if (newsImgRemove) {
+                    newsImgRemove.addEventListener('click', function() {
+                        newsImgInput.value = '';
+                        newsImgPreview.style.display = 'none';
+                        newsImgDrop.style.display = 'block';
+                    });
+                }
+            }
+
+            function showNewsImagePreview(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    newsImgThumb.src = e.target.result;
+                    newsImgPreview.style.display = 'block';
+                    newsImgDrop.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+
+            // ===== ARCHIVO ADJUNTO DE NOTICIA =====
+            const newsAttInput = document.getElementById('news-attachment');
+            const newsAttName = document.getElementById('news-attachment-name');
+            const newsAttRemove = document.getElementById('news-attachment-remove');
+
+            if (newsAttInput) {
+                newsAttInput.addEventListener('change', function() {
+                    if (this.files.length) {
+                        newsAttName.textContent = this.files[0].name;
+                        newsAttName.style.color = '#333';
+                        newsAttRemove.style.display = 'inline';
+                    }
+                });
+            }
+            if (newsAttRemove) {
+                newsAttRemove.addEventListener('click', function() {
+                    newsAttInput.value = '';
+                    newsAttName.textContent = 'Ningún archivo seleccionado';
+                    newsAttName.style.color = '#777';
+                    this.style.display = 'none';
+                });
+            }
+
+            // Resetear previews al limpiar formulario de noticias
+            if (newsForm) {
+                newsForm.addEventListener('reset', function() {
+                    setTimeout(() => {
+                        if (newsImgPreview) newsImgPreview.style.display = 'none';
+                        if (newsImgDrop) newsImgDrop.style.display = 'block';
+                        if (newsAttName) { newsAttName.textContent = 'Ningún archivo seleccionado'; newsAttName.style.color = '#777'; }
+                        if (newsAttRemove) newsAttRemove.style.display = 'none';
+                    }, 10);
+                });
+            }
+
             // ===== BOTÓN DE SALIR =====
             const logoutBtn = document.getElementById('logout-btn');
             if (logoutBtn) {
@@ -1976,6 +2214,169 @@
             
             // Inicializar: mostrar inicio por defecto
             showContent('inicio');
+
+            // ===== CARGAR ESTADÍSTICAS DEL DASHBOARD =====
+            function loadStats() {
+                fetch('api/stats.php')
+                    .then(res => res.json())
+                    .then(data => {
+                        document.getElementById('stat-noticias').textContent = data.noticias ?? 0;
+                        document.getElementById('stat-documentos').textContent = data.documentos ?? 0;
+                        document.getElementById('stat-docentes').textContent = data.docentes ?? 0;
+                        document.getElementById('stat-usuarios').textContent = data.usuarios ?? 0;
+                        document.getElementById('stat-pqrs').textContent = data.pqrs_pendientes ?? 0;
+                    })
+                    .catch(() => {});
+            }
+            loadStats();
+
+            // ===== HELPER: Headers con info del usuario para logging =====
+            function getUserHeaders() {
+                const userData = sessionStorage.getItem('admin_user');
+                const headers = { 'Content-Type': 'application/json' };
+                if (userData) headers['X-User'] = userData;
+                return headers;
+            }
+
+            // ===== CARGAR ACTIVIDAD RECIENTE =====
+            function loadActividad() {
+                const container = document.getElementById('actividad-list');
+                if (!container) return;
+                fetch('api/actividad.php?limit=15')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (!Array.isArray(data) || data.length === 0) {
+                            container.innerHTML = '<p style="text-align:center;color:#777;padding:20px;">No hay actividad reciente.</p>';
+                            return;
+                        }
+                        const iconMap = {
+                            'noticias': { icon: 'fa-newspaper', color: 'var(--primary-color)' },
+                            'documentos': { icon: 'fa-file-alt', color: '#e74c3c' },
+                            'docentes': { icon: 'fa-chalkboard-teacher', color: 'var(--secondary-color)' },
+                            'usuarios': { icon: 'fa-user-cog', color: '#8e44ad' },
+                            'configuracion': { icon: 'fa-cog', color: '#f39c12' }
+                        };
+                        const tipoColors = {
+                            'crear': '#27ae60',
+                            'editar': '#2980b9',
+                            'eliminar': '#e74c3c'
+                        };
+                        const tipoLabels = {
+                            'crear': 'Creación',
+                            'editar': 'Edición',
+                            'eliminar': 'Eliminación'
+                        };
+                        container.innerHTML = '<ul style="list-style:none;padding:0;margin:0;">' + data.map(a => {
+                            const sec = iconMap[a.seccion] || { icon: 'fa-circle', color: '#999' };
+                            const fecha = formatTimeAgo(a.created_at);
+                            const tipoBadge = `<span style="background:${tipoColors[a.tipo] || '#999'};color:white;padding:2px 8px;border-radius:10px;font-size:0.7rem;margin-left:5px;">${tipoLabels[a.tipo] || a.tipo}</span>`;
+                            const detallesData = btoa(encodeURIComponent(JSON.stringify(a)));
+                            return `
+                            <li style="padding:12px 0; border-bottom:1px solid #f0f0f0; display:flex; align-items:center; justify-content:space-between; gap:10px;">
+                                <div style="display:flex; align-items:center; gap:12px; flex:1; min-width:0;">
+                                    <i class="fas ${sec.icon}" style="color:${sec.color}; font-size:1.1rem; flex-shrink:0;"></i>
+                                    <div style="min-width:0;">
+                                        <div style="font-size:0.9rem; display:flex; align-items:center; flex-wrap:wrap; gap:4px;">
+                                            <span>${a.descripcion}</span>${tipoBadge}
+                                        </div>
+                                        <div style="font-size:0.75rem; color:#999; margin-top:3px;">
+                                            <i class="fas fa-user" style="font-size:0.65rem;"></i> ${a.usuario_nombre || 'Sistema'} &bull; ${fecha}
+                                        </div>
+                                    </div>
+                                </div>
+                                <button onclick="showActividadDetalles('${detallesData}')" style="background:var(--primary-color);color:white;border:none;padding:5px 12px;border-radius:5px;cursor:pointer;font-size:0.8rem;white-space:nowrap;flex-shrink:0;">
+                                    <i class="fas fa-eye"></i> Detalles
+                                </button>
+                            </li>`;
+                        }).join('') + '</ul>';
+                    })
+                    .catch(() => {
+                        container.innerHTML = '<p style="text-align:center;color:#e74c3c;padding:20px;">Error al cargar actividad.</p>';
+                    });
+            }
+
+            function formatTimeAgo(dateStr) {
+                const date = new Date(dateStr);
+                const now = new Date();
+                const diffMs = now - date;
+                const diffMin = Math.floor(diffMs / 60000);
+                const diffHrs = Math.floor(diffMs / 3600000);
+                const diffDays = Math.floor(diffMs / 86400000);
+
+                if (diffMin < 1) return 'Justo ahora';
+                if (diffMin < 60) return 'Hace ' + diffMin + ' min';
+                if (diffHrs < 24) return 'Hace ' + diffHrs + (diffHrs === 1 ? ' hora' : ' horas');
+                if (diffDays < 7) return 'Hace ' + diffDays + (diffDays === 1 ? ' día' : ' días');
+                return date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+            }
+
+            window.showActividadDetalles = function(encodedData) {
+                try {
+                    const a = JSON.parse(decodeURIComponent(atob(encodedData)));
+                    const modal = document.getElementById('actividad-modal');
+                    const body = document.getElementById('actividad-modal-body');
+                    
+                    const tipoColors = { 'crear': '#27ae60', 'editar': '#2980b9', 'eliminar': '#e74c3c' };
+                    const tipoLabels = { 'crear': 'Creación', 'editar': 'Edición', 'eliminar': 'Eliminación' };
+                    const seccionLabels = { 'noticias': 'Noticias', 'documentos': 'Documentos', 'docentes': 'Docentes', 'usuarios': 'Usuarios', 'configuracion': 'Configuración' };
+                    
+                    let detallesHTML = '';
+                    if (a.detalles) {
+                        try {
+                            const det = JSON.parse(a.detalles);
+                            detallesHTML = '<div style="background:#f8f9fa;padding:12px;border-radius:8px;margin-top:15px;">' +
+                                '<strong style="font-size:0.85rem;color:#555;display:block;margin-bottom:8px;"><i class="fas fa-database"></i> Datos:</strong>' +
+                                Object.entries(det).map(([k, v]) => {
+                                    const label = k.charAt(0).toUpperCase() + k.slice(1).replace(/_/g, ' ');
+                                    const val = Array.isArray(v) ? v.join(', ') : v;
+                                    return `<div style="padding:4px 0;font-size:0.85rem;"><span style="color:#777;">${label}:</span> <strong>${val || '-'}</strong></div>`;
+                                }).join('') +
+                                '</div>';
+                        } catch(e) {
+                            detallesHTML = '<div style="background:#f8f9fa;padding:12px;border-radius:8px;margin-top:15px;">' + a.detalles + '</div>';
+                        }
+                    }
+
+                    const fecha = new Date(a.created_at).toLocaleString('es-ES', { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' });
+
+                    body.innerHTML = `
+                        <div style="display:flex;align-items:center;gap:8px;margin-bottom:15px;">
+                            <span style="background:${tipoColors[a.tipo] || '#999'};color:white;padding:4px 12px;border-radius:15px;font-size:0.85rem;font-weight:600;">${tipoLabels[a.tipo] || a.tipo}</span>
+                            <span style="background:#eee;padding:4px 12px;border-radius:15px;font-size:0.85rem;">${seccionLabels[a.seccion] || a.seccion}</span>
+                        </div>
+                        <p style="font-size:1rem;margin:0 0 15px 0;color:#333;">${a.descripcion}</p>
+                        <div style="border-top:1px solid #eee;padding-top:15px;">
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                                <div>
+                                    <div style="font-size:0.75rem;color:#999;text-transform:uppercase;">Realizado por</div>
+                                    <div style="font-weight:600;margin-top:2px;">${a.usuario_nombre || 'Sistema'}</div>
+                                    <div style="font-size:0.85rem;color:#777;">${a.usuario_email || '-'}</div>
+                                </div>
+                                <div>
+                                    <div style="font-size:0.75rem;color:#999;text-transform:uppercase;">Fecha y hora</div>
+                                    <div style="font-weight:600;margin-top:2px;">${fecha}</div>
+                                </div>
+                            </div>
+                        </div>
+                        ${detallesHTML}
+                    `;
+                    
+                    modal.style.display = 'flex';
+                } catch(e) {
+                    alert('Error cargando detalles');
+                }
+            };
+
+            window.closeActividadModal = function() {
+                document.getElementById('actividad-modal').style.display = 'none';
+            };
+
+            // Cerrar modal al hacer clic fuera
+            document.getElementById('actividad-modal').addEventListener('click', function(e) {
+                if (e.target === this) closeActividadModal();
+            });
+
+            loadActividad();
 
             // ===================================================
             // ===== CONEXIÓN CON BASE DE DATOS (API PHP) =====
@@ -2037,14 +2438,14 @@
                 if (!confirm('¿Estás seguro de eliminar al docente "' + nombre + '"?')) return;
                 fetch('api/docentes.php', {
                     method: 'DELETE',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: getUserHeaders(),
                     body: JSON.stringify({ id: id })
                 })
                 .then(res => res.json())
                 .then(data => {
                     if (data.success) {
                         alert('Docente eliminado correctamente');
-                        loadDocentes();
+                        loadDocentes(); loadActividad(); loadStats();
                     } else {
                         alert('Error: ' + (data.error || 'No se pudo eliminar'));
                     }
@@ -2081,13 +2482,14 @@
 
                     fetch('api/docentes.php', {
                         method: method,
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: getUserHeaders(),
                         body: JSON.stringify(body)
                     })
                     .then(res => res.json())
                     .then(data => {
                         if (data.success) {
                             alert(isEdit ? 'Docente actualizado correctamente' : 'Docente agregado correctamente');
+                            loadActividad(); loadStats();
                             docenteForm.reset();
                             docenteEditId.value = '';
                             docenteSubmitBtn.innerHTML = '<i class="fas fa-save"></i> Guardar Docente';
@@ -2117,11 +2519,15 @@
                         }
                         newsList.innerHTML = data.map(n => {
                             const fecha = new Date(n.fecha_publicacion).toLocaleDateString('es-ES', {day:'numeric', month:'long', year:'numeric'});
+                            const tieneImagen = n.imagen_url ? '<i class="fas fa-image" style="color:#27ae60;" title="Tiene imagen"></i>' : '<i class="fas fa-image" style="color:#ccc;" title="Sin imagen (se mostrará predeterminada)"></i>';
+                            const tieneAdjunto = n.archivo_adjunto_ruta 
+                                ? `<a href="${n.archivo_adjunto_ruta}" target="_blank" style="color:var(--primary-color);text-decoration:none;" title="${n.archivo_adjunto_nombre || 'Archivo adjunto'}"><i class="fas fa-paperclip"></i> ${n.archivo_adjunto_nombre || 'Adjunto'}</a>` 
+                                : '';
                             return `
                             <div class="news-item" data-id="${n.id}">
                                 <div class="news-item-content">
-                                    <div class="news-item-title">${n.titulo}</div>
-                                    <div class="news-item-date">Publicado: ${fecha} | Categoría: ${n.categoria} | Estado: ${n.estado}</div>
+                                    <div class="news-item-title">${tieneImagen} ${n.titulo}</div>
+                                    <div class="news-item-date">Publicado: ${fecha} | Categoría: ${n.categoria} | Estado: ${n.estado} ${tieneAdjunto ? ' | ' + tieneAdjunto : ''}</div>
                                     <div class="news-item-preview">${n.contenido.substring(0, 150)}...</div>
                                 </div>
                                 <div class="news-item-actions">
@@ -2139,14 +2545,14 @@
                 if (!confirm('¿Eliminar la noticia "' + titulo + '"?')) return;
                 fetch('api/noticias.php', {
                     method: 'DELETE',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: getUserHeaders(),
                     body: JSON.stringify({ id: id })
                 })
                 .then(res => res.json())
                 .then(data => {
                     if (data.success) {
                         alert('Noticia eliminada');
-                        loadNoticiasAdmin();
+                        loadNoticiasAdmin(); loadActividad(); loadStats();
                     }
                 });
             };
@@ -2158,18 +2564,31 @@
                     e.preventDefault();
                     const titulo = document.getElementById('news-title').value.trim();
                     const contenido = document.getElementById('news-content').value.trim();
-                    const imagen_url = document.getElementById('news-image').value.trim();
                     const categoria = document.getElementById('news-category').value;
+                    const imagenFile = document.getElementById('news-image').files[0];
+                    const archivoFile = document.getElementById('news-attachment').files[0];
 
                     if (!titulo || !contenido) {
                         alert('Título y contenido son obligatorios');
                         return;
                     }
 
+                    const formData = new FormData();
+                    formData.append('titulo', titulo);
+                    formData.append('contenido', contenido);
+                    formData.append('categoria', categoria);
+                    formData.append('estado', 'publicado');
+                    if (imagenFile) formData.append('imagen', imagenFile);
+                    if (archivoFile) formData.append('archivo_adjunto', archivoFile);
+
+                    const uploadHeaders = {};
+                    const userData = sessionStorage.getItem('admin_user');
+                    if (userData) uploadHeaders['X-User'] = userData;
+
                     fetch('api/noticias.php', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ titulo, contenido, imagen_url, categoria, estado: 'publicado' })
+                        headers: uploadHeaders,
+                        body: formData
                     })
                     .then(res => res.json())
                     .then(data => {
@@ -2177,7 +2596,7 @@
                             alert('¡Noticia publicada exitosamente!');
                             newsForm.reset();
                             showContent('gestionar-noticias');
-                            loadNoticiasAdmin();
+                            loadNoticiasAdmin(); loadActividad(); loadStats();
                         } else {
                             alert('Error: ' + (data.error || 'No se pudo publicar'));
                         }
@@ -2224,14 +2643,14 @@
                 if (!confirm('¿Eliminar el documento "' + titulo + '"?')) return;
                 fetch('api/documentos.php', {
                     method: 'DELETE',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: getUserHeaders(),
                     body: JSON.stringify({ id: id })
                 })
                 .then(res => res.json())
                 .then(data => {
                     if (data.success) {
                         alert('Documento eliminado');
-                        loadDocumentosAdmin();
+                        loadDocumentosAdmin(); loadActividad(); loadStats();
                     }
                 });
             };
@@ -2261,14 +2680,20 @@
                         uploadBtn.disabled = true;
                     }
 
+                    const uploadHeaders = {};
+                    const userData = sessionStorage.getItem('admin_user');
+                    if (userData) uploadHeaders['X-User'] = userData;
+
                     fetch('api/documentos.php', {
                         method: 'POST',
+                        headers: uploadHeaders,
                         body: formData
                     })
                     .then(res => res.json())
                     .then(data => {
                         if (data.success) {
                             alert('¡Documento subido exitosamente!');
+                            loadActividad(); loadStats();
                             uploadForm.reset();
                             if (fileInfo) fileInfo.style.display = 'none';
                             if (uploadBtn) {
@@ -2396,14 +2821,14 @@
                 if (!confirm('¿Estás seguro de eliminar al usuario "' + nombre + '"?\n\nEsta acción no se puede deshacer.')) return;
                 fetch('api/usuarios.php', {
                     method: 'DELETE',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: getUserHeaders(),
                     body: JSON.stringify({ id: id })
                 })
                 .then(res => res.json())
                 .then(data => {
                     if (data.success) {
                         alert('Usuario eliminado correctamente');
-                        loadUsuarios();
+                        loadUsuarios(); loadActividad(); loadStats();
                     } else {
                         alert('Error: ' + (data.error || 'No se pudo eliminar'));
                     }
@@ -2458,13 +2883,14 @@
 
                     fetch('api/usuarios.php', {
                         method: isEdit ? 'PUT' : 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: getUserHeaders(),
                         body: JSON.stringify(body)
                     })
                     .then(res => res.json())
                     .then(data => {
                         if (data.success) {
                             alert(isEdit ? 'Usuario actualizado correctamente' : 'Usuario creado correctamente');
+                            loadActividad(); loadStats();
                             usuarioForm.reset();
                             usuarioEditId.value = '';
                             usuarioFormTitle.innerHTML = '<i class="fas fa-user-plus"></i> Agregar Nuevo Usuario';
@@ -2485,6 +2911,166 @@
 
             loadUsuarios();
 
+            // ===== GESTIÓN DE PQRS =====
+            let allPQRS = [];
+            let currentPQRSFilter = 'todos';
+            window.currentPQRSId = null;
+
+            function loadPQRS() {
+                fetch('api/pqrs.php')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (!Array.isArray(data)) { allPQRS = []; } else { allPQRS = data; }
+                        updatePQRSStats();
+                        renderPQRSList();
+                    })
+                    .catch(() => {
+                        document.getElementById('pqrs-list').innerHTML = '<p style="text-align:center;color:#c0392b;padding:20px;">Error al cargar PQRS.</p>';
+                    });
+            }
+
+            function updatePQRSStats() {
+                const counts = { todos: allPQRS.length, pendiente: 0, en_proceso: 0, resuelto: 0, anulado: 0 };
+                allPQRS.forEach(p => { if (counts[p.estado] !== undefined) counts[p.estado]++; });
+                Object.keys(counts).forEach(k => {
+                    const el = document.getElementById('pqrs-count-' + k);
+                    if (el) el.textContent = counts[k];
+                });
+            }
+
+            function renderPQRSList() {
+                const container = document.getElementById('pqrs-list');
+                const label = document.getElementById('pqrs-filter-label');
+                const resetBtn = document.getElementById('pqrs-btn-reset');
+
+                let filtered = currentPQRSFilter === 'todos' ? allPQRS : allPQRS.filter(p => p.estado === currentPQRSFilter);
+
+                const labelMap = { todos: 'Todos', pendiente: 'Pendientes', en_proceso: 'En Proceso', resuelto: 'Resueltos', anulado: 'Anulados' };
+                label.textContent = '— Mostrando: ' + (labelMap[currentPQRSFilter] || 'Todos') + ' (' + filtered.length + ')';
+                resetBtn.style.display = currentPQRSFilter === 'todos' ? 'none' : 'inline-flex';
+
+                // Highlight active stat card
+                document.querySelectorAll('[id^="pqrs-stat-"]').forEach(el => {
+                    el.style.border = el.id === 'pqrs-stat-' + currentPQRSFilter ? '2px solid var(--primary-color)' : '';
+                    el.style.transform = el.id === 'pqrs-stat-' + currentPQRSFilter ? 'scale(1.03)' : '';
+                });
+
+                if (filtered.length === 0) {
+                    container.innerHTML = '<p style="text-align:center;color:#777;padding:30px;">No hay PQRS ' + (currentPQRSFilter !== 'todos' ? 'con estado "' + labelMap[currentPQRSFilter] + '"' : 'registradas') + '.</p>';
+                    return;
+                }
+
+                container.innerHTML = filtered.map(p => {
+                    const fecha = new Date(p.created_at).toLocaleDateString('es-ES', {day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'});
+                    const estadoColors = { pendiente: '#e67e22', en_proceso: '#3498db', resuelto: '#27ae60', anulado: '#95a5a6' };
+                    const estadoLabels = { pendiente: 'Pendiente', en_proceso: 'En Proceso', resuelto: 'Resuelto', anulado: 'Anulado' };
+                    const estadoIcons = { pendiente: 'fa-clock', en_proceso: 'fa-spinner', resuelto: 'fa-check-circle', anulado: 'fa-ban' };
+                    const tipoColors = { Peticion: '#3498db', Queja: '#e74c3c', Reclamo: '#e67e22', Sugerencia: '#27ae60' };
+
+                    return `
+                    <div style="display:flex; align-items:center; padding:15px; border:1px solid #eee; border-radius:8px; margin-bottom:10px; transition: all 0.2s; cursor:pointer; border-left: 4px solid ${estadoColors[p.estado] || '#ccc'};" 
+                         onmouseover="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'" onmouseout="this.style.boxShadow='none'"
+                         onclick="showPQRSDetail(${p.id})">
+                        <div style="flex:1; min-width:0;">
+                            <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px; flex-wrap:wrap;">
+                                <span style="background:${tipoColors[p.tipo] || '#777'}; color:white; padding:2px 10px; border-radius:20px; font-size:0.75rem; font-weight:600;">${p.tipo}</span>
+                                <span style="background:${estadoColors[p.estado]}22; color:${estadoColors[p.estado]}; padding:2px 10px; border-radius:20px; font-size:0.75rem; font-weight:600;">
+                                    <i class="fas ${estadoIcons[p.estado]}"></i> ${estadoLabels[p.estado]}
+                                </span>
+                                <span style="color:#999; font-size:0.8rem;">${fecha}</span>
+                            </div>
+                            <div style="font-weight:600; margin-bottom:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${p.asunto}</div>
+                            <div style="color:#777; font-size:0.85rem;">${p.nombre} — ${p.correo}</div>
+                        </div>
+                        <div style="margin-left:15px; display:flex; gap:6px; flex-shrink:0;">
+                            <button class="btn btn-sm btn-outline" onclick="event.stopPropagation(); showPQRSDetail(${p.id})" title="Ver detalle">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger" onclick="event.stopPropagation(); deletePQRS(${p.id}, '${p.asunto.replace(/'/g, "\\'")}')" title="Eliminar">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>`;
+                }).join('');
+            }
+
+            window.filterPQRS = function(estado) {
+                currentPQRSFilter = estado;
+                renderPQRSList();
+            };
+
+            window.showPQRSDetail = function(id) {
+                const p = allPQRS.find(x => x.id == id);
+                if (!p) return;
+
+                currentPQRSId = p.id;
+                const fecha = new Date(p.created_at).toLocaleDateString('es-ES', {day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit'});
+                const tipoColors = { Peticion: '#3498db', Queja: '#e74c3c', Reclamo: '#e67e22', Sugerencia: '#27ae60' };
+                const estadoColors = { pendiente: '#e67e22', en_proceso: '#3498db', resuelto: '#27ae60', anulado: '#95a5a6' };
+                const estadoLabels = { pendiente: 'Pendiente', en_proceso: 'En Proceso', resuelto: 'Resuelto', anulado: 'Anulado' };
+
+                document.getElementById('pqrs-detail-header').style.background = tipoColors[p.tipo] || '#333';
+                document.getElementById('pqrs-detail-tipo').innerHTML = '<i class="fas fa-tag"></i> ' + p.tipo + ' #' + p.id;
+                document.getElementById('pqrs-detail-nombre').textContent = p.nombre;
+                document.getElementById('pqrs-detail-correo').textContent = p.correo;
+                document.getElementById('pqrs-detail-fecha').textContent = fecha;
+                document.getElementById('pqrs-detail-estado').innerHTML = '<span style="background:' + estadoColors[p.estado] + '22; color:' + estadoColors[p.estado] + '; padding:3px 12px; border-radius:20px; font-size:0.85rem; font-weight:600;">' + estadoLabels[p.estado] + '</span>';
+                document.getElementById('pqrs-detail-asunto').textContent = p.asunto;
+                document.getElementById('pqrs-detail-mensaje').textContent = p.mensaje;
+
+                document.getElementById('pqrs-detail-modal').style.display = 'block';
+            };
+
+            window.closePQRSDetail = function() {
+                document.getElementById('pqrs-detail-modal').style.display = 'none';
+                currentPQRSId = null;
+            };
+
+            document.getElementById('pqrs-detail-modal').addEventListener('click', function(e) {
+                if (e.target === this) closePQRSDetail();
+            });
+
+            window.updatePQRSEstado = function(id, estado) {
+                fetch('api/pqrs.php', {
+                    method: 'PUT',
+                    headers: getUserHeaders(),
+                    body: JSON.stringify({ id: id, estado: estado })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        closePQRSDetail();
+                        loadPQRS();
+                        loadActividad();
+                    } else {
+                        alert('Error: ' + (data.error || 'No se pudo actualizar'));
+                    }
+                })
+                .catch(() => alert('Error de conexión'));
+            };
+
+            window.deletePQRS = function(id, asunto) {
+                if (!confirm('¿Eliminar la PQRS "' + asunto + '"? Esta acción no se puede deshacer.')) return;
+                fetch('api/pqrs.php', {
+                    method: 'DELETE',
+                    headers: getUserHeaders(),
+                    body: JSON.stringify({ id: id })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        loadPQRS();
+                        loadActividad();
+                        loadStats();
+                    } else {
+                        alert('Error: ' + (data.error || 'No se pudo eliminar'));
+                    }
+                })
+                .catch(() => alert('Error de conexión'));
+            };
+
+            loadPQRS();
+
             // ===== SISTEMA DE PERMISOS: Ocultar secciones según permisos del usuario =====
             window.applyPermissions = function() {
                 const userData = sessionStorage.getItem('admin_user');
@@ -2493,8 +3079,8 @@
                 const user = JSON.parse(userData);
                 const permisos = user.permisos || [];
                 
-                // Si es admin con todos los permisos, no hacer nada
-                if (user.rol === 'admin' && permisos.length === 0) return;
+                // Si es admin, mostrar todo
+                if (user.rol === 'admin') return;
                 
                 // Mapeo de permisos a los data-content del sidebar
                 const permissionMap = {
@@ -2503,7 +3089,8 @@
                     'academica': ['academica', 'oferta-academica', 'plan-estudios', 'evaluacion', 'proyectos', 'actualidad-academica'],
                     'configuracion': ['configuracion'],
                     'docentes': ['gestion-admin', 'docentes'],
-                    'usuarios': ['configuracion']
+                    'usuarios': ['configuracion'],
+                    'pqrs': ['pqrs']
                 };
 
                 // Recopilar todos los data-content permitidos

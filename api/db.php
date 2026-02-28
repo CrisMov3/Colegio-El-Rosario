@@ -5,7 +5,7 @@
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Headers: Content-Type, X-User');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
@@ -41,4 +41,28 @@ function jsonResponse($data, $code = 200) {
     http_response_code($code);
     echo json_encode($data, JSON_UNESCAPED_UNICODE);
     exit();
+}
+
+/**
+ * Registrar actividad en el log
+ */
+function logActivity($pdo, $tipo, $seccion, $descripcion, $detalles = null, $usuarioId = null, $usuarioNombre = null, $usuarioEmail = null) {
+    try {
+        $stmt = $pdo->prepare("INSERT INTO actividad (tipo, seccion, descripcion, detalles, usuario_id, usuario_nombre, usuario_email) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$tipo, $seccion, $descripcion, $detalles, $usuarioId, $usuarioNombre, $usuarioEmail]);
+    } catch (Exception $e) {
+        // No interrumpir el flujo si falla el log
+    }
+}
+
+/**
+ * Obtener datos del usuario desde el header X-User (enviado desde el frontend)
+ */
+function getRequestUser() {
+    $userHeader = $_SERVER['HTTP_X_USER'] ?? null;
+    if ($userHeader) {
+        $user = json_decode($userHeader, true);
+        if ($user) return $user;
+    }
+    return ['id' => null, 'nombre' => 'Sistema', 'email' => ''];
 }

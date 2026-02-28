@@ -144,6 +144,8 @@ document.querySelectorAll('.nav-links a').forEach(link => {
                 let content = btn.getAttribute('data-content');
                 let date = btn.getAttribute('data-date');
                 let img = btn.getAttribute('data-img');
+                let adjuntoNombre = btn.getAttribute('data-adjunto-nombre');
+                let adjuntoRuta = btn.getAttribute('data-adjunto-ruta');
                 
                 // Si no tiene atributos (son las estáticas del HTML), sacar del DOM
                 if(!title) {
@@ -151,11 +153,13 @@ document.querySelectorAll('.nav-links a').forEach(link => {
                     title = card.querySelector('h3').innerText;
                     content = card.querySelector('p').innerText + "\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
                     date = card.querySelector('.date').innerText;
-                    // Imagen placeholder
-                    img = 'https://source.unsplash.com/random/800x400/?school,news';
+                    img = 'https://scontent.feoh4-3.fna.fbcdn.net/v/t39.30808-6/498245975_1549371602649687_6980932980967919817_n.jpg';
+                    adjuntoNombre = '';
+                    adjuntoRuta = '';
                 } else {
                     content = decodeURIComponent(content);
                     title = decodeURIComponent(title);
+                    adjuntoNombre = adjuntoNombre ? decodeURIComponent(adjuntoNombre) : '';
                 }
 
                 renderModal({
@@ -165,7 +169,9 @@ document.querySelectorAll('.nav-links a').forEach(link => {
                     image: img,
                     listTitle: '',
                     listItems: [],
-                    tags: ['Noticia', 'Actualidad']
+                    tags: ['Noticia', 'Actualidad'],
+                    adjuntoNombre: adjuntoNombre,
+                    adjuntoRuta: adjuntoRuta
                 });
             }
         });
@@ -179,6 +185,18 @@ document.querySelectorAll('.nav-links a').forEach(link => {
                            `</ul>`;
             }
 
+            let adjuntoHtml = '';
+            if(data.adjuntoRuta) {
+                adjuntoHtml = `
+                    <div style="margin-top:18px;padding:12px 16px;background:#f0f7ff;border-radius:8px;border:1px solid #d0e3f7;display:inline-flex;align-items:center;gap:10px;">
+                        <i class="fas fa-file-download" style="font-size:1.3rem;color:var(--primary-color);"></i>
+                        <a href="${data.adjuntoRuta}" target="_blank" style="color:var(--primary-color);font-weight:600;text-decoration:none;">
+                            ${data.adjuntoNombre || 'Descargar archivo adjunto'}
+                        </a>
+                    </div>
+                `;
+            }
+
             modalBody.innerHTML = `
                 <div class="modal-header-img" style="background-image: url('${data.image}')"></div>
                 <div class="modal-text-content">
@@ -186,6 +204,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
                     <h4 class="modal-subtitle">${data.subtitle}</h4>
                     <div class="modal-details">${data.content}</div>
                     ${listHtml}
+                    ${adjuntoHtml}
                     <div style="margin-top: 25px;">
                         ${tagsHtml}
                     </div>

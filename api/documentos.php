@@ -54,6 +54,9 @@ switch ($method) {
         $stmt = $pdo->prepare("INSERT INTO documentos (titulo, descripcion, archivo_nombre, archivo_ruta, archivo_tamano, categoria) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->execute([$titulo, $descripcion, $archivoNombre, $archivoRuta, $archivoTamano, $categoria]);
 
+        $user = getRequestUser();
+        logActivity($pdo, 'crear', 'documentos', 'Subió el documento: "' . $titulo . '"', json_encode(['titulo' => $titulo, 'archivo' => $archivoNombre, 'categoria' => $categoria, 'tamano' => $archivoTamano]), $user['id'], $user['nombre'], $user['email']);
+
         jsonResponse(['success' => true, 'id' => $pdo->lastInsertId(), 'message' => 'Documento subido exitosamente'], 201);
         break;
 
@@ -63,6 +66,12 @@ switch ($method) {
         if (empty($data['id'])) {
             jsonResponse(['error' => 'ID es obligatorio'], 400);
         }
+
+        // Obtener info antes de eliminar
+        $info = $pdo->prepare("SELECT titulo, archivo_nombre FROM documentos WHERE id = ?");
+        $info->execute([$data['id']]);
+        $docInfo = $info->fetch();
+        $tituloDoc = $docInfo ? $docInfo['titulo'] : 'ID ' . $data['id'];
 
         // Obtener ruta del archivo para eliminarlo
         $stmt = $pdo->prepare("SELECT archivo_ruta FROM documentos WHERE id = ?");
@@ -75,6 +84,9 @@ switch ($method) {
 
         $stmt = $pdo->prepare("DELETE FROM documentos WHERE id = ?");
         $stmt->execute([$data['id']]);
+
+        $user = getRequestUser();
+        logActivity($pdo, 'eliminar', 'documentos', 'Eliminó el documento: "' . $tituloDoc . '"', json_encode(['id' => $data['id'], 'titulo' => $tituloDoc, 'archivo' => $docInfo ? $docInfo['archivo_nombre'] : '']), $user['id'], $user['nombre'], $user['email']);
 
         jsonResponse(['success' => true, 'message' => 'Documento eliminado']);
         break;

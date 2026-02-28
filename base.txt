@@ -34,9 +34,11 @@ CREATE TABLE IF NOT EXISTS noticias (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
     contenido TEXT NOT NULL,
-    imagen_url VARCHAR(500) DEFAULT NULL,
+    imagen_url VARCHAR(500) DEFAULT NULL COMMENT 'Ruta local de imagen subida (ej: img/noticias/abc123.jpg)',
     categoria ENUM('general', 'academico', 'eventos', 'anuncios') DEFAULT 'general',
     estado ENUM('publicado', 'borrador') DEFAULT 'publicado',
+    archivo_adjunto_nombre VARCHAR(255) DEFAULT NULL COMMENT 'Nombre original del archivo adjunto (PDF/Word)',
+    archivo_adjunto_ruta VARCHAR(500) DEFAULT NULL COMMENT 'Ruta del archivo adjunto en uploads/noticias_archivos/',
     fecha_publicacion DATETIME DEFAULT CURRENT_TIMESTAMP,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -115,6 +117,21 @@ CREATE TABLE IF NOT EXISTS pqrs (
     tipo ENUM('Peticion', 'Queja', 'Reclamo', 'Sugerencia') NOT NULL,
     asunto VARCHAR(255) NOT NULL,
     mensaje TEXT NOT NULL,
-    estado ENUM('pendiente', 'en_proceso', 'resuelto') DEFAULT 'pendiente',
+    estado ENUM('pendiente', 'en_proceso', 'resuelto', 'anulado') DEFAULT 'pendiente',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- ============================================
+-- TABLA: actividad (log de actividades del panel)
+-- ============================================
+CREATE TABLE IF NOT EXISTS actividad (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tipo ENUM('crear', 'editar', 'eliminar') NOT NULL,
+    seccion VARCHAR(50) NOT NULL,
+    descripcion VARCHAR(255) NOT NULL,
+    detalles TEXT DEFAULT NULL COMMENT 'JSON con datos adicionales del cambio',
+    usuario_id INT DEFAULT NULL,
+    usuario_nombre VARCHAR(100) DEFAULT NULL,
+    usuario_email VARCHAR(150) DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;

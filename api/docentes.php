@@ -45,6 +45,9 @@ switch ($method) {
             $data['correo']
         ]);
 
+        $user = getRequestUser();
+        logActivity($pdo, 'crear', 'docentes', 'Agregó al docente: "' . $data['nombre'] . '"', json_encode(['nombre' => $data['nombre'], 'asignatura' => $data['asignatura'], 'correo' => $data['correo']]), $user['id'], $user['nombre'], $user['email']);
+
         jsonResponse(['success' => true, 'id' => $pdo->lastInsertId(), 'message' => 'Docente agregado exitosamente'], 201);
         break;
 
@@ -64,6 +67,9 @@ switch ($method) {
             $data['id']
         ]);
 
+        $user = getRequestUser();
+        logActivity($pdo, 'editar', 'docentes', 'Editó al docente: "' . $data['nombre'] . '"', json_encode(['id' => $data['id'], 'nombre' => $data['nombre'], 'asignatura' => $data['asignatura']]), $user['id'], $user['nombre'], $user['email']);
+
         jsonResponse(['success' => true, 'message' => 'Docente actualizado']);
         break;
 
@@ -74,8 +80,17 @@ switch ($method) {
             jsonResponse(['error' => 'ID es obligatorio'], 400);
         }
 
+        // Obtener nombre antes de eliminar
+        $info = $pdo->prepare("SELECT nombre FROM docentes WHERE id = ?");
+        $info->execute([$data['id']]);
+        $docenteInfo = $info->fetch();
+        $nombreDoc = $docenteInfo ? $docenteInfo['nombre'] : 'ID ' . $data['id'];
+
         $stmt = $pdo->prepare("DELETE FROM docentes WHERE id = ?");
         $stmt->execute([$data['id']]);
+
+        $user = getRequestUser();
+        logActivity($pdo, 'eliminar', 'docentes', 'Eliminó al docente: "' . $nombreDoc . '"', json_encode(['id' => $data['id'], 'nombre' => $nombreDoc]), $user['id'], $user['nombre'], $user['email']);
 
         jsonResponse(['success' => true, 'message' => 'Docente eliminado']);
         break;

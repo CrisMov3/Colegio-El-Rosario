@@ -58,7 +58,11 @@ if ($method === 'POST') {
         $activo
     ]);
 
-    jsonResponse(['success' => true, 'id' => $pdo->lastInsertId(), 'message' => 'Usuario creado correctamente']);
+    $newId = $pdo->lastInsertId();
+    $user = getRequestUser();
+    logActivity($pdo, 'crear', 'usuarios', 'Creó al usuario: "' . trim($data['nombre']) . '"', json_encode(['id' => $newId, 'nombre' => trim($data['nombre']), 'email' => trim($data['email']), 'rol' => $rol]), $user['id'], $user['nombre'], $user['email']);
+
+    jsonResponse(['success' => true, 'id' => $newId, 'message' => 'Usuario creado correctamente']);
 }
 
 // ===== PUT: Actualizar usuario =====
@@ -126,6 +130,9 @@ if ($method === 'PUT') {
     $stmt = $pdo->prepare($sql);
     $stmt->execute($values);
 
+    $user = getRequestUser();
+    logActivity($pdo, 'editar', 'usuarios', 'Editó al usuario: "' . ($data['nombre'] ?? 'ID '.$id) . '"', json_encode(['id' => $id, 'campos_editados' => array_keys(array_filter($data, fn($k) => $k !== 'id', ARRAY_FILTER_USE_KEY))]), $user['id'], $user['nombre'], $user['email']);
+
     jsonResponse(['success' => true, 'message' => 'Usuario actualizado correctamente']);
 }
 
@@ -154,8 +161,17 @@ if ($method === 'DELETE') {
         jsonResponse(['error' => 'No se puede eliminar el último administrador activo'], 400);
     }
 
+    // Obtener info antes de eliminar
+    $info = $pdo->prepare("SELECT nombre, email FROM usuarios WHERE id = ?");
+    $info->execute([$id]);
+    $userInfo = $info->fetch();
+    $nombreElim = $userInfo ? $userInfo['nombre'] : 'ID ' . $id;
+
     $stmt = $pdo->prepare("DELETE FROM usuarios WHERE id = ?");
     $stmt->execute([$id]);
+
+    $user = getRequestUser();
+    logActivity($pdo, 'eliminar', 'usuarios', 'Eliminó al usuario: "' . $nombreElim . '"', json_encode(['id' => $id, 'nombre' => $nombreElim, 'email' => $userInfo ? $userInfo['email'] : '']), $user['id'], $user['nombre'], $user['email']);
 
     jsonResponse(['success' => true, 'message' => 'Usuario eliminado correctamente']);
 }

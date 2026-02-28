@@ -251,44 +251,62 @@
             <h2 class="section-title">Gestión Documental</h2>
             <p class="section-desc">Descarga los documentos institucionales importantes.</p>
             
-            <div class="documents-grid">
-                <div class="doc-item">
-    <i class="fas fa-file-pdf doc-icon"></i>
-    <div class="doc-info">
-        <h4>Manual de Convivencia</h4>
-
-        <a href="PDF/PEI Colegio El Rosario 2026.pdf" target="_blank" class="btn btn-sm">
-            Descargar
-        </a>
-
-    </div>
-</div>
-
-                <div class="doc-item">
-    <i class="fas fa-file-pdf doc-icon"></i>
-    <div class="doc-info">
-        <h4>Horario escolar</h4>
-
-        <a href="img/horario escolar.png" target="_blank" class="btn btn-sm">
-            Descargar
-        </a>
-
-    </div>
-</div>
-
-                <div class="doc-item">
-    <i class="fas fa-file-pdf doc-icon"></i>
-    <div class="doc-info">
-        <h4>Lista de Útiles</h4>
-
-        <a href="PDF/mper_205238_LISTA DE UTILES ESCOLARES ANO 2026.pdf" target="_blank" class="btn btn-sm">
-            Descargar
-        </a>
-
-    </div>
-</div>
-
+            <div class="documents-grid" id="docs-container">
+                <!-- Se cargará dinámicamente desde la BD -->
+            </div>
+        </div>
     </section>
+
+    <script>
+    // ===== CARGAR DOCUMENTOS DESDE LA BASE DE DATOS =====
+    (function() {
+        const container = document.getElementById('docs-container');
+        if (!container) return;
+
+        fetch('api/documentos.php')
+            .then(res => res.json())
+            .then(docs => {
+                container.innerHTML = '';
+
+                if (!Array.isArray(docs) || docs.length === 0) {
+                    container.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                            <i class="fas fa-folder-open" style="font-size: 3rem; color: #ccc; margin-bottom: 15px;"></i>
+                            <p style="font-size: 1.2rem; color: #888; margin: 0;">No hay documentos disponibles en este momento.</p>
+                            <p style="font-size: 0.95rem; color: #aaa; margin-top: 8px;">Pronto se publicarán los documentos institucionales.</p>
+                        </div>`;
+                    return;
+                }
+
+                docs.forEach(d => {
+                    const ext = d.archivo_nombre ? d.archivo_nombre.split('.').pop().toLowerCase() : '';
+                    let iconClass = 'fas fa-file';
+                    if (['pdf'].includes(ext)) iconClass = 'fas fa-file-pdf';
+                    else if (['doc', 'docx'].includes(ext)) iconClass = 'fas fa-file-word';
+                    else if (['xls', 'xlsx'].includes(ext)) iconClass = 'fas fa-file-excel';
+                    else if (['png', 'jpg', 'jpeg', 'gif', 'webp'].includes(ext)) iconClass = 'fas fa-file-image';
+
+                    const div = document.createElement('div');
+                    div.className = 'doc-item';
+                    div.innerHTML = `
+                        <i class="${iconClass} doc-icon"></i>
+                        <div class="doc-info">
+                            <h4>${d.titulo}</h4>
+                            <a href="${d.archivo_ruta}" target="_blank" class="btn btn-sm">Descargar</a>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+            })
+            .catch(() => {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ccc; margin-bottom: 15px;"></i>
+                        <p style="font-size: 1.2rem; color: #888; margin: 0;">Error al cargar los documentos.</p>
+                    </div>`;
+            });
+    })();
+    </script>
 
     <div class="modal" id="info-modal">
         <div class="modal-content">
@@ -344,20 +362,38 @@
     fetch('api/noticias.php?limit=6')
         .then(res => res.json())
         .then(noticias => {
-            if (!Array.isArray(noticias) || noticias.length === 0) return;
-            // Limpiar noticias estáticas
+            // Siempre limpiar las noticias estáticas al recibir respuesta del servidor
             container.innerHTML = '';
+
+            if (!Array.isArray(noticias) || noticias.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <i class="fas fa-newspaper" style="font-size: 3rem; color: #ccc; margin-bottom: 15px;"></i>
+                        <p style="font-size: 1.2rem; color: #888; margin: 0;">No hay noticias disponibles en este momento.</p>
+                        <p style="font-size: 0.95rem; color: #aaa; margin-top: 8px;">Pronto publicaremos novedades institucionales.</p>
+                    </div>`;
+                return;
+            }
+
+            const defaultImg = 'https://scontent.feoh4-3.fna.fbcdn.net/v/t39.30808-6/498245975_1549371602649687_6980932980967919817_n.jpg';
             noticias.forEach(n => {
                 const article = document.createElement('article');
                 article.className = 'news-card';
                 const fecha = new Date(n.fecha_publicacion).toLocaleDateString('es-ES', {day:'numeric', month:'short', year:'numeric'});
+                const imgUrl = n.imagen_url || defaultImg;
+                const adjuntoHTML = n.archivo_adjunto_ruta 
+                    ? `<a href="${n.archivo_adjunto_ruta}" target="_blank" class="news-attachment-link" style="margin-right:10px;color:#27ae60;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:4px;"><i class="fas fa-paperclip"></i> ${n.archivo_adjunto_nombre || 'Archivo adjunto'}</a>` 
+                    : '';
                 article.innerHTML = `
-                    <div class="news-image" style="background-image: url('${n.imagen_url || ''}'); background-color: #008ba3;"></div>
+                    <div class="news-image" style="background-image: url('${imgUrl}'); background-color: #008ba3;"></div>
                     <div class="news-content">
                         <span class="date">${fecha}</span>
                         <h3>${n.titulo}</h3>
                         <p>${n.contenido.substring(0, 120)}...</p>
-                        <a href="#" class="read-more" data-title="${encodeURIComponent(n.titulo)}" data-content="${encodeURIComponent(n.contenido)}" data-date="${fecha}" data-img="${n.imagen_url || ''}">Leer más</a>
+                        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;">
+                            ${adjuntoHTML}
+                            <a href="#" class="read-more" data-title="${encodeURIComponent(n.titulo)}" data-content="${encodeURIComponent(n.contenido)}" data-date="${fecha}" data-img="${imgUrl}" data-adjunto-nombre="${encodeURIComponent(n.archivo_adjunto_nombre || '')}" data-adjunto-ruta="${n.archivo_adjunto_ruta || ''}">Leer más</a>
+                        </div>
                     </div>
                 `;
                 container.appendChild(article);
