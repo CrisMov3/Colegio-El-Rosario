@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -85,8 +85,11 @@
                     </ul>
                 </li>
 
-                <li>
-                    <a href="#pqrs" class="pqrs-link">PQRS</a>
+                <li class="search-item">
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="nav-search" placeholder="Search...">
+                        <button class="search-btn" type="button"><i class="fas fa-search"></i></button>
+                    </div>
                 </li>
 
             </ul>
@@ -157,7 +160,7 @@
                 </p>
             </div>
             <div class="card-action">
-                <a href="https://sistema.institucional.example"
+                <a href="http://162.216.241.106/server6/wc.dll?seguridad~login"
                    target="_blank"
                    rel="noopener noreferrer"
                    class="btn btn-warning">
@@ -219,27 +222,27 @@
     <div class="container">
         <h2 class="section-title">Academic Updates</h2>
         <div class="academic-grid">
-            <div class="academic-item">
+            <a href="preschool-en.html" class="academic-item">
                 <div class="academic-img" style="background-image: url('https://scontent.feoh3-1.fna.fbcdn.net/v/t39.30808-6/482020495_1498761891043992_7230074861855181528_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGj89Jqe38YaZ6gttKo_hmIluYWTtVQfIeW5hZO1VB8h1VLTj0fcnZgNgGxB-peAgOz1ipOFZ4YLGkIDZ-lXobQ&_nc_ohc=mGWpz_pzmikQ7kNvwFcGVLE&_nc_oc=AdmYVo3ybqoJ4RRw2n-RfKdrZceejtYSiVgoo68iv10ny37W9JB00kxp7jcTAThoKtvGEXuLDFUMKxcOsk226T1o&_nc_zt=23&_nc_ht=scontent.feoh3-1.fna&_nc_gid=fjq9ipo5qSaLNmnDL41vTg&oh=00_AfsU2ZqO-goxPuMJ6DE_bGNCKYe_VfCqZmOEC26GftQbrQ&oe=699199E6');"></div>
                 <div class="academic-info">
                     <h3>Preschool</h3>
                     <p>A playful and safe space where the learning adventure begins.</p>
                 </div>
-            </div>
-            <div class="academic-item">
+            </a>
+            <a href="primary-en.html" class="academic-item">
                 <div class="academic-img" style="background-image: url('https://scontent.fpei1-1.fna.fbcdn.net/v/t39.30808-6/482876798_1498458674407647_4556078082087907064_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFbWM17KQz8sdS7_F_Jp37oeEXnqbqnP7Z4Reepuqc_tlOfy0wRMe0WuKfHEF0gPVBlt5_iiYrmIn2PvoVO-HA-&_nc_ohc=m1YuUxYc-0sQ7kNvwFXgYKm&_nc_oc=AdmUZwpjrKX8qbrAIbWQ1F2hMjPVH0i4aCwZnrQnhCE9-UPMK3fZppXdYknOpH5tiVDlb9xU9oBHf_0x6EWciAMz&_nc_zt=23&_nc_ht=scontent.fpei1-1.fna&_nc_gid=yPVUIunHfNQUpP23uk3mVQ&oh=00_Afs6vuD9IRxXVFQBNIxwPZ5eOscRxjiMjiMR_G8m_WZIlA&oe=6991909A');"></div>
                 <div class="academic-info">
                     <h3>Primary School</h3>
                     <p>We strengthen the foundations of knowledge and social skills.</p>
                 </div>
-            </div>
-            <div class="academic-item">
+            </a>
+            <a href="highschool-en.html" class="academic-item">
                 <div class="academic-img" style="background-image: url('https://scontent.feoh1-1.fna.fbcdn.net/v/t39.30808-6/480278564_1482927265960788_5685815749057112333_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeELwQsUmhRV2WttXq9ZRN0mqE8kD5f7lSuoTyQPl_uVKxtu9uxK-Q-qjTfc9eKW6DWuSOGQ7waMcZqkEMO42Uj2&_nc_ohc=qyBV38tM6_0Q7kNvwG8f7Rf&_nc_oc=Admm3z1_BfmcINj-rDWy29cfQ1GYflVq3fKb2xsAfRF9_D8XLwsN3ewp6j1rzZ28wEQ&_nc_zt=23&_nc_ht=scontent.feoh1-1.fna&_nc_gid=MkZ7xijfAgE9ECaVeOutkA&oh=00_AfshZp8alTn9nqKE0dov2TdlIj2rgapNSk6Td2w6jrQ8kQ&oe=69917A76');"></div>
                 <div class="academic-info">
                     <h3>High School</h3>
                     <p>We prepare competent young leaders for university challenges.</p>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </section>
@@ -335,6 +338,38 @@
     </div>
 </div>
 
+<!-- Map Location Modal -->
+<div class="modal" id="map-modal">
+    <div class="modal-content modal-map">
+        <button class="close-modal" id="close-map">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="map-header">
+            <h2><i class="fas fa-map-marker-alt"></i> School Location</h2>
+        </div>
+        <div class="map-body">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.6892929447744!2d-75.18965!3d6.177944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4429d3a5f5f5f5%3A0x5f5f5f5f5f5f5f5f!2sCarrera%2048A%20%2338-171%2C%20Itagu%C3%AD%2C%20Antioquia!5e0!3m2!1sen!2sco!4v1694000000000" width="100%" height="450" style="border:0;border-radius:12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="map-footer">
+            <div class="location-info">
+                <i class="fas fa-home"></i>
+                <div>
+                    <h4>Address</h4>
+                    <p>Carrera 48A #38-171, Itagüí, Antioquia - Colombia</p>
+                </div>
+            </div>
+            <div class="contact-links">
+                <a href="tel:+573006076615" class="location-btn">
+                    <i class="fas fa-phone"></i> Call
+                </a>
+                <a href="https://wa.me/573006076615" target="_blank" class="location-btn whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="js/script.js"></script>
 
 <!-- Partner Institutions - Logo Carousel -->
@@ -344,84 +379,36 @@
         <p class="section-desc">We collaborate with important educational institutions and organizations</p>
         
         <div class="allies-carousel">
-            <!-- Carousel container -->
-            <div class="allies-container">
-                <div class="allies-slides">
-                    <!-- Slide 1 - 4 logos -->
-                    <div class="ally-slide">
-                        <div class="logos-row">
-                            <!-- Institution 1 -->
-                            <a href="http://www.icetex.gov.co/" target="_blank" class="ally-logo-card">
-                                <div class="logo-wrapper">
-                                    <img src="https://www.iediegoechavarriamisasmedellin.edu.co/img/logo_icetex.png" 
-                                         class="ally-logo">
-                                </div>
-                            </a>
-
-                            <!-- Institution 2 -->
-                            <a href="https://contactomaestro.colombiaaprende.edu.co/" target="_blank" class="ally-logo-card">
-                                <div class="logo-wrapper">
-                                    <img src="https://www.iediegoechavarriamisasmedellin.edu.co/img/logo_contactomaestro.png" 
-                                         class="ally-logo">
-                                </div>
-                            </a>
-
-                            <!-- Institution 3 -->
-                            <a href="http://www.mineducacion.gov.co/" target="_blank" class="ally-logo-card">
-                                <div class="logo-wrapper">
-                                    <img src="https://www.iediegoechavarriamisasmedellin.edu.co/img/logo_mineducacion.png" 
-                                         class="ally-logo">
-                                </div>
-                            </a>
-
-                            <!-- Institution 4 -->
-                            <a href="http://www.icfes.gov.co/" target="_blank" class="ally-logo-card">
-                                <div class="logo-wrapper">
-                                    <img src="https://www.iediegoechavarriamisasmedellin.edu.co/img/logo_icfes.png" 
-                                         alt="Ministry of National Education"
-                                         class="ally-logo">
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Slide 2 - 4 logos -->
-                    <div class="ally-slide">
-                        <div class="logos-row">
-                            <!-- Institution 5 -->
-                            <a href="https://escuelasecretarias.mineducacion.gov.co/" target="_blank" class="ally-logo-card">
-                                <div class="logo-wrapper">
-                                    <img src="https://www.iediegoechavarriamisasmedellin.edu.co/img/logo_colombiaaprende.png" 
-                                         class="ally-logo">
-                                </div>
-                            </a>
-
-                            <!-- Institution 8 -->
-                            <a href="https://www.sena.edu.co" target="_blank" class="ally-logo-card">
-                                <div class="logo-wrapper">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Sena_Colombia_logo.svg/1280px-Sena_Colombia_logo.svg.png" 
-                                         alt="SENA"
-                                         class="ally-logo">
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+            <div class="allies-slides">
+                <div class="allies-logos">
+                    <a href="http://www.icetex.gov.co/" target="_blank" title="ICETEX" class="logo-item">
+                        <img src="https://www.iediegoechavarriamisasmedellin.edu.co/img/logo_icetex.png" alt="ICETEX">
+                    </a>
+                    <a href="https://contactomaestro.colombiaaprende.edu.co/" target="_blank" title="Contacto Maestro" class="logo-item">
+                        <img src="https://www.iediegoechavarriamisasmedellin.edu.co/img/logo_contactomaestro.png" alt="Contacto Maestro">
+                    </a>
+                    <a href="http://www.mineducacion.gov.co/" target="_blank" title="Ministry of Education" class="logo-item">
+                        <img src="https://www.iediegoechavarriamisasmedellin.edu.co/img/logo_mineducacion.png" alt="Min Education">
+                    </a>
+                    <a href="http://www.icfes.gov.co/" target="_blank" title="ICFES" class="logo-item">
+                        <img src="https://www.iediegoechavarriamisasmedellin.edu.co/img/logo_icfes.png" alt="ICFES">
+                    </a>
+                    <a href="https://escuelasecretarias.mineducacion.gov.co/" target="_blank" title="Colombia Aprende" class="logo-item">
+                        <img src="https://www.iediegoechavarriamisasmedellin.edu.co/img/logo_colombiaaprende.png" alt="Colombia Aprende">
+                    </a>
+                    <a href="https://www.sena.edu.co" target="_blank" title="SENA" class="logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Sena_Colombia_logo.svg/1280px-Sena_Colombia_logo.svg.png" alt="SENA">
+                    </a>
                 </div>
             </div>
-
-            <!-- Carousel controls -->
-            <button class="ally-prev">
+            
+            <!-- Controls -->
+            <button class="carousel-control prev">
                 <i class="fas fa-chevron-left"></i>
             </button>
-            <button class="ally-next">
+            <button class="carousel-control next">
                 <i class="fas fa-chevron-right"></i>
             </button>
-
-            <!-- Indicators -->
-            <div class="ally-indicators">
-                <span class="ally-indicator active" data-slide="0"></span>
-                <span class="ally-indicator" data-slide="1"></span>
-            </div>
         </div>
     </div>
 </section>
@@ -431,43 +418,48 @@
 <footer class="main-footer">
     <div class="container">
         <div class="footer-grid">
-            <!-- Column 1: Policies -->
+            <!-- Column 1: Legal Information -->
             <div class="footer-column">
-                <h4>Legal Links</h4>
+                <h4>Legal Information</h4>
                 <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-file-contract"></i> Data Processing Policy</a></li>
-                    <li><a href="#"><i class="fas fa-sitemap"></i> Site Map</a></li>
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Data Processing</a></li>
                     <li><a href="#"><i class="fas fa-user-shield"></i> Privacy Policy</a></li>
                     <li><a href="#"><i class="fas fa-balance-scale"></i> Terms and Conditions</a></li>
                 </ul>
             </div>
 
-            <!-- Column 2: Quick Contact -->
+            <!-- Column 2: Contact and Social -->
             <div class="footer-column">
-                <h4>Quick Contact</h4>
+                <h4>Connect With Us</h4>
                 <ul class="footer-links">
-                    <li><a href="mailto:info@idem.edu.co"><i class="fas fa-envelope"></i> info@idem.edu.co</a></li>
-                    <li><a href="tel:+5745822222"><i class="fas fa-phone"></i> +57 (604) 582 22 22</a></li>
-                    <li><a href="https://wa.me/573054669090"><i class="fab fa-whatsapp"></i> WhatsApp: 305 466 9090</a></li>
-                    <li><a href="#contacto"><i class="fas fa-headset"></i> Support Center</a></li>
+                    <li><a href="tel:+573006076615"><i class="fas fa-phone"></i> +57 (604) 300 6076</a></li>
+                    <li><a href="mailto:colegioelrosario.rectoria@gmail.com"><i class="fas fa-envelope"></i> Email: colegioelrosario.rectoria@gmail.com</a></li>
+                    <li><a href="https://wa.me/573006076615" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp: +57 300 6076</a></li>
+                    <li><a href="#" id="open-map-btn"><i class="fas fa-map-marker-alt"></i> Location</a></li>
                 </ul>
+                <div class="social-media" style="margin-top: 15px;">
+                    <a href="https://www.facebook.com/colegioelrosariodeitagui/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/colegioelrosariodeitagui/reels/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
             </div>
 
-            <!-- Column 3: Visit Counter -->
+            <!-- Column 3: Compact Statistics -->
             <div class="footer-column">
                 <h4>Statistics</h4>
                 <div class="visit-counter">
                     <div class="counter-item">
-                        <span class="counter-number">5,971,675</span>
-                        <span class="counter-label">Total Visits</span>
+                        <span class="counter-number">5.9M</span>
+                        <span class="counter-label">Visits</span>
                     </div>
                     <div class="counter-item">
-                        <span class="counter-number">46,418</span>
-                        <span class="counter-label">Visits This Month</span>
+                        <span class="counter-number">46K</span>
+                        <span class="counter-label">This Month</span>
                     </div>
                     <div class="counter-item">
-                        <span class="counter-number">2,203</span>
-                        <span class="counter-label">Visits Today</span>
+                        <span class="counter-number">2.2K</span>
+                        <span class="counter-label">Today</span>
                     </div>
                 </div>
             </div>
@@ -484,15 +476,15 @@
                 
                 <div class="developer-logo">
                     <span>Developed by</span>
-                    <div class="strokbig-logo">
+                    <a href="https://www.strokbig.com" target="_blank" class="strokbig-logo" title="Visit Strokbig">
                         <img src="img/Strokbig-Logo-BLANCO-+-[MR].png" alt="Strokbig">
-                    </div>
+                    </a>
                 </div>
             </div>
             
             <div class="copyright">
                 <p>&copy; 2026 El Rosario Educational Institution Itagüí. All rights reserved.</p>
-                <p class="footer-note">Itagüí, Antioquia - Colombia</p>
+                <p class="footer-note">Carrera 48A #38-171, Itagüí, Antioquia - Colombia</p>
             </div>
         </div>
     </div>

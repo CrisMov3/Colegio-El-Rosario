@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Página no encontrada | Colegio El Rosario</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
+    <style>
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .error-title {
+            font-size: 2rem;
+            color: var(--dark-text);
+            margin: 20px 0 15px;
+            font-weight: 700;
+        }
+
+        .error-description {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        .error-icon {
+            font-size: 80px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            opacity: 0.2;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .error-actions .btn {
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .error-actions .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .error-actions .btn-primary:hover {
+            transform: translate(0, -3px);
+            box-shadow: 0 8px 15px rgba(0, 139, 163, 0.3);
+        }
+
+        .error-actions .btn-outline {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+
+        .error-actions .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translate(0, -3px);
+        }
+
+        .sitemap-section {
+            background: #f8f9fa;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-radius: 10px;
+        }
+
+        .sitemap-title {
+            font-size: 1.5rem;
+            color: var(--dark-text);
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .sitemap-column h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .sitemap-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sitemap-column li {
+            margin-bottom: 8px;
+        }
+
+        .sitemap-column a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .sitemap-column a:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 5rem;
+            }
+
+            .error-title {
+                font-size: 1.5rem;
+            }
+
+            .error-description {
+                font-size: 1rem;
+            }
+
+            .error-icon {
+                font-size: 60px;
+            }
+
+            .error-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .error-actions .btn {
+                width: 100%;
+            }
+
+            .sitemap-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- BARRA GOV.CO -->
+<div class="gov-bar">
+    <div class="gov-container">
+        <img src="https://govco-prod-webutils.s3.us-east-1.amazonaws.com/uploads/2025-08-29/f2b1a485-5e1a-4ac3-a002-067b69bed7aa-1imagen_noticia.png"
+             alt="GOV.CO"
+             class="gov-logo">
+
+        <div class="gov-right">
+            <a href="index.html" class="lang-btn active" id="btn-es">ES</a>
+            <a href="404-en.html" class="lang-btn" id="btn-en">EN</a>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER PRINCIPAL -->
+<header class="main-header">
+    <div class="container header-content">
+
+        <!-- LOGO -->
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Logo Institucional" class="logo-img">
+            <div class="logo-text">
+                <h1>Colegio El Rosario de Itagüí</h1>
+                <span>Itagüí · Antioquia</span>
+            </div>
+        </div>
+
+        <!-- NAV -->
+        <nav class="main-nav">
+            <ul class="nav-links">
+
+                <li><a href="index.html">Inicio</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Institucional</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="resena-historica.html">Reseña histórica</a></li>   
+                        <li><a href="mision-vision.html">Misión, visión y valores</a></li>
+                        <li><a href="PDF/MANUAL DE CONVIVENCIA COLEGIO EL ROSARIO.pdf" target="_blank">Manual de Convivencia</a></li>
+                        <li><a href="Gobierno Escolar.html">Gobierno Escolar</a></li>
+                        <li><a href="Símbolos institucionales.html">Símbolos institucionales</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Académica</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="oferta-academica.html">Oferta académica</a></li>
+                        <li><a href="plan-estudio.html">Plan de estudios</a></li>
+                        <li><a href="Evaluación y promoción.html">Evaluación y promoción</a></li>
+                        <li><a href="Proyectos pedagógicos.html">Proyectos pedagógicos</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Gestión Administrativa</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Talento humano.html">Talento humano</a></li>
+                        <li><a href="contratacion.html">Contratación</a></li>
+                        <li><a href="presupuesto.html">Presupuesto</a></li>
+                        <li><a href="tramites.html">Trámites</a></li>
+                        <li><a href="docentes.html">Docentes</a></li>
+                        <li><a href="administrativos.html">Administrativos</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Gestión Comunitaria</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="atencion-ciudadano.html">Atención al ciudadano</a></li>
+                        <li><a href="escuela-padres.html">Escuela de padres</a></li>
+                        <li><a href="participacion.html">Participación</a></li>
+                    </ul>
+                </li>
+
+                <li class="search-item">
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="nav-search" placeholder="Buscar...">
+                        <button class="search-btn" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                </li>
+
+            </ul>
+
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Main Error Content -->
+<main class="container">
+    <section class="error-container">
+        <div class="error-icon">
+            <i class="fas fa-search"></i>
+        </div>
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">¡Página no encontrada!</h2>
+        <p class="error-description">
+            Lo sentimos, la página que buscas no existe o ha sido movida. 
+            No te preocupes, te ayudamos a encontrar lo que necesitas.
+        </p>
+
+        <div class="error-actions">
+            <a href="index.html" class="btn btn-primary">
+                <i class="fas fa-home"></i> Volver al Inicio
+            </a>
+            <a href="javascript:history.back()" class="btn btn-outline">
+                <i class="fas fa-arrow-left"></i> Atrás
+            </a>
+        </div>
+    </section>
+
+    <!-- Sitemap / Navigation Help -->
+    <section class="sitemap-section">
+        <h3 class="sitemap-title">Explora nuestro sitio</h3>
+        <div class="sitemap-grid">
+            <!-- Institutional Column -->
+            <div class="sitemap-column">
+                <h4><i class="fas fa-building"></i> Institucional</h4>
+                <ul>
+                    <li><a href="resena-historica.html">Reseña histórica</a></li>
+                    <li><a href="mision-vision.html">Misión, visión y valores</a></li>
+                    <li><a href="Gobierno Escolar.html">Gobierno Escolar</a></li>
+                    <li><a href="Símbolos institucionales.html">Símbolos institucionales</a></li>
+                </ul>
+            </div>
+
+            <!-- Academic Column -->
+            <div class="sitemap-column">
+                <h4><i class="fas fa-book"></i> Académica</h4>
+                <ul>
+                    <li><a href="oferta-academica.html">Oferta académica</a></li>
+                    <li><a href="preescolar.html">Preescolar</a></li>
+                    <li><a href="primaria.html">Primaria</a></li>
+                    <li><a href="bachillerato.html">Bachillerato</a></li>
+                </ul>
+            </div>
+
+            <!-- Administrative Column -->
+            <div class="sitemap-column">
+                <h4><i class="fas fa-briefcase"></i> Gestión</h4>
+                <ul>
+                    <li><a href="Talento humano.html">Talento humano</a></li>
+                    <li><a href="docentes.html">Docentes</a></li>
+                    <li><a href="administrativos.html">Administrativos</a></li>
+                    <li><a href="tramites.html">Trámites</a></li>
+                </ul>
+            </div>
+
+            <!-- Community Column -->
+            <div class="sitemap-column">
+                <h4><i class="fas fa-users"></i> Comunidad</h4>
+                <ul>
+                    <li><a href="atencion-ciudadano.html">Atención al ciudadano</a></li>
+                    <li><a href="escuela-padres.html">Escuela de padres</a></li>
+                    <li><a href="participacion.html">Participación</a></li>
+                    <li><a href="actualidad-academica.html">Actualidad Académica</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Redesigned Main Footer -->
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Column 1: Legal Information -->
+            <div class="footer-column">
+                <h4>Información Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-file-contract"></i> Tratamiento de Datos</a></li>
+                    <li><a href="#"><i class="fas fa-user-shield"></i> Política de Privacidad</a></li>
+                    <li><a href="#"><i class="fas fa-balance-scale"></i> Términos y Condiciones</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 2: Contact and Social -->
+            <div class="footer-column">
+                <h4>Conecta con Nosotros</h4>
+                <ul class="footer-links">
+                    <li><a href="tel:+573006076615"><i class="fas fa-phone"></i> +57 (604) 300 6076</a></li>
+                    <li><a href="mailto:colegioelrosario.rectoria@gmail.com"><i class="fas fa-envelope"></i> Email: colegioelrosario.rectoria@gmail.com</a></li>
+                    <li><a href="https://wa.me/573006076615" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp: +57 300 6076</a></li>
+                    <li><a href="#" id="open-map-btn"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
+                </ul>
+                <div class="social-media" style="margin-top: 15px;">
+                    <a href="https://www.facebook.com/colegioelrosariodeitagui/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/colegioelrosariodeitagui/reels/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Column 3: Compact Statistics -->
+            <div class="footer-column">
+                <h4>Estadísticas</h4>
+                <div class="visit-counter">
+                    <div class="counter-item">
+                        <span class="counter-number">5.9M</span>
+                        <span class="counter-label">Visitas</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">46K</span>
+                        <span class="counter-label">Este mes</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-number">2.2K</span>
+                        <span class="counter-label">Hoy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logos and Copyright -->
+        <div class="footer-bottom">
+            <div class="logos-container">
+                <div class="institutional-logos">
+                    <img src="img/logo.png" alt="Logo Colegio El Rosario" class="footer-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Colombia.svg/1280px-Flag_of_Colombia.svg.png" alt="Bandera de Colombia" class="flag-logo">
+                    <img src="https://cdn.www.gov.co/assets/images/Vertical-Color.png" alt="GOV.CO" class="gov-logo-footer">
+                </div>
+                
+                <div class="developer-logo">
+                    <span>Desarrollado por</span>
+                    <a href="https://www.strokbig.com" target="_blank" class="strokbig-logo" title="Visita Strokbig">
+                        <img src="img/Strokbig-Logo-BLANCO-+-[MR].png" alt="Strokbig">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Institución Educativa El Rosario Itagüí. Todos los derechos reservados.</p>
+                <p class="footer-note">Carrera 48A #38-171, Itagüí, Antioquia - Colombia</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Map Location Modal -->
+<div class="modal" id="map-modal">
+    <div class="modal-content modal-map">
+        <button class="close-modal" id="close-map">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="map-header">
+            <h2><i class="fas fa-map-marker-alt"></i> Ubicación del Colegio</h2>
+        </div>
+        <div class="map-body">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.6892929447744!2d-75.18965!3d6.177944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4429d3a5f5f5f5%3A0x5f5f5f5f5f5f5f5f!2sCarrera%2048A%20%2338-171%2C%20Itagu%C3%AD%2C%20Antioquia!5e0!3m2!1ses!2sco!4v1694000000000" width="100%" height="450" style="border:0;border-radius:12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="map-footer">
+            <div class="location-info">
+                <i class="fas fa-home"></i>
+                <div>
+                    <h4>Dirección</h4>
+                    <p>Carrera 48A #38-171, Itagüí, Antioquia - Colombia</p>
+                </div>
+            </div>
+            <div class="contact-links">
+                <a href="tel:+573006076615" class="location-btn">
+                    <i class="fas fa-phone"></i> Llamar
+                </a>
+                <a href="https://wa.me/573006076615" target="_blank" class="location-btn whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
